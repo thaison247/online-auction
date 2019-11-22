@@ -34,7 +34,7 @@
 						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/phone.png" alt=""></div>+38 068 005 3570</div>
 						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/mail.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
 						<div class="top_bar_content ml-auto">
-							<div class="top_bar_menu">
+							<!-- <div class="top_bar_menu">
 								<ul class="standard_dropdown top_bar_dropdown">
 									<li>
 										<a href="#">English<i class="fas fa-chevron-down"></i></a>
@@ -53,7 +53,7 @@
 										</ul>
 									</li>
 								</ul>
-							</div>
+							</div> -->
 							<div class="top_bar_user">
 								<div class="user_icon"><img src="images/user.svg" alt=""></div>
 								<div><a href="#">Register</a></div>
@@ -74,28 +74,49 @@
 					<!-- Logo -->
 					<div class="col-lg-2 col-sm-3 col-3 order-1">
 						<div class="logo_container">
-							<div class="logo"><a href="#">OneTech</a></div>
+							<div class="logo"><a href="#">Online Auction</a></div>
 						</div>
 					</div>
 
 					<!-- Search -->
-					<div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
+					<div class="col-lg-8 col-12 order-lg-2 order-3 text-lg-left text-right">
 						<div class="header_search">
 							<div class="header_search_content">
 								<div class="header_search_form_container">
 									<form action="#" class="header_search_form clearfix">
-										<input type="search" required="required" class="header_search_input" placeholder="Search for products...">
+										<input type="search" required="required" class="header_search_input" placeholder="Search for product...">
 										<div class="custom_dropdown">
 											<div class="custom_dropdown_list">
 												<span class="custom_dropdown_placeholder clc">All Categories</span>
 												<i class="fas fa-chevron-down"></i>
-												<ul class="custom_list clc">
-													<li><a class="clc" href="#">All Categories</a></li>
-													<li><a class="clc" href="#">Computers</a></li>
-													<li><a class="clc" href="#">Laptops</a></li>
-													<li><a class="clc" href="#">Cameras</a></li>
-													<li><a class="clc" href="#">Hardware</a></li>
-													<li><a class="clc" href="#">Smartphones</a></li>
+												<ul class="custom_list clc cat_menu">
+														<li class="hassubs">
+																<a href="#">Electronics<i class="fas fa-chevron-right"></i></a>
+																<ul>
+																	<li><a href="#">Cameras<i class="fas fa-chevron-right"></i></a></li>
+																	<li><a href="#">Computers<i class="fas fa-chevron-right"></i></a></li>
+																	<li><a href="#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a></li>
+																	<li><a href="#">Smartwatch<i class="fas fa-chevron-right"></i></a></li>
+																	<li><a href="#">e-Book Readers<i class="fas fa-chevron-right"></i></a></li>
+																	<li><a href="#">Headphones<i class="fas fa-chevron-right"></i></a></li>
+																	<li><a href="#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
+																</ul>
+														</li>
+														<li><a href="#">Watches<i class="fas fa-chevron-right"></i></a></li>
+														<li class="hassubs">
+																<a href="#">Cars, Motocycles<i class="fas fa-chevron-right"></i></a>
+																<ul>
+																	<li><a href ="#">Classic Cars</a></li>
+																	<li><a href ="#">Classic Motocycles</a></li>
+																	<li><a href ="#">Ducatti</a></li>
+																	<li><a href ="#">Jeep</a></li>
+																	<li><a href ="#">Vespa</a></li>
+																</ul>
+														</li>
+														<li><a href="#">Clothes<i class="fas fa-chevron-right"></i></a></li>
+														<li><a href="#">Books<i class="fas fa-chevron-right"></i></a></li>
+														<li><a href="#">Tickets<i class="fas fa-chevron-right ml-auto"></i></a></li>
+														<li><a href="#">Houses<i class="fas fa-chevron-right"></i></a></li>
 												</ul>
 											</div>
 										</div>
@@ -109,13 +130,13 @@
 					<!-- Wishlist -->
 					<div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
 						<div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
-							<div class="wishlist d-flex flex-row align-items-center justify-content-end">
+							<!-- <div class="wishlist d-flex flex-row align-items-center justify-content-end">
 								<div class="wishlist_icon"><img src="images/heart.png" alt=""></div>
 								<div class="wishlist_content">
 									<div class="wishlist_text"><a href="#">Wishlist</a></div>
 									<div class="wishlist_count">115</div>
 								</div>
-							</div>
+							</div> -->
 
 							<!-- Cart -->
 							<div class="cart">
@@ -150,35 +171,51 @@
 							<div class="cat_menu_container">
 								<div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
 									<div class="cat_burger"><span></span><span></span><span></span></div>
-									<div class="cat_menu_text">categories</div>
+									<div class="cat_menu_text">Categories</div>
 								</div>
 
 								<ul class="cat_menu">
-									<li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-									<li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
 									<li class="hassubs">
-										<a href="#">Hardware<i class="fas fa-chevron-right"></i></a>
+										<a href="#">Electronics<i class="fas fa-chevron-right"></i></a>
 										<ul>
-											<li class="hassubs">
+											<!-- <li class="hassubs">
 												<a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
 												<ul>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
+													<li><a href="#">Điện thoại di động<i class="fas fa-chevron-right"></i></a></li>
+													<li><a href="#">Máy tính xách tay<i class="fas fa-chevron-right"></i></a></li>
+													<li><a href="#">Máy tính<i class="fas fa-chevron-right"></i></a></li>
+													<li><a href="#">Laptop<i class="fas fa-chevron-right"></i></a></li>
 												</ul>
-											</li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
+											</li> -->
+											
+											<li><a href="#">Cameras<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">Computers<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">Smartwatch<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">eBook Readers<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">Headphones<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
+											
 										</ul>
 									</li>
-									<li><a href="#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
+									<li><a href="#">Watches<i class="fas fa-chevron-right"></i></a></li>
+									<li class="hassubs">
+											<a href="#">Cars & Motocycles<i class="fas fa-chevron-right"></i></a>
+											<ul>
+												<li><a href ="#">Classic Cars</a></li>
+												<li><a href ="#">Classic Motocycles</a></li>
+												<li><a href ="#">Ducatti</a></li>
+												<li><a href ="#">Jeep</a></li>
+												<li><a href ="#">Vespa</a></li>
+											</ul>
+										</li>
+									<li><a href="#">Clothes<i class="fas fa-chevron-right"></i></a></li>
+									<li><a href="#">Books<i class="fas fa-chevron-right"></i></a></li>
+									<li><a href="#">Tickets<i class="fas fa-chevron-right ml-auto"></i></a></li>
+									<li><a href="#">Houses<i class="fas fa-chevron-right"></i></a></li>
+									<!-- <li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
 									<li><a href="#">Video Games & Consoles<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
+									<li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li> -->
 								</ul>
 							</div>
 
