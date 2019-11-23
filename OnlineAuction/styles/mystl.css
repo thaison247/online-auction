@@ -4,9 +4,15 @@
     margin: 10px;
 }
 
-.card image {
-    width: 180px;
+.card-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.card-img {
     height: 180px;
+    /* position: relative; */
 }
 
 .lots-number {
