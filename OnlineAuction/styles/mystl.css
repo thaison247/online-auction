@@ -4,6 +4,11 @@
     margin: 10px;
 }
 
+.card image {
+    width: 180px;
+    height: 180px;
+}
+
 .lots-number {
     display: inline-block;
     position: relative;
