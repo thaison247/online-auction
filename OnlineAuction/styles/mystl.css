@@ -4,9 +4,14 @@
     margin: 10px;
 }
 
-.card image {
-    width: 180px;
+.text-ovfl {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-img {
     height: 180px;
+    /* position: relative; */
 }
 
 .lots-number {
