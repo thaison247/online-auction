@@ -1,0 +1,24 @@
+.top5container li .card {
+    width: 12rem;
+    padding: 5px;
+    margin: 10px;
+}
+
+.card image {
+    width: 180px;
+    height: 180px;
+}
+
+.lots-number {
+    display: inline-block;
+    position: relative;
+}
+
+.lots-number-inner {
+    position: absolute;
+    background-color: blue;
+
+    color: white;
+    border-radius: 5px;
+    padding: 5px
+}
