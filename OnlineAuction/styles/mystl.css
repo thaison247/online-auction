@@ -4,9 +4,10 @@
     margin: 10px;
 }
 
-.text-ovfl {
+.card-title {
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .card-img {
