@@ -4,6 +4,7 @@
     margin: 10px;
 }
 
+
 .card-title {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -15,16 +16,40 @@
     /* position: relative; */
 }
 
-.lots-number {
+.bids-number {
     display: inline-block;
     position: relative;
 }
 
-.lots-number-inner {
+.bids-number-inner {
     position: absolute;
     background-color: blue;
 
     color: white;
     border-radius: 5px;
     padding: 5px
+}
+
+.curr-bid {
+    margin: 0px !important;
+}
+
+.highest-bidder {
+    display: flex !important;
+    justify-content: center !important;
+    color: blue;
+    font-size: small;
+}
+
+.bid-price {
+    color: red;
+
+}
+
+.btn-buynow {
+    background-color: #e40047;
+}
+
+.btn-viewdetail {
+    margin-top: 5px;
 }
