@@ -263,3 +263,64 @@ p.separator span
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+/*forgot password*/
+.forgot
+{
+    background-color:white;
+    height:auto;
+    width:450px;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:14px;
+    padding-bottom:5px;
+    display:none;
+    overflow:hidden;
+    position:absolute;
+    z-index:99999;
+    top:10%;
+    left:50%;
+    margin-left:-200px;
+}
+
+.forgot h4
+{
+    margin-left: 5px;
+}
+ 
+.forgot .forgot_title
+{
+    color:white;
+    font-size:30px;
+    padding:8px 0 5px 8px;
+    text-align:left;
+}
+ 
+.forgot-content label {
+    display: block;
+    padding-bottom: 7px;
+}
+ 
+.forgot-content span {
+    display: block;
+}
+.forgot-content
+{
+    padding: 15px 35px;
+    background-color:white;
+    margin-left:5px;
+    margin-right:5px;
+    height:auto;
+    overflow:hidden;
+}
+.forgot input
+{
+    border:1px solid #D5D5D5;
+    border-radius:5px;
+    box-shadow:1px 1px 5px rgba(0,0,0,.07) inset;
+    color:black;
+    font:12px/25px "Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    height:28px;
+    padding:0px 8px;
+    word-spacing:0.1em;
+    width:100%;
+}
