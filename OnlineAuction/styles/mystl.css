@@ -1,9 +1,14 @@
-.top5container li .card {
+.card {
     width: 12rem;
+    height: auto;
     padding: 5px;
     margin: 10px;
+    text-align: center;
 }
 
+.card:hover {
+    box-shadow: 0px 15px 15px rgba(68, 103, 216, 0.3);
+}
 
 .card-title {
     overflow: hidden;
@@ -35,8 +40,8 @@
 }
 
 .highest-bidder {
-    display: flex !important;
-    justify-content: center !important;
+    /* display: flex !important;
+    justify-content: center !important; */
     color: blue;
     font-size: small;
 }
@@ -46,10 +51,14 @@
 
 }
 
-.btn-buynow {
-    background-color: #e40047;
+.buy_now {
+    display: inline-block;
+
 }
 
 .btn-viewdetail {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
     margin-top: 5px;
 }
