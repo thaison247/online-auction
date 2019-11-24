@@ -11,11 +11,16 @@
 <link rel="stylesheet" type="text/css" href="styles/contact_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
 <link rel="stylesheet" type="text/css" href="styles/sign_in_styles.css">
+<<<<<<< HEAD
+=======
+<link rel="stylesheet" type="text/css" href="styles/sign_up_styles.css">
+>>>>>>> thanhtai/sign_up
 
 </head>
 
 <body>
 
+<<<<<<< HEAD
 	<!-- Sign in-->
 	<div class="signin" id="signin-box"><h4>Sign in
 		<a class="close" href="#"><img class="img-close" title="Close Window" alt="Close" src="images/close.png" /></a></h4>
@@ -53,6 +58,93 @@
 			</ul>
 		</form>
 	</div>
+=======
+<!-- Sign in-->
+<div class="signin" id="signin-box"><h4>Sign in
+	<a class="close" href="#"><img class="img-close" title="Close Window" alt="Close" src="images/close.png" /></a></h4>
+	<form class="signin-content" action="#" method="post">
+		<label class="username">
+			<span>Email</span>
+			<input id="email" type="email" autocomplete="on" name="email" placeholder="Email" value="" />
+		</label>
+		<label class="password">
+			<span>Password</span>
+			<input id="password" type="password" name="password" placeholder="Password" value="" />
+		</label>
+		<label class="checkbox">Keep me signed in
+			<input type="checkbox">
+			<span class="checkmark"></span>
+		</label>
+		<a class="forgot-window" href="#">Forgot password?
+			<a class="signup-window" style="float: right;" href="#signup-box">Not a member? Sign up</a>
+		</a>
+		<button class="button1 submit-button" type="button">Sign in</button>
+		<p class="separator"><span>or</span></p>
+		<ul class="social social-signin">
+			<li>
+				<button id="signin-google" class="google flaticon-google" onclick="">
+					<img src="images/google.png">
+					<span>Google</span>
+				</button>
+			</li>
+			<li>
+				<button id="signin-facebook" class="facebook flaticon-facebook" onclick="">
+					<img src="images/facebook.png">
+					<span>Facebook</span>
+				</button>
+			</li>
+		</ul>
+	</form>
+</div>
+
+<!-- Sign up-->
+<div class="signup" id="signup-box"><h4>Sign up
+	<a class="close" href="#"><img class="img-close" title="Close Window" alt="Close" src="images/close.png" /></a></h4>
+	<form class="signup-content" action="#" method="post">
+		<label class="email">
+			<span>Email</span>
+			<input id="email-up" type="email" autocomplete="on" name="email-up" placeholder="Email" value="" />
+		</label>
+		<label class="password">
+			<span>Password</span>
+			<input id="password-up" type="password" name="password-up" placeholder="Password" value="" />
+		</label>
+		<label class="password">
+			<span>Retype password</span>
+			<input id="retype-password" type="password" name="retype-password" placeholder="Retype password" value="" />
+		</label>
+		<label class="fullname">
+			<span>Full name</span>
+			<input id="fullname" type="text" name="fullname" placeholder="Full name" value="" />
+		</label>
+		<label class="birthday">
+			<span>Birthday</span>
+			<input id="birthday" type="date" name="birthday" value="" />
+		</label>
+		<label class="address">
+			<span>Address</span>
+			<input id="address" type="text" name="address" placeholder="Address" value="" />
+		</label>
+		<a class="signin-window" href="#signin-box">Already registered? Sign in</a>
+		<button class="button1 submit-button" type="button">Sign up</button>
+		<p class="separator"><span>or</span></p>
+		<ul class="social social-signup">
+			<li>
+				<button id="signup-google" class="google flaticon-google" onclick="">
+					<img src="images/google.png">
+					<span>Google</span>
+				</button>
+			</li>
+			<li>
+				<button id="signup-facebook" class="facebook flaticon-facebook" onclick="">
+					<img src="images/facebook.png">
+					<span>Facebook</span>
+				</button>
+			</li>
+		</ul>
+	</form>
+</div>
+>>>>>>> thanhtai/sign_up
 
 <div class="super_container">
 	
@@ -91,7 +183,11 @@
 							</div>
 							<div class="top_bar_user">
 								<div class="user_icon"><img src="images/user.svg" alt=""></div>
+<<<<<<< HEAD
 								<div><a href="#">Sign up</a></div>
+=======
+								<div><a class="signup-window" href="#signup-box">Sign up</a></div>
+>>>>>>> thanhtai/sign_up
 								<div><a class="signin-window" href="#signin-box">Sign in</a></div>
 							</div>
 						</div>
@@ -597,6 +693,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="plugins/easing/easing.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
 <script src="js/contact_custom.js"></script>
+<script src="js/sign_in_custom.js"></script>
+<script src="js/sign_up_custom.js"></script>
 </body>
 
 </html>
