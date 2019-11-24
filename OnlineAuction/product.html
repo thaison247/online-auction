@@ -15,10 +15,11 @@
 <link rel="stylesheet" type="text/css" href="styles/product_responsive.css">
 <link rel="stylesheet" type="text/css" href="styles/sign_in_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/sign_up_styles.css">
+<script src='https://www.google.com/recaptcha/api.js'></script>
 
 </head>
 
-<body>
+<body id="body" scroll="no" style="overflow: visible;">
 
 <!-- Sign in-->
 <div class="signin" id="signin-box"><h4>Sign in
@@ -36,7 +37,7 @@
 			<input type="checkbox">
 			<span class="checkmark"></span>
 		</label>
-		<a class="forgot-window" href="#">Forgot password?
+		<a class="forgot-window" href="#forgot-box">Forgot password?
 			<a class="signup-window" style="float: right;" href="#signup-box">Not a member? Sign up</a>
 		</a>
 		<button class="button1 submit-button" type="button">Sign in</button>
@@ -86,6 +87,7 @@
 			<span>Address</span>
 			<input id="address" type="text" name="address" placeholder="Address" value="" />
 		</label>
+		<div class="g-recaptcha" data-sitekey="6LeGVMQUAAAAAFJDjMMy6OLduUbF1nABKuFUulP_"></div>
 		<a class="signin-window" href="#signin-box">Already registered? Sign in</a>
 		<button class="button1 submit-button" type="button">Sign up</button>
 		<p class="separator"><span>or</span></p>
@@ -103,6 +105,18 @@
 				</button>
 			</li>
 		</ul>
+	</form>
+</div>
+
+<!-- Forgot password-->
+<div class="forgot" id="forgot-box"><h4>Forgot password
+	<a class="close" href="#"><img class="img-close" title="Close Window" alt="Close" src="images/close.png" /></a></h4>
+	<form class="forgot-content" action="#" method="post">
+		<label class="email">
+			<span>Please enter the email address you have registered</span>
+			<input id="email-forgot" type="email" autocomplete="on" name="email-forgot" placeholder="Email" value="" />
+		</label>
+		<button class="button1 submit-button" type="button">Reset password</button>
 	</form>
 </div>
 
