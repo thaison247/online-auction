@@ -18,6 +18,7 @@
 7. Brands
 8. Newsletter
 9. Footer
+10. My button collapsed
 
 
 ******************************/
@@ -1315,8 +1316,7 @@ select option {
 *********************************/
 
 .single_product {
-	padding-top: 110px;
-	padding-bottom: 140px;
+	padding-bottom: 30px;
 }
 
 .image_list li {
@@ -2180,4 +2180,12 @@ select option {
 
 .logos_list li:last-child {
 	margin-right: 0px;
+}
+
+/* 10. My button collapsed */
+.mybtn_collapsed {
+	text-align: center;
+	color: black;
+	font-size: large;
+	width: 100%;
 }
