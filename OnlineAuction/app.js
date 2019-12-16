@@ -1,7 +1,11 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
-
 const app = express();
+
+app.use(express.static(__dirname + '/public'));
+
+require('./middlewares/locals.mdw')(app);
+require('./middlewares/routes.mdw')(app);
 
 app.engine('hbs', exphbs({
     defaultLayout: 'main.hbs',
@@ -23,9 +27,11 @@ app.get('/product', (req, res) => {
 
 app.get('/cart', (req, res) => {
     res.render('cart');
-})
+});
 
-app.use(express.static(__dirname + '/public'));
+
+
+
 
 const PORT = 3000;
 app.listen(PORT, () => {

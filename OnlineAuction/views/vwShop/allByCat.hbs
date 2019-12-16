@@ -1,0 +1,566 @@
+{{!-- <!-- Home -->
+
+<div class="home">
+    <div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/shop_background.jpg">
+    </div>
+    <div class="home_overlay"></div>
+    <div class="home_content d-flex flex-column align-items-center justify-content-center">
+        <h2 class="home_title">Smartphones & Tablets</h2>
+    </div>
+</div> --}}
+
+<!-- Shop -->
+
+<div class="shop">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+
+                <!-- Shop Sidebar -->
+                <div class="shop_sidebar">
+                    <div class=" sidebar_section">
+                        <div class="sidebar_title">Categories</div>
+                        <ul class="sidebar_categories">
+                            {{#each lcCategories}}
+                            <li class="slidebar_item " style="padding-right: 35px;"><a
+                                    {{#if isActive}}style="color: blue;" {{/if}}
+                                    href="/categories/{{id_dm}}/products">{{ten_dm}}
+                                    {{#if num_of_products}}
+                                    <span class="badge badge-danger float-right">{{num_of_products}}</span>
+                                    {{/if}}
+                                </a>
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                    <div class="sidebar_section filter_by_section">
+                        <div class="sidebar_title">Filter By</div>
+                        <div class="sidebar_subtitle">Price</div>
+                        <div class="filter_price">
+                            <div id="slider-range" class="slider_range"></div>
+                            <p>Range: </p>
+                            <p><input type="text" id="amount" class="amount" readonly
+                                    style="border:0; font-weight:bold;">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="sidebar_section">
+                        <div class="sidebar_subtitle color_subtitle">Color</div>
+                        <ul class="colors_list">
+                            <li class="color"><a href="#" style="background: #b19c83;"></a></li>
+                            <li class="color"><a href="#" style="background: #000000;"></a></li>
+                            <li class="color"><a href="#" style="background: #999999;"></a></li>
+                            <li class="color"><a href="#" style="background: #0e8ce4;"></a></li>
+                            <li class="color"><a href="#" style="background: #df3b3b;"></a></li>
+                            <li class="color"><a href="#" style="background: #ffffff; border: solid 1px #e1e1e1;"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="sidebar_section">
+                        <div class="sidebar_subtitle brands_subtitle">Brands</div>
+                        <ul class="brands_list">
+                            <li class="brand"><a href="#">Apple</a></li>
+                            <li class="brand"><a href="#">Beoplay</a></li>
+                            <li class="brand"><a href="#">Google</a></li>
+                            <li class="brand"><a href="#">Meizu</a></li>
+                            <li class="brand"><a href="#">OnePlus</a></li>
+                            <li class="brand"><a href="#">Samsung</a></li>
+                            <li class="brand"><a href="#">Sony</a></li>
+                            <li class="brand"><a href="#">Xiaomi</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-9">
+
+                <div class="row">
+
+                    {{#each products}}
+                    <!-- Product Item -->
+                    <div class="col-sm-3 mb-3">
+                        <a href="product.html">
+                            <div class="card product_card">
+                                <div class="bids-number">
+                                    <div class="bids-number-inner">100 bids</div>
+                                    <img src="/imgs/sp/{{id_dm}}/{{id_sp}}/thumb.jpg" class="card-img" alt="{{ten_sp}}">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ten_sp}}</h5>
+
+                                    <div class="curr-bid">
+                                        <div>Current Bid: <span class="bid-price">2000<i
+                                                    class="fas fa-dollar-sign"></i></span></div>
+                                        <div class="highest-bidder">
+                                            Bidder1337
+                                        </div>
+                                    </div>
+
+                                    <div class="open-day">
+                                        <small><span style="color: gray;">Open Day:
+                                            </span>November
+                                            20</small>
+                                    </div>
+
+                                    <div class="close-timer">
+                                        <small><span style="color: gray;">Close in: </span>3
+                                            <span>Days</span></small>
+                                    </div>
+                                    <div>
+                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
+                                            Detail</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {{/each}}
+                    {{!-- 
+                    <!-- Product Item -->
+                    <div class="col-sm-3 mb-3">
+                        <a href="product.html">
+                            <div class="card product_card">
+                                <div class="bids-number">
+                                    <div class="bids-number-inner">100 bids</div>
+                                    <img src="images/smartphone_1.png" class="card-img" alt="images/best_2.png">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">HP Spectre Folio 13</h5>
+
+                                    <div class="curr-bid">
+                                        <div>Current Bid: <span class="bid-price">2000<i
+                                                    class="fas fa-dollar-sign"></i></span></div>
+                                        <div class="highest-bidder">
+                                            Bidder1337
+                                        </div>
+                                    </div>
+
+                                    <div class="open-day">
+                                        <small><span style="color: gray;">Open Day:
+                                            </span>November
+                                            20</small>
+                                    </div>
+
+                                    <div class="close-timer">
+                                        <small><span style="color: gray;">Close in: </span>3
+                                            <span>Days</span></small>
+                                    </div>
+                                    <div>
+                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
+                                            Detail</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Product Item -->
+                    <div class="col-sm-3 mb-3">
+                        <a href="product.html">
+                            <div class="card product_card">
+                                <div class="bids-number">
+                                    <div class="bids-number-inner">100 bids</div>
+                                    <img src="images/smartphone_2.jpg" class="card-img" alt="images/best_2.png">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">HP Spectre Folio 13</h5>
+
+                                    <div class="curr-bid">
+                                        <div>Current Bid: <span class="bid-price">2000<i
+                                                    class="fas fa-dollar-sign"></i></span></div>
+                                        <div class="highest-bidder">
+                                            Bidder1337
+                                        </div>
+                                    </div>
+
+                                    <div class="open-day">
+                                        <small><span style="color: gray;">Open Day:
+                                            </span>November
+                                            20</small>
+                                    </div>
+
+                                    <div class="close-timer">
+                                        <small><span style="color: gray;">Close in: </span>3
+                                            <span>Days</span></small>
+                                    </div>
+                                    <div>
+                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
+                                            Detail</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Product Item -->
+                    <div class="col-sm-3 mb-3">
+                        <a href="product.html">
+                            <div class="card product_card">
+                                <div class="bids-number">
+                                    <div class="bids-number-inner">100 bids</div>
+                                    <img src="images/smartphone_6.jpg" class="card-img" alt="images/best_2.png">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">HP Spectre Folio 13</h5>
+
+                                    <div class="curr-bid">
+                                        <div>Current Bid: <span class="bid-price">2000<i
+                                                    class="fas fa-dollar-sign"></i></span></div>
+                                        <div class="highest-bidder">
+                                            Bidder1337
+                                        </div>
+                                    </div>
+
+                                    <div class="open-day">
+                                        <small><span style="color: gray;">Open Day:
+                                            </span>November
+                                            20</small>
+                                    </div>
+
+                                    <div class="close-timer">
+                                        <small><span style="color: gray;">Close in: </span>3
+                                            <span>Days</span></small>
+                                    </div>
+                                    <div>
+                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
+                                            Detail</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Product Item -->
+                    <div class="col-sm-3 mb-3">
+                        <a href="product.html">
+                            <div class="card product_card">
+                                <div class="bids-number">
+                                    <div class="bids-number-inner">100 bids</div>
+                                    <img src="images/smartphone_2.jpg" class="card-img" alt="images/best_2.png">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">HP Spectre Folio 13</h5>
+
+                                    <div class="curr-bid">
+                                        <div>Current Bid: <span class="bid-price">2000<i
+                                                    class="fas fa-dollar-sign"></i></span></div>
+                                        <div class="highest-bidder">
+                                            Bidder1337
+                                        </div>
+                                    </div>
+
+                                    <div class="open-day">
+                                        <small><span style="color: gray;">Open Day:
+                                            </span>November
+                                            20</small>
+                                    </div>
+
+                                    <div class="close-timer">
+                                        <small><span style="color: gray;">Close in: </span>3
+                                            <span>Days</span></small>
+                                    </div>
+                                    <div>
+                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
+                                            Detail</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Product Item -->
+                    <div class="col-sm-3 mb-3">
+                        <a href="product.html">
+                            <div class="card product_card">
+                                <div class="bids-number">
+                                    <div class="bids-number-inner">100 bids</div>
+                                    <img src="images/smartphone_5.png" class="card-img" alt="images/best_2.png">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">HP Spectre Folio 13</h5>
+
+                                    <div class="curr-bid">
+                                        <div>Current Bid: <span class="bid-price">2000<i
+                                                    class="fas fa-dollar-sign"></i></span></div>
+                                        <div class="highest-bidder">
+                                            Bidder1337
+                                        </div>
+                                    </div>
+
+                                    <div class="open-day">
+                                        <small><span style="color: gray;">Open Day:
+                                            </span>November
+                                            20</small>
+                                    </div>
+
+                                    <div class="close-timer">
+                                        <small><span style="color: gray;">Close in: </span>3
+                                            <span>Days</span></small>
+                                    </div>
+                                    <div>
+                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
+                                            Detail</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Product Item -->
+                    <div class="col-sm-3 mb-3">
+                        <a href="product.html">
+                            <div class="card product_card">
+                                <div class="bids-number">
+                                    <div class="bids-number-inner">100 bids</div>
+                                    <img src="images/smartphone_3.png" class="card-img" alt="images/best_2.png">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">HP Spectre Folio 13</h5>
+
+                                    <div class="curr-bid">
+                                        <div>Current Bid: <span class="bid-price">2000<i
+                                                    class="fas fa-dollar-sign"></i></span></div>
+                                        <div class="highest-bidder">
+                                            Bidder1337
+                                        </div>
+                                    </div>
+
+                                    <div class="open-day">
+                                        <small><span style="color: gray;">Open Day:
+                                            </span>November
+                                            20</small>
+                                    </div>
+
+                                    <div class="close-timer">
+                                        <small><span style="color: gray;">Close in: </span>3
+                                            <span>Days</span></small>
+                                    </div>
+                                    <div>
+                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
+                                            Detail</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Product Item -->
+                    <div class="col-sm-3 mb-3">
+                        <a href="product.html">
+                            <div class="card product_card">
+                                <div class="bids-number">
+                                    <div class="bids-number-inner">100 bids</div>
+                                    <img src="images/smartphone_4.jpg" class="card-img" alt="images/best_2.png">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">HP Spectre Folio 13</h5>
+
+                                    <div class="curr-bid">
+                                        <div>Current Bid: <span class="bid-price">2000<i
+                                                    class="fas fa-dollar-sign"></i></span></div>
+                                        <div class="highest-bidder">
+                                            Bidder1337
+                                        </div>
+                                    </div>
+
+                                    <div class="open-day">
+                                        <small><span style="color: gray;">Open Day:
+                                            </span>November
+                                            20</small>
+                                    </div>
+
+                                    <div class="close-timer">
+                                        <small><span style="color: gray;">Close in: </span>3
+                                            <span>Days</span></small>
+                                    </div>
+                                    <div>
+                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
+                                            Detail</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Product Item -->
+                    <div class="col-sm-3 mb-3">
+                        <a href="product.html">
+                            <div class="card product_card">
+                                <div class="bids-number">
+                                    <div class="bids-number-inner">100 bids</div>
+                                    <img src="images/smartphone_5.png" class="card-img" alt="images/best_2.png">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">HP Spectre Folio 13</h5>
+
+                                    <div class="curr-bid">
+                                        <div>Current Bid: <span class="bid-price">2000<i
+                                                    class="fas fa-dollar-sign"></i></span></div>
+                                        <div class="highest-bidder">
+                                            Bidder1337
+                                        </div>
+                                    </div>
+
+                                    <div class="open-day">
+                                        <small><span style="color: gray;">Open Day:
+                                            </span>November
+                                            20</small>
+                                    </div>
+
+                                    <div class="close-timer">
+                                        <small><span style="color: gray;">Close in: </span>3
+                                            <span>Days</span></small>
+                                    </div>
+                                    <div>
+                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
+                                            Detail</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Product Item -->
+                    <div class="col-sm-3 mb-3">
+                        <a href="product.html">
+                            <div class="card product_card">
+                                <div class="bids-number">
+                                    <div class="bids-number-inner">100 bids</div>
+                                    <img src="images/smartphone_1.png" class="card-img" alt="images/best_2.png">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">HP Spectre Folio 13</h5>
+
+                                    <div class="curr-bid">
+                                        <div>Current Bid: <span class="bid-price">2000<i
+                                                    class="fas fa-dollar-sign"></i></span></div>
+                                        <div class="highest-bidder">
+                                            Bidder1337
+                                        </div>
+                                    </div>
+
+                                    <div class="open-day">
+                                        <small><span style="color: gray;">Open Day:
+                                            </span>November
+                                            20</small>
+                                    </div>
+
+                                    <div class="close-timer">
+                                        <small><span style="color: gray;">Close in: </span>3
+                                            <span>Days</span></small>
+                                    </div>
+                                    <div>
+                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
+                                            Detail</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Product Item -->
+                    <div class="col-sm-3 mb-3">
+                        <a href="product.html">
+                            <div class="card product_card">
+                                <div class="bids-number">
+                                    <div class="bids-number-inner">100 bids</div>
+                                    <img src="images/smartphone_2.jpg" class="card-img" alt="images/best_2.png">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">HP Spectre Folio 13</h5>
+
+                                    <div class="curr-bid">
+                                        <div>Current Bid: <span class="bid-price">2000<i
+                                                    class="fas fa-dollar-sign"></i></span></div>
+                                        <div class="highest-bidder">
+                                            Bidder1337
+                                        </div>
+                                    </div>
+
+                                    <div class="open-day">
+                                        <small><span style="color: gray;">Open Day:
+                                            </span>November
+                                            20</small>
+                                    </div>
+
+                                    <div class="close-timer">
+                                        <small><span style="color: gray;">Close in: </span>3
+                                            <span>Days</span></small>
+                                    </div>
+                                    <div>
+                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
+                                            Detail</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Product Item -->
+                    <div class="col-sm-3 mb-3">
+                        <a href="product.html">
+                            <div class="card product_card">
+                                <div class="bids-number">
+                                    <div class="bids-number-inner">100 bids</div>
+                                    <img src="images/smartphone_6.jpg" class="card-img" alt="images/best_2.png">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">HP Spectre Folio 13</h5>
+
+                                    <div class="curr-bid">
+                                        <div>Current Bid: <span class="bid-price">2000<i
+                                                    class="fas fa-dollar-sign"></i></span></div>
+                                        <div class="highest-bidder">
+                                            Bidder1337
+                                        </div>
+                                    </div>
+
+                                    <div class="open-day">
+                                        <small><span style="color: gray;">Open Day:
+                                            </span>November
+                                            20</small>
+                                    </div>
+
+                                    <div class="close-timer">
+                                        <small><span style="color: gray;">Close in: </span>3
+                                            <span>Days</span></small>
+                                    </div>
+                                    <div>
+                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
+                                            Detail</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div> --}}
+
+
+                </div>
+
+                <!-- Shop Page Navigation -->
+
+                <div class="shop_page_nav d-flex flex-row">
+                    <div class="page_prev d-flex flex-column align-items-center justify-content-center">
+                        <i class="fas fa-chevron-left"></i></div>
+                    <ul class="page_nav d-flex flex-row">
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">...</a></li>
+                        <li><a href="#">21</a></li>
+                    </ul>
+                    <div class="page_next d-flex flex-column align-items-center justify-content-center">
+                        <i class="fas fa-chevron-right"></i></div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

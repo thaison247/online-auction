@@ -8,26 +8,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="OneTech shop project">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
-    <link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
-    <link rel="stylesheet" type="text/css" href="plugins/slick-1.8.0/slick.css">
-    <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
-    <link rel="stylesheet" type="text/css" href="styles/responsive.css">
-    <link rel="stylesheet" type="text/css" href="styles/shop_styles.css">
-    <link rel="stylesheet" type="text/css" href="styles/shop_responsive.css">
-    <link rel="stylesheet" type="text/css" href="styles/product_styles.css">
-    <link rel="stylesheet" type="text/css" href="styles/product_responsive.css">
-    <link rel="stylesheet" type="text/css" href="styles/cart_styles.css">
-    <link rel="stylesheet" type="text/css" href="styles/cart_responsive.css">
-    <link rel="stylesheet" type="text/css" href="styles/mystl.css">
-    <link rel="stylesheet" type="text/css" href="styles/sign_in_styles.css">
-    <link rel="stylesheet" type="text/css" href="styles/sign_up_styles.css">
+    {{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" --}}
+    {{!-- integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> --}}
+    <link rel="stylesheet" type="text/css" href="/styles/bootstrap4/bootstrap.min.css">
+    <link href="/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="/plugins/slick-1.8.0/slick.css">
+    <link rel="stylesheet" type="text/css" href="/styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="/styles/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/styles/shop_styles.css">
+    <link rel="stylesheet" type="text/css" href="/styles/shop_responsive.css">
+    <link rel="stylesheet" type="text/css" href="/styles/product_styles.css">
+    <link rel="stylesheet" type="text/css" href="/styles/product_responsive.css">
+    <link rel="stylesheet" type="text/css" href="/styles/cart_styles.css">
+    <link rel="stylesheet" type="text/css" href="/styles/cart_responsive.css">
+    <link rel="stylesheet" type="text/css" href="/styles/mystl.css">
+    <link rel="stylesheet" type="text/css" href="/styles/sign_in_styles.css">
+    <link rel="stylesheet" type="text/css" href="/styles/sign_up_styles.css">
     <script src='https://www.google.com/recaptcha/api.js'></script>
 
-</head>
+</head>/
 
 <body id="body" scroll="no" style="overflow: visible;">
 
@@ -196,12 +198,14 @@
                                                         PHẨM</span>
                                                     <i class="fas fa-chevron-down"></i>
                                                     <ul class="custom_list clc">
-                                                        <li><a class="clc" href="#">Tất cả</a></li>
-                                                        <li><a class="clc" href="#">Máy tính & Laptop</a></li>
+                                                        {{#each lcCategories}}
+                                                        <li><a class="clc" href="#">{{ten_dm}}</a></li>
+                                                        {{!-- <li><a class="clc" href="#">Máy tính & Laptop</a></li>
                                                         <li><a class="clc" href="#">Máy ảnh</a></li>
                                                         <li><a class="clc" href="#">Thiết bị phần cứng</a></li>
                                                         <li><a class="clc" href="#">Smartphone & Tablet</a></li>
-                                                        <li><a class="clc" href="#">Phụ kiện</a></li>
+                                                        <li><a class="clc" href="#">Phụ kiện</a></li> --}}
+                                                        {{/each}}
                                                     </ul>
                                                 </div>
                                             </div>
@@ -255,10 +259,13 @@
                                         <div class="cat_menu_text">DANH MỤC SẢN PHẨM</div>
                                     </div>
 
+
                                     <ul class="cat_menu">
-                                        <li class="cat_item"><a href="shop.html">Máy Tính & Laptop <i
+                                        {{#each lcCategories}}
+                                        <li class="cat_item"><a href="shop.html">{{ten_dm}} <i
                                                     class="fas fa-chevron-right ml-auto"></i></a></li>
-                                        <li class="cat_item"><a href="shop.html">Máy Ảnh<i
+                                        {{/each}}
+                                        {{!-- <li class="cat_item"><a href="shop.html">Máy Ảnh<i
                                                     class="fas fa-chevron-right"></i></a></li>
                                         <li class="cat_item hassubs">
                                             <a href="shop.html">Thiết Bị Phần Cứng<i
@@ -290,8 +297,10 @@
                                                     class="fas fa-chevron-right"></i></a>
                                         </li>
                                         <li class="cat_item"><a href="shop.html">Phụ Kiện<i
-                                                    class="fas fa-chevron-right"></i></a></li>
+                                                    class="fas fa-chevron-right"></i></a></li> --}}
+
                                     </ul>
+
                                 </div>
 
 
@@ -419,8 +428,6 @@
     </div>
 
     <!-- Footer -->
-
-
     <footer class="footer"
         style="background-color:rgba(250, 250, 250, 0.747);border-top: solid 1px rgba(0, 0, 0, 0.05);">
         <div class="container">
@@ -501,21 +508,21 @@
     </div>
 
     {{!-- <script src="js/product_custom.js"></script> --}}
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="styles/bootstrap4/popper.js"></script>
-    <script src="styles/bootstrap4/bootstrap.min.js"></script>
-    <script src="plugins/greensock/TweenMax.min.js"></script>
-    <script src="plugins/greensock/TimelineMax.min.js"></script>
-    <script src="plugins/scrollmagic/ScrollMagic.min.js"></script>
-    <script src="plugins/greensock/animation.gsap.min.js"></script>
-    <script src="plugins/greensock/ScrollToPlugin.min.js"></script>
-    <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-    <script src="plugins/slick-1.8.0/slick.js"></script>
-    <script src="plugins/easing/easing.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/product_custom.js"></script>
-    <script src="js/sign_in_custom.js"></script>
-    <script src="js/sign_up_custom.js"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/styles/bootstrap4/popper.js"></script>
+    <script src="/styles/bootstrap4/bootstrap.min.js"></script>
+    <script src="/plugins/greensock/TweenMax.min.js"></script>
+    <script src="/plugins/greensock/TimelineMax.min.js"></script>
+    <script src="/plugins/scrollmagic/ScrollMagic.min.js"></script>
+    <script src="/plugins/greensock/animation.gsap.min.js"></script>
+    <script src="/plugins/greensock/ScrollToPlugin.min.js"></script>
+    <script src="/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+    <script src="/plugins/slick-1.8.0/slick.js"></script>
+    <script src="/plugins/easing/easing.js"></script>
+    <script src="/js/custom.js"></script>
+    <script src="/js/product_custom.js"></script>
+    <script src="/js/sign_in_custom.js"></script>
+    <script src="/js/sign_up_custom.js"></script>
 </body>
 
 </html>

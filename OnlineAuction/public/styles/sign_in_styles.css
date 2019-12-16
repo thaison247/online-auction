@@ -9,64 +9,65 @@
     opacity: 0.8;
     z-index: 999;
 }
-a, a:visited, a:active{
-    text-decoration:none;
-}
-.signin
-{
-    background-color:white;
-    height:auto;
-    width:450px;
-    font-family:Verdana, Arial, Helvetica, sans-serif;
-    font-size:14px;
-    padding-bottom:5px;
-    display:none;
-    overflow:hidden;
-    position:absolute;
-    z-index:99999;
-    top:10%;
-    left:50%;
-    margin-left:-200px;
+
+a,
+a:visited,
+a:active {
+    text-decoration: none;
 }
 
-.signin h4
-{
+.signin {
+    background-color: white;
+    height: auto;
+    width: 450px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    padding-bottom: 5px;
+    display: none;
+    overflow: hidden;
+    position: absolute;
+    z-index: 99999;
+    top: 10%;
+    left: 50%;
+    margin-left: -200px;
+}
+
+.signin h4 {
     margin-left: 5px;
 }
- 
-.signin .signin_title
-{
-    color:white;
-    font-size:30px;
-    padding:8px 0 5px 8px;
-    text-align:left;
+
+.signin .signin_title {
+    color: white;
+    font-size: 30px;
+    padding: 8px 0 5px 8px;
+    text-align: left;
 }
- 
+
 .signin-content label {
     display: block;
     padding-bottom: 7px;
 }
- 
+
 .signin-content span {
     display: block;
 }
-.signin-content
-{
+
+.signin-content {
     padding: 15px 35px;
-    background-color:white;
-    margin-left:5px;
-    margin-right:5px;
-    height:auto;
-    overflow:hidden;
+    background-color: white;
+    margin-left: 5px;
+    margin-right: 5px;
+    height: auto;
+    overflow: hidden;
 }
- 
+
 .img-close {
     float: right;
     margin-top: 5px;
     margin-right: 5px;
-} 
-.button1
-{
+}
+
+.button1 {
     display: inline-block;
     min-width: 46px;
     text-align: center;
@@ -80,37 +81,38 @@ a, a:visited, a:active{
     transition: all 0.218s ease 0s;
     border: 1px solid #DCDCDC;
     background-color: #F5F5F5;
-    background-image: -moz-linear-gradient(center top , #F5F5F5, #F1F1F1);
+    background-image: -moz-linear-gradient(center top, #F5F5F5, #F1F1F1);
     cursor: pointer;
 }
-.button1:hover{
-     border: 1px solid #DCDCDC;
+
+.button1:hover {
+    border: 1px solid #DCDCDC;
     text-decoration: none;
-    -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-    box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 }
-.signin input
-{
-    border:1px solid #D5D5D5;
-    border-radius:5px;
-    box-shadow:1px 1px 5px rgba(0,0,0,.07) inset;
-    color:black;
-    font:12px/25px "Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
-    height:28px;
-    padding:0px 8px;
-    word-spacing:0.1em;
-    width:100%;
+
+.signin input {
+    border: 1px solid #D5D5D5;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, .07) inset;
+    color: black;
+    font: 12px/25px "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    height: 28px;
+    padding: 0px 8px;
+    word-spacing: 0.1em;
+    width: 100%;
 }
-.submit-button
-{
+
+.submit-button {
     display: block;
     padding: auto;
     margin: 15px auto;
     width: 150px;
 }
-.separator
-{
+
+.separator {
     position: relative;
     margin: 1em 0;
     text-align: center;
@@ -120,16 +122,16 @@ a, a:visited, a:active{
     font-family: Proxima Nova;
     line-height: 1.5;
 }
-.signin-content p
-{
+
+.signin-content p {
     display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
 }
-p.separator:after
-{
+
+p.separator:after {
     content: "";
     width: 100%;
     height: 1px;
@@ -139,8 +141,8 @@ p.separator:after
     left: 0;
     box-sizing: inherit;
 }
-p.separator span
-{
+
+p.separator span {
     display: inline;
     background-color: #fff;
     padding: 0 1em;
@@ -151,16 +153,14 @@ p.separator span
     height: auto;
     box-sizing: inherit;
 }
-.social
-{
+
+.social {
     position: relative;
 }
-.social-signin
-{
-    
-}
-.social li button
-{
+
+.social-signin {}
+
+.social li button {
     display: inline;
     float: left;
     margin: 0;
@@ -171,17 +171,20 @@ p.separator span
     text-align: center;
     width: 50%;
 }
-.social li button span
-{
+
+.social li button span {
     display: inline;
 }
-.social li .google.btn, .social li button.google 
-{
+
+.social li .google.btn,
+.social li button.google {
     color: #222;
     background-color: #fff;
     box-shadow: 0 0 0 1px #cfd9e0;
 }
-[class*=" flaticon-"]:before, [class^=flaticon-]:before {
+
+[class*=" flaticon-"]:before,
+[class^=flaticon-]:before {
     font-family: iconfont;
     speak: none;
     font-style: normal;
@@ -193,11 +196,13 @@ p.separator span
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-.social li .facebook.btn, .social li button.facebook {
+
+.social li .facebook.btn,
+.social li button.facebook {
     background-color: #3b5998;
 }
-.checkbox
-{
+
+.checkbox {
     display: block;
     position: relative;
     padding-left: 20px;
@@ -208,119 +213,118 @@ p.separator span
     -ms-user-select: none;
     user-select: none;
 }
-.signin input.check
-{
+
+.signin input.check {
     width: auto;
     height: auto;
 }
-.checkmark
-{
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 15px;
-  width: 15px;
-  background-color: #eee;
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
 }
+
 .checkbox input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
 }
+
 /* On mouse-over, add a grey background color */
-.checkbox:hover input ~ .checkmark {
-  background-color: #ccc;
+.checkbox:hover input~.checkmark {
+    background-color: #ccc;
 }
 
 /* When the checkbox is checked, add a blue background */
-.checkbox input:checked ~ .checkmark {
-  background-color: #2196F3;
+.checkbox input:checked~.checkmark {
+    background-color: #2196F3;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
+    content: "";
+    position: absolute;
+    display: none;
 }
 
 /* Show the checkmark when checked */
-.checkbox input:checked ~ .checkmark:after {
-  display: block;
+.checkbox input:checked~.checkmark:after {
+    display: block;
 }
 
 /* Style the checkmark/indicator */
 .checkbox .checkmark:after {
-  left: 5px;
-  top: 0px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
+    left: 5px;
+    top: 0px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 
 /*forgot password*/
-.forgot
-{
-    background-color:white;
-    height:auto;
-    width:450px;
-    font-family:Verdana, Arial, Helvetica, sans-serif;
-    font-size:14px;
-    padding-bottom:5px;
-    display:none;
-    overflow:hidden;
-    position:absolute;
-    z-index:99999;
-    top:10%;
-    left:50%;
-    margin-left:-200px;
+.forgot {
+    background-color: white;
+    height: auto;
+    width: 450px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    padding-bottom: 5px;
+    display: none;
+    overflow: hidden;
+    position: absolute;
+    z-index: 99999;
+    top: 10%;
+    left: 50%;
+    margin-left: -200px;
 }
 
-.forgot h4
-{
+.forgot h4 {
     margin-left: 5px;
 }
- 
-.forgot .forgot_title
-{
-    color:white;
-    font-size:30px;
-    padding:8px 0 5px 8px;
-    text-align:left;
+
+.forgot .forgot_title {
+    color: white;
+    font-size: 30px;
+    padding: 8px 0 5px 8px;
+    text-align: left;
 }
- 
+
 .forgot-content label {
     display: block;
     padding-bottom: 7px;
 }
- 
+
 .forgot-content span {
     display: block;
 }
-.forgot-content
-{
+
+.forgot-content {
     padding: 15px 35px;
-    background-color:white;
-    margin-left:5px;
-    margin-right:5px;
-    height:auto;
-    overflow:hidden;
+    background-color: white;
+    margin-left: 5px;
+    margin-right: 5px;
+    height: auto;
+    overflow: hidden;
 }
-.forgot input
-{
-    border:1px solid #D5D5D5;
-    border-radius:5px;
-    box-shadow:1px 1px 5px rgba(0,0,0,.07) inset;
-    color:black;
-    font:12px/25px "Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
-    height:28px;
-    padding:0px 8px;
-    word-spacing:0.1em;
-    width:100%;
+
+.forgot input {
+    border: 1px solid #D5D5D5;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, .07) inset;
+    color: black;
+    font: 12px/25px "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    height: 28px;
+    padding: 0px 8px;
+    word-spacing: 0.1em;
+    width: 100%;
 }

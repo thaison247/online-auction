@@ -1706,6 +1706,8 @@ select option {
 	-ms-transform: translateX(-37px);
 	-o-transform: translateX(-37px);
 	transform: translateX(-37px);
+	border-right-color: blue;
+	border-width: medium;
 }
 
 .sidebar_title {
@@ -1721,6 +1723,7 @@ select option {
 	margin-bottom: 7px;
 }
 
+
 .sidebar_categories li a {
 	color: rgba(0, 0, 0, 0.5);
 	-webkit-transition: all 200ms ease;
@@ -1733,6 +1736,8 @@ select option {
 .sidebar_categories li a:hover {
 	color: #0e8ce4;
 }
+
+
 
 .filter_by_section {
 	margin-top: 45px;
