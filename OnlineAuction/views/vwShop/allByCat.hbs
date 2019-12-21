@@ -33,7 +33,7 @@
                             {{/each}}
                         </ul>
                     </div>
-                    <div class="sidebar_section filter_by_section">
+                    {{!-- <div class="sidebar_section filter_by_section">
                         <div class="sidebar_title">Filter By</div>
                         <div class="sidebar_subtitle">Price</div>
                         <div class="filter_price">
@@ -68,7 +68,7 @@
                             <li class="brand"><a href="#">Sony</a></li>
                             <li class="brand"><a href="#">Xiaomi</a></li>
                         </ul>
-                    </div>
+                    </div> --}}
                 </div>
 
             </div>
@@ -80,466 +80,68 @@
                     {{#each products}}
                     <!-- Product Item -->
                     <div class="col-sm-3 mb-3">
-                        <a href="product.html">
-                            <div class="card product_card">
-                                <div class="bids-number">
-                                    <div class="bids-number-inner">100 bids</div>
-                                    <img src="/imgs/sp/{{id_dm}}/{{id_sp}}/thumb.jpg" class="card-img" alt="{{ten_sp}}">
+
+                        <div class="card product_card h-100">
+                            <div class="bids-number">
+                                {{#if num_of_bids}}
+                                <div class="bids-number-inner">{{num_of_bids}} bids</div>
+                                {{else}}
+                                <div class="bids-number-inner">0 bid</div>
+                                {{/if}}
+                                <img src="/imgs/sp/{{id_dm}}/{{id_sp}}/thumb.jpg" class="card-img" alt="{{ten_sp}}">
+                            </div>
+                            <div class="card-body" style="padding: 2px;">
+                                <h5 class="card-title">{{ten_sp}}</h5>
+
+                                <div class="curr-bid">
+                                    {{#if highest}}
+                                    <div><span style="color: gray;">Hiện tại:
+                                        </span><span class="bid-price">{{format highest}}<i
+                                                class="fas fa-dollar-sign"></i></span></div>
+                                    {{else}}
+                                    <div><span style="color: gray;">Hiện tại:
+                                        </span><span class="bid-price">{{format gia_khoi_diem}}<i
+                                                class="fas fa-dollar-sign"></i></span></div>
+                                    {{/if}}
                                 </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ten_sp}}</h5>
 
-                                    <div class="curr-bid">
-                                        <div>Current Bid: <span class="bid-price">2000<i
-                                                    class="fas fa-dollar-sign"></i></span></div>
-                                        <div class="highest-bidder">
-                                            Bidder1337
-                                        </div>
-                                    </div>
+                                <div class="curr-bid">
+                                    {{#if gia_mua_ngay}}
+                                    <div><span style="color: gray;">Mua ngay:
+                                        </span><span style="color: green;">{{format gia_mua_ngay}}<i
+                                                class="fas fa-dollar-sign"></i></span></div>
+                                    {{else}}
+                                    <div><span style="color: gray;">Mua ngay:
+                                        </span><span style="color: green;">None</span></div>
+                                    {{/if}}
+                                </div>
 
-                                    <div class="open-day">
-                                        <small><span style="color: gray;">Open Day:
-                                            </span>November
-                                            20</small>
-                                    </div>
+                                <div class="open-day">
+                                    <span style="color: gray;">Ngày đăng:
+                                    </span>{{moment tg_dang "DD-MM-YYYY"}}
+                                </div>
 
-                                    <div class="close-timer">
-                                        <small><span style="color: gray;">Close in: </span>3
-                                            <span>Days</span></small>
-                                    </div>
-                                    <div>
-                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
-                                            Detail</a>
-                                    </div>
-
+                                <div class="close-timer">
+                                    <span style="color: gray;">Kết thúc trong: </span>
+                                    <span>{{relativeTime tg_het_han}} nữa</span>
                                 </div>
                             </div>
-                        </a>
+                            <div class="card-footer text-center" style="padding: 1px;">
+                                <a href="#" class="btn btn-sm btn-primary btn-viewdetail" role="button"><i
+                                        class="fa fa-eye aria-hidden=" true"></i>&nbsp;Chi
+                                    Tiết</a>
+                                {{#if gia_mua_ngay}}
+                                <a href="#" class="btn btn-sm btn-success btn-buynow" role="button"><i
+                                        class="fa fa-shopping-cart aria-hidden=" true"></i>&nbsp;Mua Ngay</a>
+                                {{else}}
+                                <a href="#" class="btn btn-sm btn-success btn-buynow disabled" role="button"><i
+                                        class="fa fa-shopping-cart aria-hidden=" true"></i>&nbsp;Mua Ngay</a>
+                                {{/if}}
+                            </div>
+                        </div>
+
                     </div>
                     {{/each}}
-                    {{!-- 
-                    <!-- Product Item -->
-                    <div class="col-sm-3 mb-3">
-                        <a href="product.html">
-                            <div class="card product_card">
-                                <div class="bids-number">
-                                    <div class="bids-number-inner">100 bids</div>
-                                    <img src="images/smartphone_1.png" class="card-img" alt="images/best_2.png">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">HP Spectre Folio 13</h5>
-
-                                    <div class="curr-bid">
-                                        <div>Current Bid: <span class="bid-price">2000<i
-                                                    class="fas fa-dollar-sign"></i></span></div>
-                                        <div class="highest-bidder">
-                                            Bidder1337
-                                        </div>
-                                    </div>
-
-                                    <div class="open-day">
-                                        <small><span style="color: gray;">Open Day:
-                                            </span>November
-                                            20</small>
-                                    </div>
-
-                                    <div class="close-timer">
-                                        <small><span style="color: gray;">Close in: </span>3
-                                            <span>Days</span></small>
-                                    </div>
-                                    <div>
-                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
-                                            Detail</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- Product Item -->
-                    <div class="col-sm-3 mb-3">
-                        <a href="product.html">
-                            <div class="card product_card">
-                                <div class="bids-number">
-                                    <div class="bids-number-inner">100 bids</div>
-                                    <img src="images/smartphone_2.jpg" class="card-img" alt="images/best_2.png">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">HP Spectre Folio 13</h5>
-
-                                    <div class="curr-bid">
-                                        <div>Current Bid: <span class="bid-price">2000<i
-                                                    class="fas fa-dollar-sign"></i></span></div>
-                                        <div class="highest-bidder">
-                                            Bidder1337
-                                        </div>
-                                    </div>
-
-                                    <div class="open-day">
-                                        <small><span style="color: gray;">Open Day:
-                                            </span>November
-                                            20</small>
-                                    </div>
-
-                                    <div class="close-timer">
-                                        <small><span style="color: gray;">Close in: </span>3
-                                            <span>Days</span></small>
-                                    </div>
-                                    <div>
-                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
-                                            Detail</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- Product Item -->
-                    <div class="col-sm-3 mb-3">
-                        <a href="product.html">
-                            <div class="card product_card">
-                                <div class="bids-number">
-                                    <div class="bids-number-inner">100 bids</div>
-                                    <img src="images/smartphone_6.jpg" class="card-img" alt="images/best_2.png">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">HP Spectre Folio 13</h5>
-
-                                    <div class="curr-bid">
-                                        <div>Current Bid: <span class="bid-price">2000<i
-                                                    class="fas fa-dollar-sign"></i></span></div>
-                                        <div class="highest-bidder">
-                                            Bidder1337
-                                        </div>
-                                    </div>
-
-                                    <div class="open-day">
-                                        <small><span style="color: gray;">Open Day:
-                                            </span>November
-                                            20</small>
-                                    </div>
-
-                                    <div class="close-timer">
-                                        <small><span style="color: gray;">Close in: </span>3
-                                            <span>Days</span></small>
-                                    </div>
-                                    <div>
-                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
-                                            Detail</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- Product Item -->
-                    <div class="col-sm-3 mb-3">
-                        <a href="product.html">
-                            <div class="card product_card">
-                                <div class="bids-number">
-                                    <div class="bids-number-inner">100 bids</div>
-                                    <img src="images/smartphone_2.jpg" class="card-img" alt="images/best_2.png">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">HP Spectre Folio 13</h5>
-
-                                    <div class="curr-bid">
-                                        <div>Current Bid: <span class="bid-price">2000<i
-                                                    class="fas fa-dollar-sign"></i></span></div>
-                                        <div class="highest-bidder">
-                                            Bidder1337
-                                        </div>
-                                    </div>
-
-                                    <div class="open-day">
-                                        <small><span style="color: gray;">Open Day:
-                                            </span>November
-                                            20</small>
-                                    </div>
-
-                                    <div class="close-timer">
-                                        <small><span style="color: gray;">Close in: </span>3
-                                            <span>Days</span></small>
-                                    </div>
-                                    <div>
-                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
-                                            Detail</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- Product Item -->
-                    <div class="col-sm-3 mb-3">
-                        <a href="product.html">
-                            <div class="card product_card">
-                                <div class="bids-number">
-                                    <div class="bids-number-inner">100 bids</div>
-                                    <img src="images/smartphone_5.png" class="card-img" alt="images/best_2.png">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">HP Spectre Folio 13</h5>
-
-                                    <div class="curr-bid">
-                                        <div>Current Bid: <span class="bid-price">2000<i
-                                                    class="fas fa-dollar-sign"></i></span></div>
-                                        <div class="highest-bidder">
-                                            Bidder1337
-                                        </div>
-                                    </div>
-
-                                    <div class="open-day">
-                                        <small><span style="color: gray;">Open Day:
-                                            </span>November
-                                            20</small>
-                                    </div>
-
-                                    <div class="close-timer">
-                                        <small><span style="color: gray;">Close in: </span>3
-                                            <span>Days</span></small>
-                                    </div>
-                                    <div>
-                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
-                                            Detail</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- Product Item -->
-                    <div class="col-sm-3 mb-3">
-                        <a href="product.html">
-                            <div class="card product_card">
-                                <div class="bids-number">
-                                    <div class="bids-number-inner">100 bids</div>
-                                    <img src="images/smartphone_3.png" class="card-img" alt="images/best_2.png">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">HP Spectre Folio 13</h5>
-
-                                    <div class="curr-bid">
-                                        <div>Current Bid: <span class="bid-price">2000<i
-                                                    class="fas fa-dollar-sign"></i></span></div>
-                                        <div class="highest-bidder">
-                                            Bidder1337
-                                        </div>
-                                    </div>
-
-                                    <div class="open-day">
-                                        <small><span style="color: gray;">Open Day:
-                                            </span>November
-                                            20</small>
-                                    </div>
-
-                                    <div class="close-timer">
-                                        <small><span style="color: gray;">Close in: </span>3
-                                            <span>Days</span></small>
-                                    </div>
-                                    <div>
-                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
-                                            Detail</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- Product Item -->
-                    <div class="col-sm-3 mb-3">
-                        <a href="product.html">
-                            <div class="card product_card">
-                                <div class="bids-number">
-                                    <div class="bids-number-inner">100 bids</div>
-                                    <img src="images/smartphone_4.jpg" class="card-img" alt="images/best_2.png">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">HP Spectre Folio 13</h5>
-
-                                    <div class="curr-bid">
-                                        <div>Current Bid: <span class="bid-price">2000<i
-                                                    class="fas fa-dollar-sign"></i></span></div>
-                                        <div class="highest-bidder">
-                                            Bidder1337
-                                        </div>
-                                    </div>
-
-                                    <div class="open-day">
-                                        <small><span style="color: gray;">Open Day:
-                                            </span>November
-                                            20</small>
-                                    </div>
-
-                                    <div class="close-timer">
-                                        <small><span style="color: gray;">Close in: </span>3
-                                            <span>Days</span></small>
-                                    </div>
-                                    <div>
-                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
-                                            Detail</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- Product Item -->
-                    <div class="col-sm-3 mb-3">
-                        <a href="product.html">
-                            <div class="card product_card">
-                                <div class="bids-number">
-                                    <div class="bids-number-inner">100 bids</div>
-                                    <img src="images/smartphone_5.png" class="card-img" alt="images/best_2.png">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">HP Spectre Folio 13</h5>
-
-                                    <div class="curr-bid">
-                                        <div>Current Bid: <span class="bid-price">2000<i
-                                                    class="fas fa-dollar-sign"></i></span></div>
-                                        <div class="highest-bidder">
-                                            Bidder1337
-                                        </div>
-                                    </div>
-
-                                    <div class="open-day">
-                                        <small><span style="color: gray;">Open Day:
-                                            </span>November
-                                            20</small>
-                                    </div>
-
-                                    <div class="close-timer">
-                                        <small><span style="color: gray;">Close in: </span>3
-                                            <span>Days</span></small>
-                                    </div>
-                                    <div>
-                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
-                                            Detail</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- Product Item -->
-                    <div class="col-sm-3 mb-3">
-                        <a href="product.html">
-                            <div class="card product_card">
-                                <div class="bids-number">
-                                    <div class="bids-number-inner">100 bids</div>
-                                    <img src="images/smartphone_1.png" class="card-img" alt="images/best_2.png">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">HP Spectre Folio 13</h5>
-
-                                    <div class="curr-bid">
-                                        <div>Current Bid: <span class="bid-price">2000<i
-                                                    class="fas fa-dollar-sign"></i></span></div>
-                                        <div class="highest-bidder">
-                                            Bidder1337
-                                        </div>
-                                    </div>
-
-                                    <div class="open-day">
-                                        <small><span style="color: gray;">Open Day:
-                                            </span>November
-                                            20</small>
-                                    </div>
-
-                                    <div class="close-timer">
-                                        <small><span style="color: gray;">Close in: </span>3
-                                            <span>Days</span></small>
-                                    </div>
-                                    <div>
-                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
-                                            Detail</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- Product Item -->
-                    <div class="col-sm-3 mb-3">
-                        <a href="product.html">
-                            <div class="card product_card">
-                                <div class="bids-number">
-                                    <div class="bids-number-inner">100 bids</div>
-                                    <img src="images/smartphone_2.jpg" class="card-img" alt="images/best_2.png">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">HP Spectre Folio 13</h5>
-
-                                    <div class="curr-bid">
-                                        <div>Current Bid: <span class="bid-price">2000<i
-                                                    class="fas fa-dollar-sign"></i></span></div>
-                                        <div class="highest-bidder">
-                                            Bidder1337
-                                        </div>
-                                    </div>
-
-                                    <div class="open-day">
-                                        <small><span style="color: gray;">Open Day:
-                                            </span>November
-                                            20</small>
-                                    </div>
-
-                                    <div class="close-timer">
-                                        <small><span style="color: gray;">Close in: </span>3
-                                            <span>Days</span></small>
-                                    </div>
-                                    <div>
-                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
-                                            Detail</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- Product Item -->
-                    <div class="col-sm-3 mb-3">
-                        <a href="product.html">
-                            <div class="card product_card">
-                                <div class="bids-number">
-                                    <div class="bids-number-inner">100 bids</div>
-                                    <img src="images/smartphone_6.jpg" class="card-img" alt="images/best_2.png">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">HP Spectre Folio 13</h5>
-
-                                    <div class="curr-bid">
-                                        <div>Current Bid: <span class="bid-price">2000<i
-                                                    class="fas fa-dollar-sign"></i></span></div>
-                                        <div class="highest-bidder">
-                                            Bidder1337
-                                        </div>
-                                    </div>
-
-                                    <div class="open-day">
-                                        <small><span style="color: gray;">Open Day:
-                                            </span>November
-                                            20</small>
-                                    </div>
-
-                                    <div class="close-timer">
-                                        <small><span style="color: gray;">Close in: </span>3
-                                            <span>Days</span></small>
-                                    </div>
-                                    <div>
-                                        <a href="product.html" class="btn btn-primary btn-viewdetail">View
-                                            Detail</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div> --}}
-
 
                 </div>
 

@@ -1,9 +1,9 @@
 .product_card {
-    width: 12rem;
+    width: 13rem;
     height: auto;
     padding: 5px;
     margin: 10px;
-    text-align: center;
+    text-align: left;
 }
 
 .product_card:hover {
@@ -12,9 +12,13 @@
 
 .card-title {
     font-weight: bold;
+    line-height: 1.5em;
+    height: 3em;
+    /* height is 2x line-height, so two lines will display */
     overflow: hidden;
+    /* prevents extra lines from being visible */
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: wrap;
 }
 
 .card-img {
@@ -52,7 +56,7 @@
 
 }
 
-.buy_now {
+/* .buy_now {
     display: inline-block;
 
 }
@@ -62,4 +66,4 @@
     align-items: baseline;
     justify-content: center;
     margin-top: 5px;
-}
+} */
