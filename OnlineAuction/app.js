@@ -1,5 +1,6 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
+const hbs_sections = require('express-handlebars-sections');
 const numeral = require('numeral');
 const moment = require('moment');
 const app = express();
@@ -29,6 +30,7 @@ app.engine('hbs', exphbs({
     defaultLayout: 'main.hbs',
     layoutsDir: 'views/layouts',
     helpers: {
+        section: hbs_sections(),
         format: val => numeral(val).format('0,0'),
         moment: (val, yourformat) => moment(val).format(yourformat),
         relativeTime: (endDay) => moment(endDay).fromNow(true),
@@ -52,6 +54,7 @@ app.get('/product', (req, res) => {
 app.get('/cart', (req, res) => {
     res.render('cart');
 });
+
 
 
 

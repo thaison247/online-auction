@@ -1,3 +1,13 @@
+{{#section 'css'}}
+<link rel="stylesheet" type="text/css" href="/styles/product_styles.css">
+<link rel="stylesheet" type="text/css" href="/styles/product_responsive.css">
+{{/section}}
+
+{{#section 'js'}}
+<script src="/js/product_custom.js"></script>
+{{/section}}
+
+
 <!-- Single Product -->
 <div class="single_product">
     <div class="container">
@@ -6,16 +16,25 @@
             <!-- Images -->
             <div class="col-lg-2 order-lg-1 order-2">
                 <ul class="image_list">
-                    <li class="clickedImg" data-image="images/single_4.jpg"><img src="images/single_4.jpg" alt=""></li>
-                    <li data-image="images/single_2.jpg"><img src="images/single_2.jpg" alt=""></li>
-                    <li data-image="images/single_3.jpg"><img src="images/single_3.jpg" alt=""></li>
-                    <li data-image="images/single_1.jpg"><img src="images/single_1.jpg" alt=""></li>
+                    <li data-image="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/main_thumb.jpg">
+                        <img src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/main_thumb.jpg" alt="">
+                    </li>
+                    <li data-image="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/1_thumb.jpg">
+                        <img src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/1_thumb.jpg" alt="">
+                    </li>
+                    <li data-image="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/2_thumb.jpg">
+                        <img src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/2_thumb.jpg" alt="">
+                    </li>
+                    <li data-image="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/3_thumb.jpg">
+                        <img src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/3_thumb.jpg" alt="">
+                    </li>
                 </ul>
             </div>
 
             <!-- Selected Image -->
             <div class="col-lg-5 order-lg-2 order-1">
-                <div class="image_selected"><img src="images/single_4.jpg" alt=""></div>
+                <div class="image_selected"><img src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/main.jpg"
+                        alt=""></div>
             </div>
 
             <!-- Description -->
@@ -55,7 +74,8 @@
                             cursus urna, eget dictum lacus turpis.</p>
                     </div> --}}
                     <div class="mt-5">
-                        <input class="form-control" style="width: 150px; float: left; text-align: center;" type="number" step="{{proInfo.buoc_gia}}" min="{{rcmPrice}}" value="{{rcmPrice}}"
+                        <input class="form-control" style="width: 150px; float: left; text-align: center;" type="number"
+                            step="{{proInfo.buoc_gia}}" min="{{rcmPrice}}" value="{{rcmPrice}}"
                             onKeyDown="return false">
                         <a class="btn btn-outline-primary" href="#" role="button">
                             <i class="fa fa-money-bill-alt" aria-hidden="true"></i>
