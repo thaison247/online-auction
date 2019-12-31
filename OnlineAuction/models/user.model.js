@@ -7,6 +7,7 @@ module.exports = {
     del: id => db.del('user', {
         id_sp: id
     }),
+    singleByEmail: email => db.load(`select * from user where email = '${email}'`),
     patch: entity => {
         const condition = {
             id_user: entity.id_user

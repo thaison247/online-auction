@@ -6,10 +6,10 @@ module.exports = {
 
     single: (id_sp, id_dm) => db.load(`select * from sanpham where id_sp = ${id_sp} and id_dm = ${id_dm}`),
     catName: (id_dm) => db.load(`select ten_dm from danhmuc where id_dm = ${id_dm}`),
-    seller: (id_sp, id_dm) => db.load(`select u.username as ten_nguoi_ban from sanpham sp join user u on sp.nguoi_ban = u.id_user where sp.id_sp = ${id_sp} and sp.id_dm = ${id_dm}`),
-    highestBidderAndPrice: (id_sp, id_dm) => db.load(`select u.username as highestBidder, l.so_tien as currentPrice
+    seller: (id_sp, id_dm) => db.load(`select u.ho_ten as ten_nguoi_ban from sanpham sp join user u on sp.nguoi_ban = u.id_user where sp.id_sp = ${id_sp} and sp.id_dm = ${id_dm}`),
+    highestBidderAndPrice: (id_sp, id_dm) => db.load(`select u.ho_ten as highestBidder, l.so_tien as currentPrice
     from lichsu_ragia l join user u on l.bidder = u.id_user
-    where l.id_sp = ${id_sp} and l.id_dm = ${id_dm} and l.so_tien = (select max(l1.so_tien)
+    where l.id_sp = ${id_sp} and l.id_dm = ${id_dm} and l.so_tien = (select max(l1.so_tien)  
                                                         from lichsu_ragia l1
                                                         where l1.id_sp = l.id_sp and l1.id_dm = l.id_dm)
     order by l.thoi_diem asc limit 1`),

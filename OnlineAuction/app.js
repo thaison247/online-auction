@@ -12,8 +12,6 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-require("./middlewares/locals.mdw")(app);
-require("./middlewares/routes.mdw")(app);
 
 app.use(
     session({
@@ -25,6 +23,9 @@ app.use(
         // }
     })
 );
+
+require("./middlewares/locals.mdw")(app);
+require("./middlewares/routes.mdw")(app);
 
 moment.updateLocale("vi", {
     relativeTime: {
