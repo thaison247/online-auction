@@ -22,6 +22,4 @@ module.exports = {
       group by dm.id_dm, dm.ten_dm`;
         return db.load(sql);
     }
-
-
 };

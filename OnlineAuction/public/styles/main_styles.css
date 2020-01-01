@@ -469,7 +469,8 @@ section {
 }
 
 .top_bar_user div:nth-child(2) {
-	margin-right: 21px;
+	margin-left: 15px;
+	margin-right: 0px !important;
 }
 
 .top_bar_user div:nth-child(2)::after {
@@ -501,7 +502,7 @@ section {
 }
 
 .top_bar_user a:hover {
-	color: #8a8a8a;
+	color: #0E8CE4 !important;
 }
 
 /*********************************

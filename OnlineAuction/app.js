@@ -57,9 +57,6 @@ app.engine(
 );
 app.set("view engine", "hbs");
 
-app.get("/", (req, res) => {
-    res.render("index");
-});
 
 app.get("/shop", (req, res) => {
     res.render("shop");
@@ -69,9 +66,9 @@ app.get("/product", (req, res) => {
     res.render("product");
 });
 
-app.get("/cart", (req, res) => {
-    res.render("cart");
-});
+// app.get("/cart", (req, res) => {
+//     res.render("cart");
+// });
 
 // app.use((err, req, res, next) => {
 //     res.status(500).send('View error on console.');

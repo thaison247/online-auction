@@ -49,9 +49,17 @@
                             </div>
                             <div class="top_bar_content ml-auto">
                                 <div class="top_bar_user">
-                                    <div class="user_icon"><img src="images/user.svg" alt=""></div>
-                                    <div><a class="signup-window" href="#">Đăng Ký</a></div>
-                                    <div><a class="signin-window" href="#">Đăng Nhập</a></div>
+                                    {{!-- <div class="user_icon"><img src="images/user.svg" alt=""></div> --}}
+                                    {{#if isAuthenticated}}
+                                    <button class="btn btn-primary mt-2" href="account/profile"><i
+                                            class="fas fa-user-circle"></i>
+                                        {{authUser.ho_ten}}</button>
+                                    {{!-- <i><i class="fas fa-sign-out-alt fa-2x"></i></i> --}}
+                                    {{else}}
+                                    <div><a class="signin-window" href="/account/login" style="color: #0E8CE4;"><i
+                                                class="fas fa-sign-in-alt"></i> Đăng Nhập</a></div>
+                                    <div><a class="signup-window" href="/account/register"> Đăng Ký</a></div>
+                                    {{/if}}
                                 </div>
                             </div>
                         </div>
@@ -68,7 +76,7 @@
                         <!-- Logo -->
                         <div class="col-lg-2 col-sm-3 col-3 order-1">
                             <div class="logo_container">
-                                <div class="logo"><a href="index.html">Online Auction</a></div>
+                                <div class="logo"><a href="/">Auction</a></div>
                             </div>
                         </div>
 
@@ -104,7 +112,7 @@
                             <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
                                 <!-- Favorites -->
                                 <div class="wishlist d-flex flex-row align-items-center justify-content-end">
-                                    <div class="wishlist_icon"><img src="images/heart.png" alt=""></div>
+                                    <div class="wishlist_icon"><img src="/images/heart.png" alt=""></div>
                                     <div class="wishlist_content">
                                         <div class="wishlist_text"><a href="#">Yêu Thích</a></div>
                                         <div class="wishlist_count">115</div>
@@ -115,11 +123,16 @@
                                     <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                         <div class="cart_icon">
                                             <img src="/images/cart.png" alt="">
-                                            <div class="cart_count"><span>10</span></div>
+                                            <div class="cart_count">
+                                                <span>{{res.locals.number_in_card}}</span>
+                                            </div>
                                         </div>
                                         <div class="cart_content">
-                                            <div class="cart_text"><a href="#">Giỏ Hàng</a></div>
-                                            <div class="cart_price">240000 đ</div>
+                                            <div class="cart_text"><a href="/cart">Giỏ Hàng</a></div>
+                                            <div class="cart_price">
+                                                {{#if res.locals.total_in_card}}{{total_in_card}}{{else}}0
+                                                {{/if}} đ
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -147,8 +160,7 @@
                                     <ul class="cat_menu">
                                         {{#each lcCategories}}
                                         <li class="cat_item">
-                                            <a href="shop.html">{{ten_dm}} <i class="fas fa-chevron-right ml-auto"></i>
-                                            </a>
+                                            <a href="/categories/{{id_dm}}/products">{{ten_dm}}</a>
                                         </li>
                                         {{/each}}
                                     </ul>

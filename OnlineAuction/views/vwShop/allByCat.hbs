@@ -1,6 +1,6 @@
 {{#section 'css'}}
 <link rel="stylesheet" type="text/css" href="/styles/shop_styles.css">
-    <link rel="stylesheet" type="text/css" href="/styles/shop_responsive.css">
+<link rel="stylesheet" type="text/css" href="/styles/shop_responsive.css">
 {{/section}}
 
 {{#section 'js'}}
@@ -122,15 +122,16 @@
                                 </div>
                             </div>
                             <div class="card-footer text-center" style="padding: 1px;">
-                                <a href="#" class="btn btn-sm btn-primary btn-viewdetail" role="button"><i
-                                        class="fa fa-eye aria-hidden=" true"></i>&nbsp;Chi
+                                <a href="/categories/{{id_dm}}/products/{{id_sp}}"
+                                    class="btn btn-sm btn-primary btn-viewdetail" role="button"><i class="fa fa-eye"
+                                        aria-hidden=" true"></i>&nbsp;Chi
                                     Tiết</a>
                                 {{#if gia_mua_ngay}}
                                 <a href="#" class="btn btn-sm btn-success btn-buynow" role="button"><i
                                         class="fa fa-shopping-cart aria-hidden=" true"></i>&nbsp;Mua Ngay</a>
                                 {{else}}
                                 <a href="#" class="btn btn-sm btn-success btn-buynow disabled" role="button"><i
-                                        class="fa fa-shopping-cart aria-hidden=" true"></i>&nbsp;Mua Ngay</a>
+                                        class="fa fa-shopping-cart" aria-hidden=" true"></i>&nbsp;Mua Ngay</a>
                                 {{/if}}
                             </div>
                         </div>

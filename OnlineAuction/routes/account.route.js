@@ -2,12 +2,15 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const userModel = require("../models/user.model");
 const restrict = require('../middlewares/auth.mdw');
+const accmdw = require('../middlewares/account.mdw');
 
 const router = express.Router();
 
 router.get("/login", async (req, res) => {
+
     res.render("vwAccount/login", {
-        layout: "../layouts/account.hbs"
+        layout: "../layouts/account.hbs",
+        // referer: req.headers.referer
     });
 });
 
@@ -20,7 +23,6 @@ router.post("/login", async (req, res) => {
         })
 
     const rs = bcrypt.compareSync(req.body.password, user[0].password);
-    console.log(rs);
     if (rs === false)
         return res.render("vwAccount/login", {
             layout: "../layouts/account.hbs",
@@ -32,8 +34,11 @@ router.post("/login", async (req, res) => {
     req.session.authUser = user[0];
     req.session.save();
 
-    const url = req.query.retUrl || "/";
+    // console.log(req.query.retUrl);
+    const url = req.query.retUrl || '/';
     res.redirect(url);
+
+    // res.redirect(req.headers.referer);
 });
 
 router.get("/register", async (req, res) => {
@@ -63,6 +68,12 @@ router.post("/register", async (req, res) => {
         layout: "../layouts/account.hbs",
         r_email: req.body.email,
         r_password: req.body.raw_password
+    });
+});
+
+router.get("/profile", restrict, async (req, res) => {
+    res.render("vwAccount/profile", {
+        layout: "../layouts/account.hbs"
     });
 });
 

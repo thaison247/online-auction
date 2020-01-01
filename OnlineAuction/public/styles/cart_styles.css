@@ -1275,7 +1275,7 @@ select option {
 
 .cart_section {
 	width: 100%;
-	padding-top: 93px;
+	padding-top: 0px;
 	padding-bottom: 111px;
 }
 
@@ -1285,7 +1285,7 @@ select option {
 }
 
 .cart_items {
-	margin-top: 67px;
+	margin-top: 50px;
 }
 
 .cart_list {
@@ -1300,13 +1300,15 @@ select option {
 }
 
 .cart_item_image {
-	width: 133px;
-	height: 133px;
+	width: auto;
+	height: auto;
 	float: left;
 }
 
 .cart_item_image img {
 	max-width: 100%;
+	padding-top: 18px;
+	padding-left: 30px;
 }
 
 .cart_item_info {
