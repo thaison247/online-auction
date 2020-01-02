@@ -1,5 +1,7 @@
 const express = require('express');
 const productModel = require('../models/product.model');
+const bidModel = require('../models/bid.model');
+const moment = require('moment');
 
 const router = express.Router();
 
@@ -45,6 +47,6 @@ router.get('/:catId/products/:proId', async (req, res) => {
             rcmPrice: +row[0].gia_khoi_diem + row[0].buoc_gia,
         });
     }
-})
+});
 
 module.exports = router;

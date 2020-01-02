@@ -2,10 +2,17 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const hbs_sections = require("express-handlebars-sections");
 const session = require("express-session");
+const morgan = require('morgan');
 const numeral = require("numeral");
 const moment = require("moment");
 const bodyParser = require("body-parser");
 const app = express();
+
+app.use(morgan('dev'));
+app.use(express.json());
+app.use(express.urlencoded({
+    extended: true
+}));
 
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({

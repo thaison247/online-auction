@@ -3,6 +3,8 @@ const bcrypt = require("bcryptjs");
 const userModel = require("../models/user.model");
 const restrict = require('../middlewares/auth.mdw');
 const accmdw = require('../middlewares/account.mdw');
+const bidModel = require('../models/bid.model');
+const favoriteModel = require('../models/favorite.model');
 
 const router = express.Router();
 
@@ -32,6 +34,11 @@ router.post("/login", async (req, res) => {
     delete user[0].password;
     req.session.isAuthenticated = true;
     req.session.authUser = user[0];
+    const number = await bidModel.countByUser(user[0].id_user);
+    req.session.number_placedBidProd = number[0].so_sp;
+    const numberFav = await favoriteModel.countByUser(user[0].id_user);
+    req.session.number_favoriteProd = numberFav[0].so_sp;
+    console.log('acc: ' + numberFav[0].so_sp);
     req.session.save();
 
     // console.log(req.query.retUrl);

@@ -361,14 +361,28 @@ $(document).ready(function () {
 	*/
 
 	function initImage() {
+		// var images = $('.image_list li');
+		// var selected = $('.image_selected img');
+
+		// images.each(function () {
+		// 	var image = $(this);
+		// 	image.on('click', function () {
+		// 		var imagePath = new String(image.data('image'));
+		// 		selected.attr('src', imagePath);
+		// 	});
+		// });
 		var images = $('.image_list li');
 		var selected = $('.image_selected img');
 
-		images.each(function () {
+		images.each(function()
+		{
 			var image = $(this);
-			image.on('click', function () {
+			image.on('click', function()
+			{
 				var imagePath = new String(image.data('image'));
-				selected.attr('src', imagePath);
+				var res = imagePath.replace('_thumb', '');
+				alert(res);
+				selected.attr('src', res);
 			});
 		});
 	}

@@ -1329,6 +1329,7 @@ select option {
 
 .cart_item_text {
 	font-size: 18px;
+	width: 200px;
 	margin-top: 35px;
 }
 
