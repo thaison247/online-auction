@@ -40,18 +40,18 @@
                     <div class="row">
                         <div class="col d-flex flex-row">
                             <div class="top_bar_contact_item">
-                                <div class="top_bar_icon"><img src="images/phone.png" alt=""></div>+38 068 005
+                                <div class="top_bar_icon"><img src="/images/phone.png" alt=""></div>+38 068 005
                                 3570
                             </div>
                             <div class="top_bar_contact_item">
-                                <div class="top_bar_icon"><img src="images/mail.png" alt=""></div><a
+                                <div class="top_bar_icon"><img src="/images/mail.png" alt=""></div><a
                                     href="mailto:fastsales@gmail.com">fastsales@gmail.com</a>
                             </div>
                             <div class="top_bar_content ml-auto">
                                 <div class="top_bar_user">
                                     {{!-- <div class="user_icon"><img src="images/user.svg" alt=""></div> --}}
                                     {{#if isAuthenticated}}
-                                    <button class="btn btn-primary mt-2" href="account/profile"><i
+                                    <button class="btn btn-primary mt-2" href="/account/profile"><i
                                             class="fas fa-user-circle"></i>
                                         {{authUser.ho_ten}}</button>
                                     {{!-- <i><i class="fas fa-sign-out-alt fa-2x"></i></i> --}}
@@ -85,12 +85,13 @@
                             <div class="header_search">
                                 <div class="header_search_content">
                                     <div class="header_search_form_container">
-                                        <form action="#" class="header_search_form clearfix">
-                                            <input type="search" required="required" class="header_search_input"
+                                        <form action="/search" method="GET" class="header_search_form clearfix">
+                                            <input type="search" class="header_search_input" name="tu_khoa"
                                                 placeholder="Tìm kiếm sản phẩm...">
                                             <div class="custom_dropdown">
                                                 <div class="custom_dropdown_list">
-                                                    <span class="custom_dropdown_placeholder clc">DANH MỤC</span>
+                                                    <span id="selectedCat" class="custom_dropdown_placeholder clc">Tất
+                                                        cả danh mục</span>
                                                     <i class="fas fa-chevron-down"></i>
                                                     <ul class="custom_list clc">
                                                         {{#each lcCategories}}
@@ -99,6 +100,7 @@
                                                     </ul>
                                                 </div>
                                             </div>
+                                            <input type="hidden" id="frmDanhMuc" name="danh_muc" value="">
                                             <button type="submit" class="header_search_button trans_300"
                                                 value="Submit"><img src="/images/search.png" alt=""></button>
                                         </form>
@@ -114,8 +116,8 @@
                                 <div class="wishlist d-flex flex-row align-items-center justify-content-end">
                                     <div class="wishlist_icon"><img src="/images/heart.png" alt=""></div>
                                     <div class="wishlist_content">
-                                        <div class="wishlist_text"><a href="#">Yêu Thích</a></div>
-                                        <div class="wishlist_count">115</div>
+                                        <div class="wishlist_text"><a href="/favorite/myFavorites">Yêu Thích</a></div>
+                                        <div class="wishlist_count">{{number_favoriteProd}}</div>
                                     </div>
                                 </div>
                                 <!-- Cart -->
@@ -124,15 +126,22 @@
                                         <div class="cart_icon">
                                             <img src="/images/cart.png" alt="">
                                             <div class="cart_count">
-                                                <span>{{res.locals.number_in_card}}</span>
+                                                {{#if isAuthenticated}}
+                                                <span>{{number_placedBidProd}}</span>
+                                                {{else}}
+                                                <span>0</span>
+                                                {{/if}}
                                             </div>
                                         </div>
                                         <div class="cart_content">
-                                            <div class="cart_text"><a href="/cart">Giỏ Hàng</a></div>
+                                            <div class="cart_text"><a href="/bid/havePlaced">Đấu Giá</a></div>
+                                            {{!-- {{#if isAuthenticated}}
                                             <div class="cart_price">
-                                                {{#if res.locals.total_in_card}}{{total_in_card}}{{else}}0
-                                                {{/if}} đ
+                                                {{total_in_cart}}đ
                                             </div>
+                                            {{else}}
+                                            <div>0 đ</div>
+                                            {{/if}} --}}
                                         </div>
                                     </div>
                                 </div>
@@ -378,6 +387,20 @@
     <script src="/plugins/slick-1.8.0/slick.js"></script>
     <script src="/plugins/easing/easing.js"></script>
     <script src="/js/custom.js"></script>
+    <script>
+        {
+            var catName = $('.custom_list li a');
+            var selected = $('#frmDanhMuc');
+
+            catName.each(function () {
+                var name = $(this);
+                name.on('click', function () {
+                    var getName = new String(name.html());
+                    selected.val(getName);
+                })
+            })
+        };
+    </script>
     {{{_sections.js}}}
 
 </body>

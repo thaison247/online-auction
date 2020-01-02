@@ -4,7 +4,14 @@
 {{/section}}
 
 {{#section 'js'}}
-
+<script type="text/javascript">
+    function submit(e) {
+        e.preventDefault()
+    }
+    function clickedProduct(id_dm, id_sp, id_user) {
+        alert(id_dm + ' ' + id_sp + ' ' + id_user);
+    }
+</script>
 {{/section}}
 <div class="shop">
     <div class="container">
@@ -28,42 +35,6 @@
                             {{/each}}
                         </ul>
                     </div>
-                    {{!-- <div class="sidebar_section filter_by_section">
-                        <div class="sidebar_title">Filter By</div>
-                        <div class="sidebar_subtitle">Price</div>
-                        <div class="filter_price">
-                            <div id="slider-range" class="slider_range"></div>
-                            <p>Range: </p>
-                            <p><input type="text" id="amount" class="amount" readonly
-                                    style="border:0; font-weight:bold;">
-                            </p>
-                        </div>
-                    </div>
-                    <div class="sidebar_section">
-                        <div class="sidebar_subtitle color_subtitle">Color</div>
-                        <ul class="colors_list">
-                            <li class="color"><a href="#" style="background: #b19c83;"></a></li>
-                            <li class="color"><a href="#" style="background: #000000;"></a></li>
-                            <li class="color"><a href="#" style="background: #999999;"></a></li>
-                            <li class="color"><a href="#" style="background: #0e8ce4;"></a></li>
-                            <li class="color"><a href="#" style="background: #df3b3b;"></a></li>
-                            <li class="color"><a href="#" style="background: #ffffff; border: solid 1px #e1e1e1;"></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="sidebar_section">
-                        <div class="sidebar_subtitle brands_subtitle">Brands</div>
-                        <ul class="brands_list">
-                            <li class="brand"><a href="#">Apple</a></li>
-                            <li class="brand"><a href="#">Beoplay</a></li>
-                            <li class="brand"><a href="#">Google</a></li>
-                            <li class="brand"><a href="#">Meizu</a></li>
-                            <li class="brand"><a href="#">OnePlus</a></li>
-                            <li class="brand"><a href="#">Samsung</a></li>
-                            <li class="brand"><a href="#">Sony</a></li>
-                            <li class="brand"><a href="#">Xiaomi</a></li>
-                        </ul>
-                    </div> --}}
                 </div>
 
             </div>
@@ -75,7 +46,6 @@
                     {{#each products}}
                     <!-- Product Item -->
                     <div class="col-sm-3 mb-3">
-
                         <div class="card product_card h-100">
                             <div class="bids-number">
                                 {{#if num_of_bids}}
@@ -91,20 +61,17 @@
                                 <div class="curr-bid">
                                     {{#if highest}}
                                     <div><span style="color: gray;">Hiện tại:
-                                        </span><span class="bid-price">{{format highest}}<i
-                                                class="fas fa-dollar-sign"></i></span></div>
+                                        </span><span class="bid-price">{{format highest}} đ</span></div>
                                     {{else}}
                                     <div><span style="color: gray;">Hiện tại:
-                                        </span><span class="bid-price">{{format gia_khoi_diem}}<i
-                                                class="fas fa-dollar-sign"></i></span></div>
+                                        </span><span class="bid-price">{{format gia_khoi_diem}} đ</span></div>
                                     {{/if}}
                                 </div>
 
                                 <div class="curr-bid">
                                     {{#if gia_mua_ngay}}
                                     <div><span style="color: gray;">Mua ngay:
-                                        </span><span style="color: green;">{{format gia_mua_ngay}}<i
-                                                class="fas fa-dollar-sign"></i></span></div>
+                                        </span><span style="color: green;">{{format gia_mua_ngay}} đ</span></div>
                                     {{else}}
                                     <div><span style="color: gray;">Mua ngay:
                                         </span><span style="color: green;">None</span></div>
@@ -120,22 +87,15 @@
                                     <span style="color: gray;">Kết thúc trong: </span>
                                     <span>{{relativeTime tg_het_han}} nữa</span>
                                 </div>
-                            </div>
-                            <div class="card-footer text-center" style="padding: 1px;">
-                                <a href="/categories/{{id_dm}}/products/{{id_sp}}"
-                                    class="btn btn-sm btn-primary btn-viewdetail" role="button"><i class="fa fa-eye"
-                                        aria-hidden=" true"></i>&nbsp;Chi
-                                    Tiết</a>
-                                {{#if gia_mua_ngay}}
-                                <a href="#" class="btn btn-sm btn-success btn-buynow" role="button"><i
-                                        class="fa fa-shopping-cart aria-hidden=" true"></i>&nbsp;Mua Ngay</a>
-                                {{else}}
-                                <a href="#" class="btn btn-sm btn-success btn-buynow disabled" role="button"><i
-                                        class="fa fa-shopping-cart" aria-hidden=" true"></i>&nbsp;Mua Ngay</a>
-                                {{/if}}
-                            </div>
-                        </div>
 
+                                <div class="text-center mt-2">
+                                    <a href="/categories/{{id_dm}}/products/{{id_sp}}"
+                                        class="btn btn-sm btn-primary btn-viewdetail w-100" role="button"><i
+                                            class="fa fa-eye" aria-hidden=" true"></i>&nbsp;Chi Tiết</a>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                     {{/each}}
 

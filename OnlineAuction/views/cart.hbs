@@ -1,6 +1,6 @@
 {{#section "css"}}
-<link rel="stylesheet" type="text/css" href="styles/cart_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/cart_responsive.css">
+<link rel="stylesheet" type="text/css" href="/styles/cart_styles.css">
+<link rel="stylesheet" type="text/css" href="/styles/cart_responsive.css">
 {{/section}}
 
 <!-- Cart -->
@@ -9,41 +9,54 @@
         <div class="row">
             <div class="col-lg-10 offset-lg-1">
                 <div class="cart_container">
-                    <div class="cart_title">Giỏ Hàng</div>
+                    <div class="cart_title">{{title}}</div>
                     <div class="cart_items">
                         <ul class="cart_list">
                             {{#each products}}
                             <li class="cart_item clearfix">
-                                <div class="cart_item_image"><img src="/imgs/sp/{{id_dm}}/{{id_sp}}/main_thumb.jpg"
-                                        alt="">
-                                </div>
-                                <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-                                    <div class="cart_item_name cart_info_col">
-                                        <div class="cart_item_title">Tên</div>
-                                        <div class="cart_item_text">{{ten_sp}}</div>
+                                <a href="/categories/{{id_dm}}/products/{{id_sp}}">
+                                    <div class="cart_item_image"><img src="/imgs/sp/{{id_dm}}/{{id_sp}}/main_thumb.jpg"
+                                            alt="">
                                     </div>
-                                    <div class="cart_item_price cart_info_col">
-                                        <div class="cart_item_title">Giá</div>
-                                        <div class="cart_item_text">{{format gia_mua_ngay}}</div>
+                                    <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+                                        <div class="cart_item_name cart_info_col">
+                                            <div class="cart_item_title">Tên</div>
+                                            <div class="cart_item_text">{{ten_sp}}</div>
+                                        </div>
+                                        <div class="cart_item_price cart_info_col">
+                                            <div class="cart_item_title">Gía Hiện Tại</div>
+                                            {{#if gia_cao_nhat}}
+                                            <div class="cart_item_text">{{format gia_cao_nhat}}</div>
+                                            {{else}}
+                                            <div class="cart_item_text">{{format gia_khoi_diem}}</div>
+                                            {{/if}}
+                                        </div>
+                                        <div class="cart_item_price cart_info_col">
+                                            <div class="cart_item_title">Bạn Ra Giá</div>
+                                            {{#if bidder_ragia}}
+                                            <div class="cart_item_text">{{format bidder_ragia}}</div>
+                                            {{/if}}
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
+
                             </li>
                             {{/each}}
                         </ul>
                     </div>
 
                     <!-- Order Total -->
-                    <div class="order_total">
+                    {{!-- <div class="order_total">
                         <div class="order_total_content text-md-right">
                             <div class="order_total_title">Tổng Tiền: </div>
                             <div class="order_total_amount">{{format total_price}} đ</div>
                         </div>
-                    </div>
-
+                    </div> --}}
+                    {{!-- 
                     <div class="cart_buttons">
                         <button type="button" class="button cart_button_clear">Add to Cart</button>
                         <button type="button" class="button cart_button_checkout">Add to Cart</button>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

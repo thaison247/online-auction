@@ -31,3 +31,7 @@
     background-color: #42AEEC;
     color: #fff;
 }
+
+.input-group-prepend {
+    width: 40px !important;
+}

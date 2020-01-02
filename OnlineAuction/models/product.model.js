@@ -29,9 +29,35 @@ module.exports = {
     },
 
     allByCatWithInfo: id => db.load(`select sp.id_sp, sp.id_dm, sp.ten_sp, sp.gia_khoi_diem, sp.gia_mua_ngay, sp.tg_dang, sp.tg_het_han, T.highest, T.num_of_bids
-    from sanpham sp left join
-    (select sp2.id_sp, sp2.id_dm, sp2.ten_sp, sp2.gia_khoi_diem, sp2.tg_dang, max(ls.so_tien) as highest, count(*) as num_of_bids
-    from (sanpham sp2 join lichsu_ragia ls on sp2.id_sp = ls.id_sp and sp2.id_dm = ls.id_dm)
-    group by sp2.id_sp, sp2.id_dm, sp2.ten_sp, sp2.gia_khoi_diem) as T on T.id_sp = sp.id_sp and T.id_dm = sp.id_dm
-    where sp.id_dm = ${id}`)
+                                from sanpham sp left join
+                                (select sp2.id_sp, sp2.id_dm, sp2.ten_sp, sp2.gia_khoi_diem, sp2.tg_dang, max(ls.so_tien) as highest, count(*) as num_of_bids
+                                from (sanpham sp2 join lichsu_ragia ls on sp2.id_sp = ls.id_sp and sp2.id_dm = ls.id_dm)
+                                group by sp2.id_sp, sp2.id_dm, sp2.ten_sp, sp2.gia_khoi_diem) as T on T.id_sp = sp.id_sp and T.id_dm = sp.id_dm
+                                where sp.id_dm = ${id}`),
+
+    searchFor: (proName, catName) => db.load(`select * from
+                                    (select sp.id_sp, sp.ten_sp , sp.id_dm
+                                    from sanpham sp join danhmuc dm on sp.id_dm = dm.id_dm
+                                    where sp.ten_sp like "%${proName}%" and dm.ten_dm = "${catName}") as V
+                                    join
+                                    (select sp.id_sp, sp.id_dm, sp.ten_sp, sp.gia_khoi_diem, sp.gia_mua_ngay, sp.tg_dang, sp.tg_het_han, T.highest, T.num_of_bids
+                                        from sanpham sp left join
+                                        (select sp2.id_sp, sp2.id_dm, sp2.ten_sp, sp2.gia_khoi_diem, sp2.tg_dang, max(ls.so_tien) as highest, count(*) as num_of_bids
+                                        from (sanpham sp2 join lichsu_ragia ls on sp2.id_sp = ls.id_sp and sp2.id_dm = ls.id_dm)
+                                        group by sp2.id_sp, sp2.id_dm, sp2.ten_sp, sp2.gia_khoi_diem) as T on T.id_sp = sp.id_sp and T.id_dm = sp.id_dm
+                                        ) as L
+                                    on V.id_sp = L.id_sp and V.id_dm = L.id_dm`),
+
+    searchWithAllCat: (proName) => db.load(`select * from
+                                    (select sp.id_sp, sp.ten_sp , sp.id_dm
+                                    from sanpham sp join danhmuc dm on sp.id_dm = dm.id_dm
+                                    where match(sp.ten_sp) against('%${proName}%')) as V
+                                    join
+                                    (select sp.id_sp, sp.id_dm, sp.ten_sp, sp.gia_khoi_diem, sp.gia_mua_ngay, sp.tg_dang, sp.tg_het_han, T.highest, T.num_of_bids
+                                        from sanpham sp left join
+                                        (select sp2.id_sp, sp2.id_dm, sp2.ten_sp, sp2.gia_khoi_diem, sp2.tg_dang, max(ls.so_tien) as highest, count(*) as num_of_bids
+                                        from (sanpham sp2 join lichsu_ragia ls on sp2.id_sp = ls.id_sp and sp2.id_dm = ls.id_dm)
+                                        group by sp2.id_sp, sp2.id_dm, sp2.ten_sp, sp2.gia_khoi_diem) as T on T.id_sp = sp.id_sp and T.id_dm = sp.id_dm
+                                        ) as L
+                                    on V.id_sp = L.id_sp and V.id_dm = L.id_dm`)
 };
