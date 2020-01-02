@@ -16,7 +16,6 @@ router.post('/add/:catId/:proId', async (req, res) => {
 router.get('/myFavorites', async (req, res) => {
     const id = req.session.authUser.id_user;
     const productRows = await favoriteModel.allByUser(id);
-    console.log(productRows);
     res.render("cart", {
         products: productRows,
         title: 'Danh sách sản phẩm yêu thích'
