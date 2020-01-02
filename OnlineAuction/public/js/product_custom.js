@@ -381,7 +381,10 @@ $(document).ready(function () {
 			{
 				var imagePath = new String(image.data('image'));
 				var res = imagePath.replace('_thumb', '');
+<<<<<<< HEAD
 				alert(res);
+=======
+>>>>>>> son/cart
 				selected.attr('src', res);
 			});
 		});

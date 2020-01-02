@@ -85,12 +85,13 @@
                             <div class="header_search">
                                 <div class="header_search_content">
                                     <div class="header_search_form_container">
-                                        <form action="#" class="header_search_form clearfix">
-                                            <input type="search" required="required" class="header_search_input"
+                                        <form action="/search" method="GET" class="header_search_form clearfix">
+                                            <input type="search" class="header_search_input" name="tu_khoa"
                                                 placeholder="Tìm kiếm sản phẩm...">
                                             <div class="custom_dropdown">
                                                 <div class="custom_dropdown_list">
-                                                    <span class="custom_dropdown_placeholder clc">DANH MỤC</span>
+                                                    <span id="selectedCat" class="custom_dropdown_placeholder clc">Tất
+                                                        cả danh mục</span>
                                                     <i class="fas fa-chevron-down"></i>
                                                     <ul class="custom_list clc">
                                                         {{#each lcCategories}}
@@ -99,6 +100,7 @@
                                                     </ul>
                                                 </div>
                                             </div>
+                                            <input type="hidden" id="frmDanhMuc" name="danh_muc" value="">
                                             <button type="submit" class="header_search_button trans_300"
                                                 value="Submit"><img src="/images/search.png" alt=""></button>
                                         </form>
@@ -385,6 +387,20 @@
     <script src="/plugins/slick-1.8.0/slick.js"></script>
     <script src="/plugins/easing/easing.js"></script>
     <script src="/js/custom.js"></script>
+    <script>
+        {
+            var catName = $('.custom_list li a');
+            var selected = $('#frmDanhMuc');
+
+            catName.each(function () {
+                var name = $(this);
+                name.on('click', function () {
+                    var getName = new String(name.html());
+                    selected.val(getName);
+                })
+            })
+        };
+    </script>
     {{{_sections.js}}}
 
 </body>
