@@ -63,9 +63,18 @@ router.post("/register", async (req, res) => {
         });
     }
     const N = 10;
-    const hash = bcrypt.hashSync(req.body.raw_password, N);
+    const raw_hash = bcrypt.hashSync(req.body.raw_password, N);
+    const repeat_hash = bcrypt.hashSync(req.body.repeat_password, N);
     var entity = req.body;
-    entity.password = hash;
+    if (raw_hash === repeat_hash) {
+        entity.password = raw_hash;
+    }
+    else {
+        return res.render("vwAccount/register", {
+            layout: "../layouts/account.hbs",
+            err_message: "Mật khẩu nhập lại không đúng!"
+        });
+    }
     entity.phan_he = 0;
 
     delete entity.raw_password;
