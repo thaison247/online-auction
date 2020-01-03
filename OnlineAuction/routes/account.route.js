@@ -63,9 +63,18 @@ router.post("/register", async (req, res) => {
         });
     }
     const N = 10;
-    const hash = bcrypt.hashSync(req.body.raw_password, N);
+    const raw_hash = bcrypt.hashSync(req.body.raw_password, N);
+    const repeat_hash = bcrypt.hashSync(req.body.repeat_password, N);
     var entity = req.body;
-    entity.password = hash;
+    if (raw_hash === repeat_hash) {
+        entity.password = raw_hash;
+    }
+    else {
+        return res.render("vwAccount/register", {
+            layout: "../layouts/account.hbs",
+            err_message: "Mật khẩu nhập lại không đúng!"
+        });
+    }
     entity.phan_he = 0;
 
     delete entity.raw_password;
@@ -79,7 +88,19 @@ router.post("/register", async (req, res) => {
 });
 
 router.get("/profile", async (req, res) => {
+<<<<<<< HEAD
     res.render("vwAccount/profile");
+});
+
+router.post('/logout', (req, res) => {
+    req.session.isAuthenticated = false;
+    req.session.authUser = null;
+    res.redirect(req.headers.referer);
+=======
+    res.render("vwAccount/profile", {
+        layout: false
+    });
+>>>>>>> 497d60f35ee188f8ba000b07669270c030762d4e
 });
 
 router.post('/logout', (req, res) => {
