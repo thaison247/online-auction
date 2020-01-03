@@ -64,12 +64,10 @@ router.post("/register", async (req, res) => {
     }
     const N = 10;
     const raw_hash = bcrypt.hashSync(req.body.raw_password, N);
-    const repeat_hash = bcrypt.hashSync(req.body.repeat_password, N);
     var entity = req.body;
-    if (raw_hash === repeat_hash) {
+    if (req.body.raw_password === req.body.repeat_password) {
         entity.password = raw_hash;
-    }
-    else {
+    } else {
         return res.render("vwAccount/register", {
             layout: "../layouts/account.hbs",
             err_message: "Mật khẩu nhập lại không đúng!"
@@ -78,17 +76,16 @@ router.post("/register", async (req, res) => {
     entity.phan_he = 0;
 
     delete entity.raw_password;
+    delete entity.repeat_password;
 
     const result = await userModel.add(entity);
-    res.render("vwAccount/login", {
+    res.render("vwAccount/register", {
         layout: "../layouts/account.hbs",
-        r_email: req.body.email,
-        r_password: req.body.raw_password
+        err_message: "Đăng ký thành công!"
     });
 });
 
 router.get("/profile", async (req, res) => {
-<<<<<<< HEAD
     res.render("vwAccount/profile");
 });
 
@@ -96,17 +93,7 @@ router.post('/logout', (req, res) => {
     req.session.isAuthenticated = false;
     req.session.authUser = null;
     res.redirect(req.headers.referer);
-=======
-    res.render("vwAccount/profile", {
-        layout: false
-    });
->>>>>>> 497d60f35ee188f8ba000b07669270c030762d4e
 });
 
-router.post('/logout', (req, res) => {
-    req.session.isAuthenticated = false;
-    req.session.authUser = null;
-    res.redirect(req.headers.referer);
-});
 
 module.exports = router;
