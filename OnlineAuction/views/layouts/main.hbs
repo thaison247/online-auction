@@ -49,11 +49,19 @@
                             </div>
                             <div class="top_bar_content ml-auto">
                                 <div class="top_bar_user">
-                                    {{!-- <div class="user_icon"><img src="images/user.svg" alt=""></div> --}}
+
                                     {{#if isAuthenticated}}
-                                    <button class="btn btn-primary mt-2" href="/account/profile"><i
-                                            class="fas fa-user-circle"></i>
-                                        {{authUser.ho_ten}}</button>
+                                    {{!-- <a href="/account/profile">
+                                        <button class="btn btn-primary mt-2"><i class="fas fa-user-circle"></i>
+                                            {{authUser.ho_ten}}</button>
+                                    </a> --}}
+                                    <form id="frmLogout" method="post" action="/account/logout"></form>
+                                    <div><a class="signin-window" href="/account/profile"
+                                            style="color: #0E8CE4; margin-right: 15px;"><i
+                                                class="fas fa-user-circle"></i> {{authUser.ho_ten}}</a></div>
+
+                                    <div><a class="signup-window" href="javascript: $('#frmLogout').submit();"> Đăng
+                                            Xuất</a></div>
                                     {{!-- <i><i class="fas fa-sign-out-alt fa-2x"></i></i> --}}
                                     {{else}}
                                     <div><a class="signin-window" href="/account/login" style="color: #0E8CE4;"><i
@@ -81,17 +89,29 @@
                         </div>
 
                         <!-- Search -->
-                        <div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
+                        <div class="col-lg-7 col-12 order-lg-2 order-3 text-lg-left text-right">
                             <div class="header_search">
                                 <div class="header_search_content">
                                     <div class="header_search_form_container">
                                         <form action="/search" method="GET" class="header_search_form clearfix">
-                                            <input type="search" class="header_search_input" name="tu_khoa"
-                                                placeholder="Tìm kiếm sản phẩm...">
+                                            {{#if lastTextSearch}}
+                                            <input type="search" required="required" class="header_search_input"
+                                                name="tu_khoa" placeholder="Tìm kiếm sản phẩm..."
+                                                value={{lastTextSearch}}>
+                                            {{else}}
+                                            <input type="search" required="required" class="header_search_input"
+                                                name="tu_khoa" placeholder="Tìm kiếm sản phẩm...">
+                                            {{/if}}
                                             <div class="custom_dropdown">
                                                 <div class="custom_dropdown_list">
-                                                    <span id="selectedCat" class="custom_dropdown_placeholder clc">Tất
-                                                        cả danh mục</span>
+
+                                                    <span id="selectedCat" class="custom_dropdown_placeholder clc">
+                                                        {{#if lastCatSearch}}
+                                                        {{lastCatSearch}}
+                                                        {{else}}
+                                                        Tất cả danh mục
+                                                        {{/if}}
+                                                    </span>
                                                     <i class="fas fa-chevron-down"></i>
                                                     <ul class="custom_list clc">
                                                         {{#each lcCategories}}
@@ -100,7 +120,8 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <input type="hidden" id="frmDanhMuc" name="danh_muc" value="">
+                                            <input type="hidden" id="frmDanhMuc" name="danh_muc"
+                                                value="{{lastCatSearch}}">
                                             <button type="submit" class="header_search_button trans_300"
                                                 value="Submit"><img src="/images/search.png" alt=""></button>
                                         </form>
@@ -110,14 +131,22 @@
                         </div>
 
                         <!-- Cart -->
-                        <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
+                        <div class="col-lg-3 col-9 order-lg-3 order-2 text-lg-left text-right">
                             <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
                                 <!-- Favorites -->
                                 <div class="wishlist d-flex flex-row align-items-center justify-content-end">
-                                    <div class="wishlist_icon"><img src="/images/heart.png" alt=""></div>
+                                    <div class="wishlist_icon">
+                                        <img src="/images/heart.png" alt="">
+                                        <div class="cart_count">
+                                            {{#if isAuthenticated}}
+                                            <span>{{number_favoriteProd}}</span>
+                                            {{else}}
+                                            <span>0</span>
+                                            {{/if}}
+                                        </div>
+                                    </div>
                                     <div class="wishlist_content">
                                         <div class="wishlist_text"><a href="/favorite/myFavorites">Yêu Thích</a></div>
-                                        <div class="wishlist_count">{{number_favoriteProd}}</div>
                                     </div>
                                 </div>
                                 <!-- Cart -->
@@ -135,13 +164,6 @@
                                         </div>
                                         <div class="cart_content">
                                             <div class="cart_text"><a href="/bid/havePlaced">Đấu Giá</a></div>
-                                            {{!-- {{#if isAuthenticated}}
-                                            <div class="cart_price">
-                                                {{total_in_cart}}đ
-                                            </div>
-                                            {{else}}
-                                            <div>0 đ</div>
-                                            {{/if}} --}}
                                         </div>
                                     </div>
                                 </div>

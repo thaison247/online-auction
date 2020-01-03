@@ -2,6 +2,7 @@ const express = require('express');
 const productModel = require('../models/product.model');
 const bidModel = require('../models/bid.model');
 const moment = require('moment');
+const config = require('../config/default.json');
 
 const router = express.Router();
 
@@ -16,11 +17,54 @@ router.get('/:id/products', async (req, res) => {
         }
     }
 
-    const rows = await productModel.allByCatWithInfo(req.params.id);
-    res.render('vwShop/allByCat', {
-        products: rows,
-        empty: rows.length === 0
-    });
+    const catId = req.params.id;
+    const limit = config.paginate.limit;
+
+    var page = req.query.page || 1;
+    if (page < 1) page = 1;
+    const offset = (page - 1) * config.paginate.limit;
+
+    const [total, rows] = await Promise.all([
+        productModel.countByCat(catId),
+        productModel.pageByCat(catId, offset)
+    ]);
+
+    // const total = await productModel.countByCat(catId);
+    let nPages = Math.floor(total / limit);
+    // if (page = nPages) page = page - 1;
+    if (total % limit > 0) nPages++;
+    const page_numbers = [];
+    for (i = 1; i <= nPages; i++) {
+        page_numbers.push({
+            value: i,
+            isCurrentPage: i === +page
+        })
+    }
+
+    // const rows = await productModel.pageByCat(catId, offset);
+    if (page >= nPages) {
+        res.render('vwShop/allByCat', {
+            products: rows,
+            empty: rows.length === 0,
+            page_numbers,
+            prev_value: +page - 1,
+            next_value: +page,
+        });
+    } else {
+        res.render('vwShop/allByCat', {
+            products: rows,
+            empty: rows.length === 0,
+            page_numbers,
+            prev_value: +page - 1,
+            next_value: +page + 1,
+        });
+    }
+
+    // const rows = await productModel.allByCatWithInfo(req.params.id);
+    // res.render('vwShop/allByCat', {
+    //     products: rows,
+    //     empty: rows.length === 0
+    // });
 });
 
 router.get('/:catId/products/:proId', async (req, res) => {
