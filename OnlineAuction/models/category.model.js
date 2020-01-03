@@ -7,6 +7,7 @@ module.exports = {
     del: id => db.del('danhmuc', {
         id_dm: id
     }),
+
     patch: entity => {
         const condition = {
             id_dm: entity.id_dm

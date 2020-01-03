@@ -103,7 +103,7 @@
 
                 <!-- Shop Page Navigation -->
 
-                <div class="shop_page_nav d-flex flex-row">
+                {{!-- <div class="shop_page_nav d-flex flex-row">
                     <div class="page_prev d-flex flex-column align-items-center justify-content-center">
                         <i class="fas fa-chevron-left"></i></div>
                     <ul class="page_nav d-flex flex-row">
@@ -115,10 +115,38 @@
                     </ul>
                     <div class="page_next d-flex flex-column align-items-center justify-content-center">
                         <i class="fas fa-chevron-right"></i></div>
+                </div> --}}
+                <div class="row">
+                    <div class="col-sm-12">
+                        <nav>
+                            <ul class="pagination" style="margin-left: 10px; margin-top: 15px;">
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{prev_value}}">
+                                        <i class="fa fa-backward" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                {{#each this.page_numbers}}
+                                {{#if isCurrentPage}}
+                                <li class="page-item active" aria-current="page">
+                                    <a class="page-link" href="javascript:;">{{value}} <span
+                                            class="sr-only">(current)</span></a>
+                                </li>
+                                {{else}}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{value}}">{{value}}</a>
+                                </li>
+                                {{/if}}
+                                {{/each}}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{next_value}}">
+                                        <i class="fa fa-forward" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
 
             </div>
-
         </div>
     </div>
-</div>

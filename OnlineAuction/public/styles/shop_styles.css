@@ -693,7 +693,7 @@ section {
 	width: calc((100% - 50px) * 0.399);
 	height: 50px;
 	float: left;
-	padding-left: 26px;
+	padding-left: 10px;
 }
 
 .custom_dropdown::before {
@@ -733,6 +733,7 @@ section {
 	cursor: pointer;
 }
 
+
 .custom_dropdown_placeholder i {}
 
 .custom_list {
@@ -750,6 +751,7 @@ section {
 	-o-transition: opacity 0.2s ease;
 	transition: all 0.2s ease;
 }
+
 
 .custom_list.active {
 	visibility: visible;
@@ -831,7 +833,7 @@ select option {
 }
 
 .wishlist {
-	margin-right: 50px;
+	margin-right: 10px;
 }
 
 .wishlist_icon img {

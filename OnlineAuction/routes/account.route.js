@@ -78,10 +78,16 @@ router.post("/register", async (req, res) => {
     });
 });
 
-router.get("/profile", restrict, async (req, res) => {
+router.get("/profile", async (req, res) => {
     res.render("vwAccount/profile", {
-        layout: "../layouts/account.hbs"
+        layout: false
     });
+});
+
+router.post('/logout', (req, res) => {
+    req.session.isAuthenticated = false;
+    req.session.authUser = null;
+    res.redirect(req.headers.referer);
 });
 
 module.exports = router;
