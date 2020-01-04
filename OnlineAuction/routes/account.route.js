@@ -2,10 +2,9 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const userModel = require("../models/user.model");
 const restrict = require("../middlewares/auth.mdw");
-const accmdw = require("../middlewares/account.mdw");
 const bidModel = require("../models/bid.model");
 const favoriteModel = require("../models/favorite.model");
-const request = require("request");
+const reviewModel = require("../models/review.model");
 
 const router = express.Router();
 
@@ -181,11 +180,22 @@ router.post("/changePassword", async (req, res) => {
 });
 
 router.get("/reviews", restrict, async (req, res) => {
-    res.render("vwAccount/reviews");
+    const rows = await reviewModel.allByUser(res.locals.authUser.id_user);
+    const nGood = await reviewModel.countGoodReviews(res.locals.authUser.id_user);
+    const nBad = await reviewModel.countBadReviews(res.locals.authUser.id_user);
+    var so_diem = +nGood[0].diem_tot * 100 / (+rows.length);
+    so_diem = Math.ceil(so_diem);
+
+
+    res.render("vwAccount/reviews", {
+        reviews: rows,
+        so_diem: so_diem
+    });
 });
 
 router.get("/upgrade", restrict, async (req, res) => {
     res.render("vwAccount/upgrade");
 });
+
 
 module.exports = router;

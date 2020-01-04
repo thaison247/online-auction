@@ -57,6 +57,7 @@ app.engine(
         helpers: {
             section: hbs_sections(),
             format: val => numeral(val).format("0,0"),
+            formatPlus: val => numeral(val).format("+0"),
             moment: (val, yourformat) => moment(val).format(yourformat),
             relativeTime: endDay => moment(endDay).fromNow(true)
         }

@@ -9,14 +9,7 @@ module.exports = {
     on T1.id_dm = T2.id_dm and T1.id_sp = T2.id_sp
      `),
     countByUser: (id_user) => db.load(`select count(*) as so_sp from (select distinct id_dm, id_sp from lichsu_ragia where bidder = ${id_user}) as T`),
-    // totalPrice: (id_user) => db.load(`select sum(s.gia_mua_ngay) as tong_tien from gio_hang g join sanpham s on g.danh_muc = s.id_dm and g.san_pham = s.id_sp where nguoi_mua = ${id_user}
-    // `),
-    // numberOfProducts: async id_user => {
-    //     const row = await db.load(`select count(*) as so_don_hang from gio_hang where nguoi_mua = '${id_user}'`);
-    //     if (row.length === 0)
-    //         return 0;
-    //     return row[0].so_don_hang;
-    // },
+
     add: entity => db.add('lichsu_ragia', entity),
     // del: (id_sp, id_dm, nguoi_mua) => db.del('gio_hang', {
     //     nguoi_mua: nguoi_mua,
