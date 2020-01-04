@@ -1,5 +1,36 @@
-{{#section 'js'}}
+{{#section 'css'}}
 <script src="/js/validate.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{{/section}}
+
+{{#section 'js'}}
+{{!-- <script>
+    document.getElementById('frmRegister').addEventListener('submit', submitForm);
+    function submitForm(e) {
+        e.preventDefault();
+
+        const name = document.querySelector('#ho_ten').value;
+        const email = document.querySelector('#email').value;
+        const sdt = document.querySelector('#sdt').value;
+        const dia_chi = document.querySelector('#dia_chi').value;
+        const raw_password = document.querySelector('#txtRawPassword').value;
+        const repeat_password = document.querySelector('#txtRepeatPassword').value;
+        const captcha = document.querySelector('#g-recaptcha-response').value;
+
+        fetch('/account/register', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({ name: name, email: email, sdt: sdt, dia_chi: dia_chi, raw_password: raw_password, repeat_password: repeat_password, captcha: captcha })
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+            });
+    }
+</script> --}}
 {{/section}}
 
 <div class="container">
@@ -29,26 +60,26 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                     </div>
-                    <input name="ho_ten" class="form-control" placeholder="Họ tên" type="text" autofocus>
+                    <input id="ho_ten" name="ho_ten" class="form-control" placeholder="Họ tên" type="text" autofocus>
                 </div> <!-- form-group// -->
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                     </div>
-                    <input name="email" class="form-control" placeholder="Email" type="email">
+                    <input id="email" name="email" class="form-control" placeholder="Email" type="email">
                 </div> <!-- form-group// -->
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-phone"></i> </span>
                     </div>
-                    <input name="sdt" class="form-control" placeholder="Số điện thoại" type="text">
+                    <input id="sdt" name="sdt" class="form-control" placeholder="Số điện thoại" type="text">
                 </div><!-- form-group// -->
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-map"></i> </span>
                     </div>
 
-                    <input name="dia_chi" class="form-control" placeholder="Địa chỉ" type="text">
+                    <input id="dia_chi" name="dia_chi" class="form-control" placeholder="Địa chỉ" type="text">
                 </div>
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -61,8 +92,15 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                     </div>
-                    <input id="txtRepeatPassword" name="repeat_password" class="form-control" placeholder="Nhập lại mật khẩu" type="password">
+                    <input id="txtRepeatPassword" name="repeat_password" class="form-control"
+                        placeholder="Nhập lại mật khẩu" type="password">
                 </div> <!-- form-group// -->
+                {{!-- <div class="form-group w-100">
+                    <div class="g-recaptcha" style="margin: auto;"
+                        data-sitekey="6Ld3JcwUAAAAACzMjJMIGcv-OAR9xwMp-vKsE7ge">
+                    </div>
+                </div> --}}
+
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block"> Tạo Tài Khoản </button>
                 </div> <!-- form-group// -->

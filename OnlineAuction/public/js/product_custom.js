@@ -374,17 +374,11 @@ $(document).ready(function () {
 		var images = $('.image_list li');
 		var selected = $('.image_selected img');
 
-		images.each(function()
-		{
+		images.each(function () {
 			var image = $(this);
-			image.on('click', function()
-			{
+			image.on('click', function () {
 				var imagePath = new String(image.data('image'));
 				var res = imagePath.replace('_thumb', '');
-<<<<<<< HEAD
-				alert(res);
-=======
->>>>>>> son/cart
 				selected.attr('src', res);
 			});
 		});

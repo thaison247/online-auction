@@ -71,6 +71,7 @@ router.get('/', async (req, res) => {
 router.get('/search', async (req, res) => {
     const text = req.query.tu_khoa;
     const cat = req.query.danh_muc;
+
     // req.session.lastTextSearch = text;
     // req.session.lastCatSearch = cat;
     const limit = config.paginate.limit;
@@ -93,6 +94,7 @@ router.get('/search', async (req, res) => {
         ]);
     }
 
+
     // const total = await productModel.countByCat(catId);
     let nPages = Math.floor(total / limit);
     // if (page = nPages) page = page - 1;
@@ -101,8 +103,12 @@ router.get('/search', async (req, res) => {
     for (i = 1; i <= nPages; i++) {
         page_numbers.push({
             value: i,
-            isCurrentPage: i === +page
-        })
+            isCurrentPage: i === +page,
+            pkey: text,
+            pcatName: cat
+        });
+
+
     }
     console.log('--------------------------------------------------------------------: ' + nPages);
 

@@ -121,7 +121,8 @@
                         <nav>
                             <ul class="pagination" style="margin-left: 10px; margin-top: 15px;">
                                 <li class="page-item">
-                                    <a class="page-link" href="?page={{prev_value}}">
+                                    <a class="page-link"
+                                        href="?tu_khoa={{key}}&danh_muc={{catName}}&page={{prev_value}}">
                                         <i class="fa fa-backward" aria-hidden="true"></i>
                                     </a>
                                 </li>
@@ -133,7 +134,8 @@
                                 </li>
                                 {{else}}
                                 <li class="page-item">
-                                    <a class="page-link" href="?page={{value}}">{{value}}</a>
+                                    <a class="page-link"
+                                        href="?tu_khoa={{pkey}}&danh_muc={{pcatName}}&page={{value}}">{{value}}</a>
                                 </li>
                                 {{/if}}
                                 {{/each}}

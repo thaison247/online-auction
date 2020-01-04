@@ -11,7 +11,7 @@ const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({
-    extended: true
+    extended: false
 }));
 
 app.use(express.static(__dirname + "/public"));
