@@ -208,13 +208,12 @@ router.post("/upgrade", restrict, async (req, res) => {
             nguoi_gui: user,
             thoi_diem: time
         };
-
-
         const result = await upgradeReqModel.add(entity);
         res.render("vwAccount/upgrade", {
             message: 'Đã gửi yêu cầu nâng cấp tài khoản!'
         });
     } else {
+
         res.render("vwAccount/upgrade", {
             message: 'Bạn đã nâng cấp trước đó và đang là seller!'
         })
