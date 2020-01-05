@@ -6,6 +6,13 @@
 {{#section 'js'}}
 <script src="/js/product_custom.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script> //che một phần tên (masked-name)
+    var token = document.getElementById("maskedSeller").textContent.split(" ");
+    document.getElementById("maskedSeller").innerHTML = "****" + token[token.length - 1];
+
+    token = document.getElementById("maskedBidder").textContent.split(" ");
+    document.getElementById("maskedBidder").innerHTML = "****" + token[token.length - 1];
+</script>
 <script>
     var images = $('.image_list li');
     var selected = $('.image_selected img');
@@ -125,11 +132,15 @@
                         <i class="fas fa-cart-plus" style="color: #5c5656;"></i>Giá Mua Ngay
                     </div>
                     {{/if}}
-                    <div class="mt-3"> Người bán: <span style="color: blue;">{{this.seller}} (94 điểm)</span>
+                    <div class="mt-3"> Người bán: 
+                        <span id="maskedSeller" style="color: blue;">{{this.seller}}</span>
+                        <span style="color: blue;">(94 điểm)</span>
                     </div>
                     {{#if this.highestBidder}}
-                    <div> Người đặt giá cao nhất hiện tại: <span style="color: blue;">{{this.highestBidder}} (89
-                            điểm)</span></div>
+                    <div> Người đặt giá cao nhất hiện tại: 
+                        <span id="maskedBidder" style="color: blue;">{{this.highestBidder}}</span>
+                        <span style="color: blue;">(89 điểm)</span>
+                    </div>
                     {{/if}}
                     <div>Thời điểm đăng: <span
                             style="color: blue;">{{moment this.proInfo.tg_dang "dddd, MMMM Do YYYY, h:mm a"}}</span>
