@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 ">
+            <div class="list-group ">
+                <a href="/account/profile" class="list-group-item list-group-item-action ">Thông tin cá nhân</a>
+                <a href="/account/changePassword" class="list-group-item list-group-item-action">Đổi mật khẩu</a>
+                <a href="/account/reviews" class="list-group-item list-group-item-action">Điểm &amp; Đánh giá</a>
+                <a href="/account/upgrade" class="list-group-item list-group-item-action">Nâng cấp tài khoản</a>
+                <a href="/account/myProducts" class="list-group-item list-group-item-action active">Đăng sản phẩm</a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Cập Nhật Thông Tin</h4>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            {{#if message}}
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                {{message}}
+                            </div>
+                            {{/if}}
+                            <form method="POST" novalidate enctype="multipart/form-data">
+                                <div class="card shadow">
+                                    <h4 class="card-header">
+                                        Upload
+                                    </h4>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <div class="file-loading">
+                                                <input id="avatar" name="avatar" accept="image/*" type="file"
+                                                    multiple="multiple">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer text-right">
+                                        <button type="submit" class="btn btn-lg btn-success btn-block">
+                                            <i class="fa fa-check" aria-hidden="true"></i>
+                                            Submit
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
