@@ -26,7 +26,7 @@ router.get('/:id/products', async (req, res) => {
 
     const [total, rows] = await Promise.all([
         productModel.countByCat(catId),
-        productModel.pageByCat(catId, offset)
+        productModel.allByCatWithInfo(catId, offset)
     ]);
 
     // const total = await productModel.countByCat(catId);
