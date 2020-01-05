@@ -5,6 +5,8 @@ const restrict = require("../middlewares/auth.mdw");
 const bidModel = require("../models/bid.model");
 const favoriteModel = require("../models/favorite.model");
 const reviewModel = require("../models/review.model");
+const upgradeReqModel = require("../models/upgradeReq.model");
+const moment = require('moment');
 
 const router = express.Router();
 
@@ -195,6 +197,20 @@ router.get("/reviews", restrict, async (req, res) => {
 
 router.get("/upgrade", restrict, async (req, res) => {
     res.render("vwAccount/upgrade");
+});
+
+router.post("/upgrade", restrict, async (req, res) => {
+    var user = res.locals.authUser.id_user;
+    var time = moment().format("YYYY-MM-DD HH:mm:ss");
+    console.log(time);
+    var entity = {
+        nguoi_gui: user,
+        thoi_diem: time
+    };
+    const result = await upgradeReqModel.add(entity);
+    res.render("vwAccount/upgrade", {
+        message: 'Đã gửi yêu cầu nâng cấp tài khoản!'
+    });
 });
 
 
