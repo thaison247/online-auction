@@ -1,6 +1,4 @@
 const categoryModel = require("../models/category.model");
-const cartModel = require("../models/cart.model");
-const favoriteModel = require("../models/favorite.model");
 
 module.exports = function (app) {
     app.use(async (req, res, next) => {
@@ -27,9 +25,11 @@ module.exports = function (app) {
 
         res.locals.number_placedBidProd = req.session.number_placedBidProd;
         res.locals.number_favoriteProd = req.session.number_favoriteProd;
-
-        // res.locals.lastTextSearch = req.session.lastTextSearch;
-        // res.locals.lastCatSearch = req.session.lastCatSearch;
+        if (!req.session.authUser) {
+            res.locals.isSeller = false;
+        } else {
+            res.locals.isSeller = req.session.authUser.phan_he === 1 ? false : true;
+        }
 
         const rows = await categoryModel.allWithDetails();
         res.locals.lcCategories = rows;

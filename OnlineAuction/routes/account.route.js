@@ -202,15 +202,23 @@ router.get("/upgrade", restrict, async (req, res) => {
 router.post("/upgrade", restrict, async (req, res) => {
     var user = res.locals.authUser.id_user;
     var time = moment().format("YYYY-MM-DD HH:mm:ss");
-    console.log(time);
-    var entity = {
-        nguoi_gui: user,
-        thoi_diem: time
-    };
-    const result = await upgradeReqModel.add(entity);
-    res.render("vwAccount/upgrade", {
-        message: 'Đã gửi yêu cầu nâng cấp tài khoản!'
-    });
+
+    if (res.locals.authUser.phan_he === 1) {
+        var entity = {
+            nguoi_gui: user,
+            thoi_diem: time
+        };
+
+
+        const result = await upgradeReqModel.add(entity);
+        res.render("vwAccount/upgrade", {
+            message: 'Đã gửi yêu cầu nâng cấp tài khoản!'
+        });
+    } else {
+        res.render("vwAccount/upgrade", {
+            message: 'Bạn đã nâng cấp trước đó và đang là seller!'
+        })
+    }
 });
 
 
