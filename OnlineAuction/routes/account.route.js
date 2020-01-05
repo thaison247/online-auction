@@ -7,7 +7,26 @@ const favoriteModel = require("../models/favorite.model");
 const reviewModel = require("../models/review.model");
 const upgradeReqModel = require("../models/upgradeReq.model");
 const productModel = require("../models/product.model");
-const moment = require('moment');
+const fs = require("fs-extra");
+const moment = require("moment");
+const multer = require("multer");
+
+const upload = multer({
+    storage: multer.diskStorage({
+        destination: (req, file, callback) => {
+            let catId = req.params.catId;
+            let proId = req.params.proId;
+            //   let path = `.publics/imgs`;
+            let path = `./public/imgs/sp/${catId}/${proId}`;
+            fs.mkdirsSync(path);
+            callback(null, path);
+        },
+        filename: (req, file, callback) => {
+            //originalname is the uploaded file's name with extn
+            callback(null, file.originalname);
+        }
+    })
+});
 
 const router = express.Router();
 
@@ -123,7 +142,7 @@ router.get("/profile", restrict, async (req, res) => {
     const phan_he = row[0].phan_he === 0 ? "Bidder" : "Seller";
     res.render("vwAccount/profile", {
         user: row[0],
-        phan_he: phan_he,
+        phan_he: phan_he
     });
 });
 
@@ -136,7 +155,7 @@ router.post("/logout", (req, res) => {
 router.get("/changeInfo", restrict, async (req, res) => {
     const row = await userModel.single(res.locals.authUser.id_user);
     res.render("vwAccount/changeInfo", {
-        user: row[0],
+        user: row[0]
     });
 });
 
@@ -144,7 +163,7 @@ router.post("/changeInfo", async (req, res) => {
     const entity = req.body;
     entity.id_user = res.locals.authUser.id_user;
     const result = await userModel.patch(entity);
-    res.redirect('/account/profile');
+    res.redirect("/account/profile");
 });
 
 router.get("/changePassword", restrict, async (req, res) => {
@@ -186,9 +205,8 @@ router.get("/reviews", restrict, async (req, res) => {
     const rows = await reviewModel.allByUser(res.locals.authUser.id_user);
     const nGood = await reviewModel.countGoodReviews(res.locals.authUser.id_user);
     const nBad = await reviewModel.countBadReviews(res.locals.authUser.id_user);
-    var so_diem = +nGood[0].diem_tot * 100 / (+rows.length);
+    var so_diem = (+nGood[0].diem_tot * 100) / +rows.length;
     so_diem = Math.ceil(so_diem);
-
 
     res.render("vwAccount/reviews", {
         reviews: rows,
@@ -211,13 +229,12 @@ router.post("/upgrade", restrict, async (req, res) => {
         };
         const result = await upgradeReqModel.add(entity);
         res.render("vwAccount/upgrade", {
-            message: 'Đã gửi yêu cầu nâng cấp tài khoản!'
+            message: "Đã gửi yêu cầu nâng cấp tài khoản!"
         });
     } else {
-
         res.render("vwAccount/upgrade", {
-            message: 'Bạn đã nâng cấp trước đó và đang là seller!'
-        })
+            message: "Bạn đã nâng cấp trước đó và đang là seller!"
+        });
     }
 });
 
@@ -236,7 +253,7 @@ router.get("/myProducts", restrict, async (req, res) => {
     res.render("vwAccount/myProducts", {
         products: rows,
         total: rows.length
-    })
+    });
 });
 
 router.get("/addProduct/info", restrict, async (req, res) => {
@@ -247,12 +264,27 @@ router.post("/addProduct/info", restrict, async (req, res) => {
     var entity = req.body;
     entity.nguoi_ban = res.locals.authUser.id_user;
     entity.tg_dang = moment().format("YYYY-MM-DD hh:mm:ss");
-    entity.tg_het_han = moment().add(7, 'days').format("YYYY-MM-DD hh:mm:ss");
+    entity.tg_het_han = moment()
+        .add(7, "days")
+        .format("YYYY-MM-DD hh:mm:ss");
     const result = await productModel.add(entity);
-    res.render("vwAccount/addProductInfo", {
-        message: 'Đăng sản phẩm thành công!'
-    });
-})
+    const catIdAdded = entity.id_dm;
+    const proIdAdded = await productModel.highestProId(entity.id_dm);
+    res.redirect(`/account/addProduct/img/${catIdAdded}/${proIdAdded}`);
+});
 
+router.get("/addProduct/img/:catId/:proId", restrict, async (req, res) => {
+    res.render("vwAccount/addProductImg");
+});
+
+router.post("/addProduct/img/:catId/:proId", function (req, res) {
+    upload.array("avatar")(req, res, err => {
+        if (err) {
+            res.send("error");
+        }
+
+        res.send("ok");
+    });
+});
 
 module.exports = router;

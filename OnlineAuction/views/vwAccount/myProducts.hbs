@@ -1,3 +1,32 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css">
+{{/section}}
+
+{{#section 'js'}}
+<script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
+<script type="text/javascript">
+    $('#btn-prevent-add').on('click', function (e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        console.log(url);
+        swal({
+            title: "Thông Báo",
+            text: "Bạn cần nâng cấp tài khoản thành Seller để thực hiện chức năng này!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-success",
+            confirmButtonText: "Tôi muốn nâng cấp!",
+            cancelButtonText: "Huỷ",
+            closeOnConfirm: false
+        },
+            function () {
+                window.location.href = url;
+            });
+    });
+</script>
+{{/section}}
+
 <div class="container">
     <div class="row">
         <div class="col-md-3 ">
@@ -46,9 +75,16 @@
                                     {{/each}}
                                 </tbody>
                             </table>
+                            {{#if isSeller}}
                             <a href="/account/addProduct/info">
                                 <button class="btn btn-success"><i class="fa fa-plus-circle"></i>Thêm Sản Phẩm</button>
                             </a>
+                            {{else}}
+                            {{!-- <button class="btn btn-success" id="btn-prevent-add"><i class="fa fa-plus-circle"></i>Thêm
+                                Sản Phẩm</button> --}}
+                            <a href="/account/upgrade" id="btn-prevent-add" type="button" class="btn btn-success"><i
+                                    class="fa fa-plus-circle"></i>Thêm Sản Phẩm</a>
+                            {{/if}}
                         </div>
                     </div>
                 </div>

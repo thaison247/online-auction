@@ -1,6 +1,7 @@
 {{#section 'css'}}
 <link rel="stylesheet" type="text/css" href="/styles/prd_styles.css">
 <link rel="stylesheet" type="text/css" href="/styles/product_responsive.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css">
 {{/section}}
 
 {{#section 'js'}}
@@ -13,6 +14,8 @@
     token = document.getElementById("maskedBidder").textContent.split(" ");
     document.getElementById("maskedBidder").innerHTML = "****" + token[token.length - 1];
 </script>
+<script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
 <script>
     var images = $('.image_list li');
     var selected = $('.image_selected img');
@@ -26,29 +29,26 @@
         });
     });
 </script>
-{{!-- <script>
-    $(document).on('click', '#btn-submit', function (e) {
+
+<script type="text/javascript">
+    $('#form').on('submit', function (e) {
         e.preventDefault();
+        var price = $('#bid_price').val();
+        price = price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
         swal({
-            title: 'Confirm',
-            input: 'number',
-            inputValue: $(#gia_tien).value(),
-            inputPlaceholder: ' I agree with the Terms',
-            confirmButtonText: 'Continue',
-            inputValidator: function (result) {
-                return new Promise(function (resolve, reject) {
-                    if (result) {
-                        resolve();
-                    } else {
-                        reject('You need to agree with the Terms');
-                    }
-                })
-            }
-        }).then(function (result) {
-            $('#form').submit();
+            title: "Xác Nhận",
+            text: "Bạn có chắc muốn đặt giá: " + price + "vnđ",
+            type: "info",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            showLoaderOnConfirm: false,
+            confirmButtonText: "Có",
+            cancelButtonText: "Huỷ"
+        }, function () {
+            $('#form').unbind('submit').submit();
         });
     });
-</script> --}}
+</script>
 
 {{/section}}
 
@@ -84,16 +84,20 @@
             <div id="carouselIndicators" class="carousel slide col-lg-5 order-lg-2 order-1" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/main.jpg" alt="">
+                        <img class="d-block w-100" src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/main.jpg"
+                            alt="">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/1.jpg" alt="">
+                        <img class="d-block w-100" src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/1.jpg"
+                            alt="">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/2.jpg" alt="">
+                        <img class="d-block w-100" src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/2.jpg"
+                            alt="">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/3.jpg" alt="">
+                        <img class="d-block w-100" src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/3.jpg"
+                            alt="">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
@@ -132,12 +136,12 @@
                         <i class="fas fa-cart-plus" style="color: #5c5656;"></i>Giá Mua Ngay
                     </div>
                     {{/if}}
-                    <div class="mt-3"> Người bán: 
+                    <div class="mt-3"> Người bán:
                         <span id="maskedSeller" style="color: blue;">{{this.seller}}</span>
                         <span style="color: blue;">(94 điểm)</span>
                     </div>
                     {{#if this.highestBidder}}
-                    <div> Người đặt giá cao nhất hiện tại: 
+                    <div> Người đặt giá cao nhất hiện tại:
                         <span id="maskedBidder" style="color: blue;">{{this.highestBidder}}</span>
                         <span style="color: blue;">(89 điểm)</span>
                     </div>
@@ -161,7 +165,7 @@
 
                     <div class="button_container mt-3">
                         <form action="/bid/place/{{proInfo.id_dm}}/{{proInfo.id_sp}}" id="form" method="POST">
-                            <input class="form-control" name="gia_tien"
+                            <input class="form-control" name="gia_tien" id="bid_price"
                                 style="width: 150px; float: left; text-align: center; border-top-right-radius: 0px; border-bottom-right-radius: 0px;"
                                 type="number" step="{{proInfo.buoc_gia}}" min="{{rcmPrice}}" value="{{rcmPrice}}"
                                 onKeyDown="return false">
