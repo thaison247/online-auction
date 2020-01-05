@@ -221,7 +221,7 @@ router.post("/upgrade", restrict, async (req, res) => {
     }
 });
 
-router.get("/myProducts", async (req, res) => {
+router.get("/myProducts", restrict, async (req, res) => {
     var rows = await productModel.addedByUser(res.locals.authUser.id_user);
     rows.forEach(element => {
         var tg_het_han = element.tg_het_han;
@@ -239,8 +239,19 @@ router.get("/myProducts", async (req, res) => {
     })
 });
 
-router.get("/addProduct", async (req, res) => {
+router.get("/addProduct/info", restrict, async (req, res) => {
     res.render("vwAccount/addProductInfo");
+});
+
+router.post("/addProduct/info", restrict, async (req, res) => {
+    var entity = req.body;
+    entity.nguoi_ban = res.locals.authUser.id_user;
+    entity.tg_dang = moment().format("YYYY-MM-DD hh:mm:ss");
+    entity.tg_het_han = moment().add(7, 'days').format("YYYY-MM-DD hh:mm:ss");
+    const result = await productModel.add(entity);
+    res.render("vwAccount/addProductInfo", {
+        message: 'Đăng sản phẩm thành công!'
+    });
 })
 
 
