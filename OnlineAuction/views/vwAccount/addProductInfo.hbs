@@ -2,11 +2,11 @@
     <div class="row">
         <div class="col-md-3 ">
             <div class="list-group ">
-                <a href="/account/profile" class="list-group-item list-group-item-action active">Thông tin cá nhân</a>
+                <a href="/account/profile" class="list-group-item list-group-item-action ">Thông tin cá nhân</a>
                 <a href="/account/changePassword" class="list-group-item list-group-item-action">Đổi mật khẩu</a>
                 <a href="/account/reviews" class="list-group-item list-group-item-action">Điểm &amp; Đánh giá</a>
                 <a href="/account/upgrade" class="list-group-item list-group-item-action">Nâng cấp tài khoản</a>
-                <a href="/account/myProducts" class="list-group-item list-group-item-action">Sản phẩm của tôi</a>
+                <a href="/account/myProducts" class="list-group-item list-group-item-action active">Đăng sản phẩm</a>
             </div>
         </div>
         <div class="col-md-9">
@@ -22,10 +22,14 @@
                         <div class="col-md-12">
                             <form action="/account/changeInfo" method="POST">
                                 <div class="form-group row">
-                                    <label for="username" class="col-4 col-form-label">Họ Tên</label>
+                                    <label for="username" class="col-4 col-form-label">Danh mục</label>
                                     <div class="col-8">
-                                        <input id="username" name="ho_ten" value="{{user.ho_ten}}"
-                                            class="form-control here" required="required" type="text">
+                                        <select name="danh_muc" id="danh_muc" class="form-control"
+                                            style="min-width: 200px; margin: 0px;width: 200px;">
+                                            {{#each lcCategories}}
+                                            <option style="width: 200px;" value="{{ten_dm}}">{{ten_dm}}</option>
+                                            {{/each}}
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
