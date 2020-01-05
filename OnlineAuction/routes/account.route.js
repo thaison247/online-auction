@@ -6,6 +6,7 @@ const bidModel = require("../models/bid.model");
 const favoriteModel = require("../models/favorite.model");
 const reviewModel = require("../models/review.model");
 const upgradeReqModel = require("../models/upgradeReq.model");
+const productModel = require("../models/product.model");
 const moment = require('moment');
 
 const router = express.Router();
@@ -219,6 +220,39 @@ router.post("/upgrade", restrict, async (req, res) => {
         })
     }
 });
+
+router.get("/myProducts", restrict, async (req, res) => {
+    var rows = await productModel.addedByUser(res.locals.authUser.id_user);
+    rows.forEach(element => {
+        var tg_het_han = element.tg_het_han;
+        var now = moment();
+        var diff = now.diff(tg_het_han);
+        if (diff > 0) {
+            element.da_het_han = true;
+        } else {
+            element.da_het_han = false;
+        }
+    });
+    res.render("vwAccount/myProducts", {
+        products: rows,
+        total: rows.length
+    })
+});
+
+router.get("/addProduct/info", restrict, async (req, res) => {
+    res.render("vwAccount/addProductInfo");
+});
+
+router.post("/addProduct/info", restrict, async (req, res) => {
+    var entity = req.body;
+    entity.nguoi_ban = res.locals.authUser.id_user;
+    entity.tg_dang = moment().format("YYYY-MM-DD hh:mm:ss");
+    entity.tg_het_han = moment().add(7, 'days').format("YYYY-MM-DD hh:mm:ss");
+    const result = await productModel.add(entity);
+    res.render("vwAccount/addProductInfo", {
+        message: 'Đăng sản phẩm thành công!'
+    });
+})
 
 
 module.exports = router;

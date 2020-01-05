@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 ">
+            <div class="list-group ">
+                <a href="/account/profile" class="list-group-item list-group-item-action">Thông tin cá nhân</a>
+                <a href="/account/changeInfo" class="list-group-item list-group-item-action">Đổi mật khẩu</a>
+                <a href="/account/reviews" class="list-group-item list-group-item-action ">Điểm &amp; Đánh giá</a>
+                <a href="/account/upgrade" class="list-group-item list-group-item-action">Nâng cấp tài khoản</a>
+                <a href="/account/myProducts" class="list-group-item list-group-item-action active">Sản phẩm của tôi</a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Tất cả: <span style="color: green;">{{total}}</span> Sản phẩm</h4>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Ảnh</th>
+                                        <th scope="col">Tên sản phẩm</th>
+                                        <th scope="col">Ngày bán vào lúc</th>
+                                        <th scope="col">Tình trạng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each this.products}}
+                                    <tr>
+                                        <th scope="row"><img src="/imgs/sp/{{id_dm}}/{{id_sp}}/main_thumb.jpg" alt="">
+                                        </th>
+                                        <td><a href="/categories/{{id_dm}}/products/{{id_sp}}">{{ten_sp}}</a></td>
+
+                                        <td>{{moment tg_dang 'h:mm:ss, dddd, Do MMMM - YYYY'}}</td>
+                                        {{#if da_het_han}}
+                                        <td><span style="color: red;">Đã hết hạn</span></td>
+                                        {{else}}
+                                        <td><span style="color: green;">Đang bán</span></td>
+                                        {{/if}}
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                            <a href="/account/addProduct/info">
+                                <button class="btn btn-success"><i class="fa fa-plus-circle"></i>Thêm Sản Phẩm</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

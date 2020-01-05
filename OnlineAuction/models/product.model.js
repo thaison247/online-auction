@@ -106,5 +106,7 @@ module.exports = {
                                         ) as L
                                     on V.id_sp = L.id_sp and V.id_dm = L.id_dm`)
         return rows[0].total;
-    }
+    },
+
+    addedByUser: (id_user) => db.load(`select * from sanpham where nguoi_ban = ${id_user}`)
 };
