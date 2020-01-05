@@ -1,7 +1,20 @@
-{{#section 'css'}}
+{{#section 'js'}}
 <script src="https://cdn.tiny.cloud/1/y5mq9cxhnrazibmar3is1h9fk4jgcqogpct32s2r0wa3t7za/tinymce/5/tinymce.min.js"
     referrerpolicy="origin"></script>
-<script>tinymce.init({ selector: 'textarea' });</script>
+{{!-- <script>tinymce.init({ selector: 'textarea' });</script> --}}
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        height: 600,
+        plugins: 'paste image link autolink lists table media',
+        menubar: false,
+        toolbar: [
+            'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright',
+            'forecolor backcolor',
+            'table link image media',
+        ],
+    });
+</script>
 {{/section}}
 
 <div class="container">
@@ -36,8 +49,8 @@
                             {{/if}}
                             <form action="/account/addProduct/info" method="POST">
                                 <div class="form-group row">
-                                    <label for="danh_muc" class="col-4 col-form-label">Danh mục</label>
-                                    <div class="col-8">
+                                    <label for="danh_muc" class="col-2 col-form-label">Danh mục</label>
+                                    <div class="col-10">
                                         <select name="id_dm" id="danh_muc" class="form-control"
                                             style="min-width: 200px; margin: 0px;width: 200px;">
                                             {{#each lcCategories}}
@@ -47,42 +60,42 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="ten_sp" class="col-4 col-form-label">Tên sản phẩm</label>
-                                    <div class="col-8">
+                                    <label for="ten_sp" class="col-2 col-form-label">Tên sản phẩm</label>
+                                    <div class="col-10">
                                         <input id="ten_sp" name="ten_sp" class="form-control here" type="text"
                                             required="required">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="gia_khoi_diem" class="col-4 col-form-label">Giá khởi điểm</label>
-                                    <div class="col-8">
+                                    <label for="gia_khoi_diem" class="col-2 col-form-label">Giá khởi điểm</label>
+                                    <div class="col-10">
                                         <input id="gia_khoi_diem" name="gia_khoi_diem" required="required"
                                             class="form-control here" type="text">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="gia_mua_ngay" class="col-4 col-form-label">Giá mua ngay</label>
-                                    <div class="col-8">
+                                    <label for="gia_mua_ngay" class="col-2 col-form-label">Giá mua ngay</label>
+                                    <div class="col-10">
                                         <input id="gia_mua_ngay" name="gia_mua_ngay" class="form-control here"
                                             type="text">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="buoc_gia" class="col-4 col-form-label">Bước giá</label>
-                                    <div class="col-8">
+                                    <label for="buoc_gia" class="col-2 col-form-label">Bước giá</label>
+                                    <div class="col-10">
                                         <input id="buoc_gia" name="buoc_gia" class="form-control here" type="text"
                                             required="required">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="mo_ta" class="col-4 col-form-label">Mô tả</label>
-                                    <div class="col-8">
+                                    <label for="mo_ta" class="col-2 col-form-label">Mô tả</label>
+                                    <div class="col-10">
                                         <textarea id="mo_ta" name="mo_ta" class="form-control here" rows="3"
                                             type="text"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="offset-4 col-8">
+                                    <div class="offset-4 col-10">
                                         <button type="submit" class="btn btn-success">Tiếp Tục</button>
                                     </div>
                                 </div>
