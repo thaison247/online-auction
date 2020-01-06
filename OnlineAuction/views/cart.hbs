@@ -32,11 +32,20 @@
                                             {{/if}}
                                         </div>
                                         <div class="cart_item_price cart_info_col">
+                                            {{#if myPrice}}
+                                            <div class="cart_item_title" style="color: green;">Bạn đang giữ giá</div>
+                                            {{#if bidder_ragia}}
+                                            <div class="cart_item_text">{{format bidder_ragia}}</div>
+                                            {{else}}
+                                            <div class="cart_item_text"></div>
+                                            {{/if}}
+                                            {{else}}
                                             <div class="cart_item_title">Bạn Ra Giá</div>
                                             {{#if bidder_ragia}}
                                             <div class="cart_item_text">{{format bidder_ragia}}</div>
                                             {{else}}
                                             <div class="cart_item_text"></div>
+                                            {{/if}}
                                             {{/if}}
                                         </div>
                                     </div>

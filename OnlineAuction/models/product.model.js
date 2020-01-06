@@ -157,7 +157,7 @@ module.exports = {
 
     highestBidderAndPrice: (id_dm, id_sp) => db.load(`select ls.bidder as highestBidder, ls.so_tien as currentPrice
                                         from lichsu_ragia ls join user u on ls.bidder = u.id_user
-                                        where ls.id_sp = ${id_dm} and ls.id_dm = ${id_sp} and ls.bidder not in (select bidder from cam_bidder where danh_muc = ls.id_dm and san_pham = ls.id_sp)
+                                        where ls.id_sp = ${id_sp} and ls.id_dm = ${id_dm} and ls.bidder not in (select bidder from cam_bidder where danh_muc = ls.id_dm and san_pham = ls.id_sp)
                                         having ls.so_tien = (select max(so_tien) from lichsu_ragia ls1 where ls1.bidder = ls.bidder and ls1.id_dm = ls.id_dm and ls1.id_sp = ls.id_sp)
                                         order by so_tien desc
                                         limit 1`),

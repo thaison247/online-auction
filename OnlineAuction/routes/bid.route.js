@@ -1,6 +1,7 @@
 const express = require('express');
 const bidModel = require('../models/bid.model');
 const moment = require('moment');
+const productModel = require('../models/product.model');
 
 const router = express.Router();
 
@@ -19,7 +20,18 @@ router.post('/place/:catId/:proId', async (req, res) => {
 
 router.get('/havePlaced', async (req, res) => {
     const id = req.session.authUser.id_user;
-    const productRows = await bidModel.allByUser(id);
+    var productRows = await bidModel.allByUser(id);
+
+    for (i = 0; i < productRows.length; i++) {
+        var row = await productModel.highestBidderAndPrice(productRows[i].id_dm, productRows[i].id_sp);
+
+        if (row.length > 0) {
+            if (row[0].highestBidder === id) {
+                productRows[i].myPrice = true;
+            }
+        }
+    }
+
     res.render("cart", {
         products: productRows,
         title: 'Những sản phẩm bạn đã tham gia đấu giá'
