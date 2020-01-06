@@ -12,6 +12,12 @@ module.exports = {
     
     
      `),
+
+    single: (id_user, id_dm, id_sp) => db.load(`select * from ds_yeuthich where id_user = ${id_user} and id_dm = ${id_dm} and id_sp = ${id_sp}`),
+    count: async (id_user, id_dm, id_sp) => {
+        const row = await db.load(`select count(*) as result from ds_yeuthich where id_user = ${id_user} and id_dm = ${id_dm} and id_sp = ${id_sp}`);
+        return row[0].result;
+    },
     countByUser: (id_user) => db.load(`select count(*) as so_sp from (select distinct id_dm, id_sp from ds_yeuthich where id_user = ${id_user}) as T`),
     add: entity => db.add('ds_yeuthich', entity),
 

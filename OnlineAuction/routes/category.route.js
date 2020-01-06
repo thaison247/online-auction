@@ -3,6 +3,7 @@ const productModel = require('../models/product.model');
 const bidModel = require('../models/bid.model');
 const moment = require('moment');
 const config = require('../config/default.json');
+const favoriteModel = require('../models/favorite.model');
 
 const router = express.Router();
 
@@ -73,6 +74,19 @@ router.get('/:catId/products/:proId', async (req, res) => {
     const seller = await productModel.seller(req.params.proId, req.params.catId);
     const highestBidderAndPrice = await productModel.highestBidderAndPrice(req.params.proId, req.params.catId);
 
+    var inFavList;
+    var id_user = 0;
+    if (res.locals.authUser) {
+        id_user = res.locals.authUser.id_user;
+    }
+    const rowFav = await favoriteModel.count(id_user, req.params.catId, req.params.proId);
+
+    if (+rowFav === 0) {
+
+    } else {
+        inFavList = true;
+    }
+
     if (highestBidderAndPrice.length > 0) {
         res.render('vwProduct/proDetail', {
             proInfo: row[0],
@@ -81,6 +95,7 @@ router.get('/:catId/products/:proId', async (req, res) => {
             currentPrice: highestBidderAndPrice[0].currentPrice,
             highestBidder: highestBidderAndPrice[0].highestBidder,
             rcmPrice: +highestBidderAndPrice[0].currentPrice + row[0].buoc_gia,
+            inFavList: inFavList
         });
     } else {
         res.render('vwProduct/proDetail', {
@@ -89,6 +104,7 @@ router.get('/:catId/products/:proId', async (req, res) => {
             seller: seller[0].ten_nguoi_ban,
             currentPrice: row[0].gia_khoi_diem,
             rcmPrice: +row[0].gia_khoi_diem + row[0].buoc_gia,
+            inFavList: inFavList
         });
     }
 });
