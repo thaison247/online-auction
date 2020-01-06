@@ -250,7 +250,7 @@ router.get("/myProducts", restrict, async (req, res) => {
             element.da_het_han = false;
         }
     });
-    res.render("vwAccount/myProducts", {
+    res.render("vwAccount/myProduct", {
         products: rows,
         total: rows.length,
         filter: 'Tất Cả'

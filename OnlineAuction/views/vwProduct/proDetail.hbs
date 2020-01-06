@@ -7,7 +7,7 @@
 {{#section 'js'}}
 <script src="/js/product_custom.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script> //che một phần tên (masked-name)
+{{!-- <script> //che một phần tên (masked-name)
     //Seller
     var _name = document.getElementById("maskedSeller");
     var token = _name.textContent.split(" ");
@@ -20,13 +20,12 @@
         _name[i].innerHTML = "****" + token[token.length - 1];
         _name[i].style.display = "inline-block"
     }
-</script>
+</script> --}}
 <script type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
 <script>
     var images = $('.image_list li');
     var selected = $('.image_selected img');
-
     images.each(function () {
         var image = $(this);
         image.on('click', function () {
@@ -162,16 +161,16 @@
                     <div class="mt-3"> Bạn là người bán </div>
                     {{else}}
                     <div class="mt-3"> Người bán:
-                        <span id="maskedSeller" style="color: blue; display: none;">{{this.seller}}</span>
+                        <span id="maskedSeller" style="color: blue;">{{this.seller}}</span>
                         <span style="color: blue;">(94 điểm)</span>
                     </div>
                     {{/if}}
                     {{#if this.highestBidder}}
                     <div> Người đặt giá cao nhất hiện tại:
                         {{#if isHighestBidder}}
-                        <span style="color: blue;">Bạn đang giữ giá</span>
+                        <span style="color: blue; ">Bạn đang giữ giá</span>
                         {{else}}
-                        <span class="maskedBidder" style="color: blue; display: none;">{{this.highestBidder}}</span>
+                        <span class="maskedBidder" style="color: blue; ">{{this.highestBidder}}</span>
                         <span style="color: blue;">(89 điểm)</span>
                         {{/if}}
                     </div>
@@ -212,7 +211,7 @@
                                             <tr>
                                                 <td>{{index}}</td>
                                                 <td>{{moment thoi_diem 'h:mm:ss, dddd, Do MMMM - YYYY'}}</td>
-                                                <td class="maskedBidder" style="display: none;">{{ho_ten}}</td>
+                                                <td class="maskedBidder" style="">{{ho_ten}}</td>
                                                 <td>{{so_tien}}</td>
                                                 <td>
                                                     <form
@@ -230,7 +229,7 @@
                                             <tr>
                                                 <td>{{index}}</td>
                                                 <td>{{moment thoi_diem 'h:mm:ss, dddd, Do MMMM - YYYY'}}</td>
-                                                <td class="maskedBidder" style="display: none;">{{ho_ten}}</td>
+                                                <td class="maskedBidder" style="">{{ho_ten}}</td>
                                                 <td>{{so_tien}}</td>
                                                 <td></td>
                                             </tr>
@@ -257,17 +256,12 @@
                         </form>
                     </div>
 
-                    {{#if proInfo.het_han}}
-                    <div style="color: red; margin-top: 15px; font-size: 30;">Sản phẩm đã kết thúc đấu giá</div>
-                    {{else}}
+
                     {{#if rejectedUser}}
                     <div style="color: red; margin-top: 15px; font-size: 30;">Xin lỗi! Seller đã từ chối quyền tham gia
                         đấu giá của bạn</div>
                     {{else}}
                     <div class="button_container mt-3">
-                        {{#if isUserProd}}
-                        <span>(Bước giá: {{format proInfo.buoc_gia}} đ)</span>
-                        {{else}}
                         <form action="/bid/place/{{proInfo.id_dm}}/{{proInfo.id_sp}}" id="form" method="POST">
                             <input class="form-control" name="gia_tien" id="bid_price"
                                 style="width: 150px; float: left; text-align: center; border-top-right-radius: 0px; border-bottom-right-radius: 0px;"
@@ -280,9 +274,7 @@
                             </button>
                             <span>(Bước giá: {{format proInfo.buoc_gia}} đ)</span>
                         </form>
-                        {{/if}}
                     </div>
-                    {{/if}}
                     {{/if}}
                 </div>
             </div>
@@ -336,7 +328,6 @@
     <div class="container">
         <h3 style="font-weight: bold;">CÁC SẢN PHẨM LIÊN QUAN</h3>
         <div class="tabs_line" style="margin-top: 0px;"></div>
-
         <ul class="top5container list-inline" style="text-align: center">
             <li class="list-inline-item">
                 <a href="product.html">
@@ -347,7 +338,6 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">HP Spectre Folio 13</h5>
-
                             <div class="curr-bid">
                                 <div>Current Bid: <span class="bid-price">2000<i class="fas fa-dollar-sign"></i></span>
                                 </div>
@@ -355,15 +345,12 @@
                                     Bidder1337
                                 </div>
                             </div>
-
                             <div class="open-day">
                                 <small><span style="color: gray;">Open Day: </span>November 20</small>
                             </div>
-
                             <div class="close-timer">
                                 <small><span style="color: gray;">Close in: </span>3 <span>Days</span></small>
                             </div>
-
                             <a href="product.html" class="btn btn-primary btn-viewdetail">View Detail</a>
                         </div>
                     </div>
@@ -378,7 +365,6 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">HP Spectre Folio 13</h5>
-
                             <div class="curr-bid">
                                 <div>Current Bid: <span class="bid-price">2000<i class="fas fa-dollar-sign"></i></span>
                                 </div>
@@ -386,15 +372,12 @@
                                     Bidder1337
                                 </div>
                             </div>
-
                             <div class="open-day">
                                 <small><span style="color: gray;">Open Day: </span>November 20</small>
                             </div>
-
                             <div class="close-timer">
                                 <small><span style="color: gray;">Close in: </span>3 <span>Days</span></small>
                             </div>
-
                             <a href="product.html" class="btn btn-primary btn-viewdetail">View Detail</a>
                         </div>
                     </div>
@@ -409,7 +392,6 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">HP Spectre Folio 13</h5>
-
                             <div class="curr-bid">
                                 <div>Current Bid: <span class="bid-price">2000<i class="fas fa-dollar-sign"></i></span>
                                 </div>
@@ -417,21 +399,17 @@
                                     Bidder1337
                                 </div>
                             </div>
-
                             <div class="open-day">
                                 <small><span style="color: gray;">Open Day: </span>November 20</small>
                             </div>
-
                             <div class="close-timer">
                                 <small><span style="color: gray;">Close in: </span>3 <span>Days</span></small>
                             </div>
-
                             <a href="product.html" class="btn btn-primary btn-viewdetail">View Detail</a>
                         </div>
                     </div>
                 </a>
             </li>
-
         </ul>
     </div>
 </div> --}}

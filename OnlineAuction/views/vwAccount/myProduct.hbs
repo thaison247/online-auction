@@ -1,0 +1,114 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css">
+{{/section}}
+
+{{#section 'js'}}
+<script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
+<script type="text/javascript">
+    $('#btn-prevent-add').on('click', function (e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        console.log(url);
+        swal({
+            title: "Thông Báo",
+            text: "Bạn cần nâng cấp tài khoản thành Seller để thực hiện chức năng này!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-success",
+            confirmButtonText: "Tôi muốn nâng cấp!",
+            cancelButtonText: "Huỷ",
+            closeOnConfirm: false
+        },
+            function () {
+                window.location.href = url;
+            });
+    });
+</script>
+{{/section}}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 ">
+            <div class="list-group ">
+                <a href="/account/profile" class="list-group-item list-group-item-action">Thông tin cá nhân</a>
+                <a href="/account/changeInfo" class="list-group-item list-group-item-action">Đổi mật khẩu</a>
+                <a href="/account/reviews" class="list-group-item list-group-item-action ">Điểm &amp; Đánh giá</a>
+                <a href="/account/upgrade" class="list-group-item list-group-item-action">Nâng cấp tài khoản</a>
+                <a href="/account/myProducts" class="list-group-item list-group-item-action active">Sản phẩm của tôi</a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row ml-1" style="display: flex;">
+                                <h4 class="mt-2">{{filter}}: <span style="color: green;">{{total}}</span>
+                                    Sản phẩm</h4>
+
+                                <div class="btn-group ml-3">
+                                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        Lọc Sản Phẩm
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="/account/myProducts">Tất cả</a>
+                                        <a class="dropdown-item" href="/account/myProducts/sold">Sản phẩm đã bán</a>
+                                        <a class="dropdown-item" href="/account/myProducts/selling">Sản phẩm đang mở đấu
+                                            giá</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            {{#if isSeller}}
+                            <a href="/account/addProduct/info">
+                                <button class="btn btn-success mb-3" style="float: right;"><i
+                                        class="fa fa-plus-circle"></i>Thêm Sản
+                                    Phẩm</button>
+                            </a>
+                            {{else}}
+                            {{!-- <button class="btn btn-success" id="btn-prevent-add"><i class="fa fa-plus-circle"></i>Thêm
+                                Sản Phẩm</button> --}}
+                            <a href="/account/upgrade" id="btn-prevent-add" type="button" class="btn btn-success"><i
+                                    class="fa fa-plus-circle"></i>Thêm Sản Phẩm</a>
+                            {{/if}}
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 10%;" scope="col">Ảnh</th>
+                                        <th scope="col">Tên sản phẩm</th>
+                                        <th style="width: 30%;" scope="col">Mở bán vào lúc</th>
+                                        <th style="width: 25%;" scope="col">Tình trạng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each products}}
+                                    <tr>
+                                        <th scope="row"><img src="/imgs/sp/{{id_dm}}/{{id_sp}}/main_thumb.jpg" alt="">
+                                        </th>
+                                        <td><a href="/categories/{{id_dm}}/products/{{id_sp}}">{{ten_sp}}</a></td>
+                                        <td>{{moment tg_dang 'hh:mm, dddd, DD/MM/YYYY'}}</td>
+                                        {{#if da_het_han}}
+                                        <td><span style="color: red;">Đã Bán
+                                                <span></td>
+                                        {{else}}
+                                        <td><span style="color: green;">Đang bán
+                                                <span></td>
+                                        {{/if}}
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

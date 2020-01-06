@@ -77,13 +77,16 @@ router.get('/:catId/products/:proId', async (req, res) => {
     var highestBidderAndPrice = await productModel.highestBidderAndPrice(req.params.proId, req.params.catId);
     console.log(highestBidderAndPrice);
     var history = await productModel.historyBids(req.params.catId, req.params.proId);
+    console.log('-------------------------------------------------------------------------' + history);
     var isHighestBidder;
+    var id_highestBidder;
     if (highestBidderAndPrice.length > 0) {
         var highestBidderName = await userModel.getName(highestBidderAndPrice[0].highestBidder);
+        id_highestBidder = highestBidderAndPrice[0].highestBidder;
         highestBidderAndPrice[0].highestBidder = highestBidderName;
         console.log(highestBidderAndPrice[0].highestBidder);
     }
-
+    console.log(highestBidderAndPrice);
     var rejected;
     if (res.locals.authUser) {
         const checkRejected = await userModel.isRejected(res.locals.authUser.id_user, req.params.catId, req.params.proId);
@@ -91,7 +94,7 @@ router.get('/:catId/products/:proId', async (req, res) => {
             rejected = true;
         }
         if (highestBidderAndPrice.length > 0)
-            if (highestBidderAndPrice[0].highestBidder === res.locals.authUser.id_user) {
+            if (id_highestBidder === res.locals.authUser.id_user) {
                 isHighestBidder = true;
                 // highestBidderAndPrice.highestBidder =  'Bạn đang giữ giá cao nhất';
             }
@@ -121,6 +124,7 @@ router.get('/:catId/products/:proId', async (req, res) => {
     history.forEach(element => {
         element.index = ++i
     });
+
 
     if (highestBidderAndPrice.length > 0) {
         res.render('vwProduct/proDetail', {
