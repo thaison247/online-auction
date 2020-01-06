@@ -17,4 +17,5 @@ module.exports = {
     add: (tableName, entity) => mysql_query(`insert into ${tableName} set ?`, entity),
     del: (tableName, condition) => mysql_query(`delete from ${tableName} where ?`, condition),
     patch: (tableName, entity, condition) => mysql_query(`update ${tableName} set ? where ?`, [entity, condition]),
+    patch2: (tableName, entity, condition1, condition2) => mysql_query(`update ${tableName} set ? where ? and ? `, [entity, condition1, condition2]),
 };

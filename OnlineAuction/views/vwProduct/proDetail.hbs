@@ -49,7 +49,22 @@
         });
     });
 </script>
-
+<script src="https://cdn.tiny.cloud/1/y5mq9cxhnrazibmar3is1h9fk4jgcqogpct32s2r0wa3t7za/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
+{{!-- <script>tinymce.init({ selector: 'textarea' });</script> --}}
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        height: 600,
+        plugins: 'paste image link autolink lists table media',
+        menubar: false,
+        toolbar: [
+            'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright',
+            'forecolor backcolor',
+            'table link image media',
+        ],
+    });
+</script>
 {{/section}}
 
 
@@ -191,7 +206,25 @@
         <h3 style="margin-top: 50px; font-weight: bold;">MÔ TẢ CHI TIẾT SẢN PHẨM</h3>
         <div class="tabs_line" style="margin-top: 0px;"></div>
         <div>
+            {{#if isUserProd}}
+            <form action="/categories/{{proInfo.id_dm}}/sp/{{proInfo.id_sp}}/updateDes" method="POST">
+                <div class="form-group row">
+                    <div class="col-12">
+                        <textarea name="mo_ta" id="mo_ta" class="form-control here" type="text" cols="30" rows="10"
+                            value="{{{proInfo.mo_ta}}}"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row ">
+                    <div class="col text-center">
+                        <button class="btn btn-success" type="submit">Cập
+                            Nhật</button>
+                    </div>
+
+                </div>
+            </form>
+            {{else}}
             {{{proInfo.mo_ta}}}
+            {{/if}}
         </div>
         <h3 style="margin-top: 50px; font-weight: bold;">THÔNG TIN NGƯỜI BÁN</h3>
         <div class="tabs_line" style="margin-top: 0px;"></div>
