@@ -10,7 +10,8 @@ router.get('/', async (req, res) => {
         const rows = await categoryModel.all();
         res.render('vwCategories/index', {
             categories: rows,
-            empty: rows.length === 0
+            empty: rows.length === 0,
+            layout: "../layouts/admin.hbs"
         });
     } catch (err) {
         console.log(err);
@@ -29,7 +30,9 @@ router.post('/add', async (req, res) => {
     // }
     const result = await categoryModel.add(req.body);
     // console.log(result.insertId);
-    res.render('vwCategories/add');
+    res.render('vwCategories/add', {
+        layout: "../layouts/admin.hbs"
+    });
 })
 
 router.get('/err', (req, res) => {
@@ -50,12 +53,10 @@ router.get('/edit/:id', async (req, res) => {
     if (rows.length === 0) {
         throw new Error('Invalid category id');
     }
-    // const c = {
-    //   CatID: req.params.id,
-    //   CatName: 'unknown'
-    // }
+
     res.render('vwCategories/edit', {
-        category: rows[0]
+        danhmuc: rows[0],
+        layout: "../layouts/admin.hbs"
     });
 })
 
@@ -64,8 +65,8 @@ router.post('/patch', async (req, res) => {
     res.redirect('/admin/categories');
 })
 
-router.post('/del', async (req, res) => {
-    const result = await categoryModel.del(req.body.CatID);
+router.post('/delete', async (req, res) => {
+    const result = await categoryModel.del(req.body.id_dm);
     // console.log(result.affectedRows);
     res.redirect('/admin/categories');
 })

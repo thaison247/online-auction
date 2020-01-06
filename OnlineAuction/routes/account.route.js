@@ -58,6 +58,11 @@ router.post("/login", async (req, res) => {
     delete user[0].password;
     req.session.isAuthenticated = true;
     req.session.authUser = user[0];
+    if (user[0].phan_he === 3) {
+        req.session.isAuthenticatedAdmin = true;
+        return res.redirect('/admin/requests');
+    }
+
     const number = await bidModel.countByUser(user[0].id_user);
     req.session.number_placedBidProd = number[0].so_sp;
     const numberFav = await favoriteModel.countByUser(user[0].id_user);

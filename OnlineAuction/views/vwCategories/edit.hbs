@@ -1,33 +1,46 @@
-<div class="card shadow mb-4">
-  <h4 class="card-header">
-    Category
-  </h4>
-  <div class="card-body">
-    <form method="POST">
-      <div class="form-group">
-        <label for="txtCatId">#</label>
-        <input type="text" class="form-control" id="txtCatId" name="CatID" readonly value="{{this.danhmuc.id_dm}}">
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col-md-3">
+
+      <div class="list-group ">
+        <a href="/admin/requests" class="list-group-item list-group-item-action ">Yêu cầu nâng cấp</a>
+        <a href="/admin/users" class="list-group-item list-group-item-action">Danh sách người dùng</a>
+        <a href="/admin/categories" class="list-group-item list-group-item-action active">Quản lí danh mục</a>
       </div>
-      <div class="form-group">
-        <label for="txtCatName">Category</label>
-        <input type="text" class="form-control" id="txtCatName" name="CatName" placeholder="Enter category name"
-          autofocus value="{{this.danhmuc.ten_dm}}">
+    </div>
+    <div class="col-md-9">
+      <div class="card shadow mb-4">
+        <h4 class="card-header">
+          Danh Mục
+        </h4>
+        <div class="card-body">
+          <form method="POST">
+            <div class="form-group">
+              <label for="txtCatId">#</label>
+              <input type="text" class="form-control" id="txtCatId" name="id_dm" readonly
+                value="{{this.danhmuc.id_dm}}">
+            </div>
+            <div class="form-group">
+              <label for="txtCatName">Tên Danh Mục</label>
+              <input type="text" class="form-control" id="txtCatName" name="ten_dm"
+                placeholder="Đổi tên khác cho danh mục" autofocus value="{{this.danhmuc.ten_dm}}">
+            </div>
+            <a class="btn btn-outline-primary" href="/admin/categories" role="button">
+              <i class="fa fa-backward" aria-hidden="true"></i>
+              Quay về danh sách
+            </a>
+            <button type="submit" class="btn btn-outline-success" formaction="/admin/categories/patch">
+              <i class="fa fa-check" aria-hidden="true"></i>
+              Lưu thay đổi
+            </button>
+            <button type="submit" class="btn btn-outline-danger" formaction="/admin/categories/delete">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+              Xoá danh mục
+            </button>
+          </form>
+        </div>
+
       </div>
-      <a class="btn btn-outline-primary" href="/admin/categories" role="button">
-        <i class="fa fa-backward" aria-hidden="true"></i>
-        List
-      </a>
-      <button type="submit" class="btn btn-outline-success" formaction="/admin/categories/patch">
-        <i class="fa fa-check" aria-hidden="true"></i>
-        Save
-      </button>
-      <button type="submit" class="btn btn-outline-danger" formaction="/admin/categories/del">
-        <i class="fa fa-trash-o" aria-hidden="true"></i>
-        Delete
-      </button>
-    </form>
-  </div>
-  <div class="card-footer text-muted">
-    Footer
+    </div>
   </div>
 </div>

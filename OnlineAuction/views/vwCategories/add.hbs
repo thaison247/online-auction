@@ -1,25 +1,39 @@
-<div class="card shadow mb-4">
-  <h4 class="card-header">
-    New Category
-  </h4>
-  <div class="card-body">
-    <form method="POST">
-      <div class="form-group">
-        <label for="txtCatName">Category</label>
-        <input type="text" class="form-control" id="txtCatName" name="CatName" placeholder="Enter category name"
-          autofocus>
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col-md-3">
+
+      <div class="list-group ">
+        <a href="/admin/requests" class="list-group-item list-group-item-action ">Yêu cầu nâng cấp</a>
+        <a href="/admin/users" class="list-group-item list-group-item-action">Danh sách người dùng</a>
+        <a href="/admin/categories" class="list-group-item list-group-item-action active">Quản lí danh mục</a>
       </div>
-      <a class="btn btn-outline-primary" href="/admin/categories" role="button">
-        <i class="fa fa-backward" aria-hidden="true"></i>
-        List
-      </a>
-      <button type="submit" class="btn btn-outline-success">
-        <i class="fa fa-check" aria-hidden="true"></i>
-        Save
-      </button>
-    </form>
-  </div>
-  <div class="card-footer text-muted">
-    Footer
+    </div>
+    <div class="col-md-9">
+      <div class="card shadow mb-4">
+        <h4 class="card-header">
+          Tạo Mới
+        </h4>
+        <div class="card-body">
+          <form method="POST">
+            <div class="form-group">
+              <label for="txtCatName">Danh mục</label>
+              <input type="text" class="form-control" id="txtCatName" name="ten_dm" placeholder="Nhập tên danh mục"
+                autofocus>
+            </div>
+            <a class="btn btn-outline-primary" href="/admin/categories" role="button">
+              <i class="fa fa-backward" aria-hidden="true"></i>
+              Quay về danh sách
+            </a>
+            <button type="submit" class="btn btn-outline-success">
+              <i class="fa fa-check" aria-hidden="true"></i>
+              Lưu những thay đổi
+            </button>
+          </form>
+        </div>
+        <div class="card-footer text-muted">
+          Footer
+        </div>
+      </div>
+    </div>
   </div>
 </div>

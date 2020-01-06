@@ -2,10 +2,11 @@ const db = require('../utils/db');
 
 module.exports = {
     all: () => db.load('select * from user'),
+    allWithoutAd: () => db.load('select * from user where phan_he <> 3 and da_xoa = 0'),
     single: id => db.load(`select * from user where id_user = ${id}`),
     add: entity => db.add('user', entity),
     del: id => db.del('user', {
-        id_sp: id
+        id_user: id
     }),
     getName: async (id) => {
         const row = await db.load(`select ho_ten from user where id_user = ${id}`);

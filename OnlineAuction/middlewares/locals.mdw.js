@@ -7,6 +7,10 @@ module.exports = function (app) {
             req.session.isAuthenticated = false;
         }
 
+        if (typeof req.session.isAuthenticatedAdmin === "undefined") {
+            req.session.isAuthenticatedAdmin = false;
+        }
+
         if (typeof req.session.authUser === "undefined") {
             req.session.authUser = {
                 id_user: 0
