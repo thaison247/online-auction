@@ -48,6 +48,10 @@ router.get('/wonList', async (req, res) => {
         title: 'Những sản phẩm đã thắng',
         won: true
     });
+});
+
+router.get('/reviewSeller/:sellerId', async (req, res) => {
+    res.render('review');
 })
 
 module.exports = router;
