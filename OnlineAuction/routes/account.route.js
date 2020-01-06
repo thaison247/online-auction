@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const userModel = require("../models/user.model");
 const restrict = require("../middlewares/auth.mdw");
 const bidModel = require("../models/bid.model");
+const request = require('request');
 const favoriteModel = require("../models/favorite.model");
 const reviewModel = require("../models/review.model");
 const upgradeReqModel = require("../models/upgradeReq.model");
@@ -77,11 +78,11 @@ router.get("/register", async (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
-    // console.log(req.body.captcha);
+
     // if (
-    //     req.body.captcha === undefined ||
-    //     req.body.captcha === "" ||
-    //     req.body.captcha === null
+    //     req.body['g-recaptcha-response'] === undefined ||
+    //     req.body['g-recaptcha-response'] === "" ||
+    //     req.body['g-recaptcha-response'] === null
     // ) {
     //     return res.json({
     //         success: false,
@@ -92,14 +93,12 @@ router.post("/register", async (req, res) => {
     // //secret key
     // const secretKey = "6Ld3JcwUAAAAAIstNWRj_6bsX8HBBDWn_WcVmBw8";
     // //veriify url
-    // const veriifyUrl = `https://google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${req.body.captcha}&remoteip=${req.connection.remoteAddress}`;
+    // const veriifyUrl = `https://google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${req.body['g-recaptcha-response']}&remoteip=${req.connection.remoteAddress}`;
     // //make request to verifyUrl
     // request(veriifyUrl, (err, response, body) => {
     //     body = JSON.parse(body);
-    //     console.log("bodyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy: " + err);
     //     //if not successful
     //     if (body.success !== undefined && !body.success) {
-    //         console.log(err);
     //         return res.json({
     //             success: false,
     //             msg: "Failed captcha verification"
@@ -293,8 +292,19 @@ router.post("/addProduct/img/:catId/:proId", function (req, res) {
         if (err) {
             res.send("error");
         }
+        // const uploadPath = './public/imgs/sp/' + req.params.catId + '/'+ req.params.proId;
+        const proPath = './public/imgs/sp/' + req.params.catId + '/' + req.params.proId;
 
-        res.send("ok");
+        let i = 1;
+        fs.readdirSync(proPath).forEach(file => {
+            const extension = file.split('.').pop();
+            fs.renameSync(proPath + '/' + file, proPath + '/' + i + '.' + extension);
+            i++;
+        });
+
+        return res.redirect('/account/myProducts');
+
+
     });
 });
 

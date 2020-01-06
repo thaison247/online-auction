@@ -15,13 +15,13 @@ module.exports = {
         db.load(
             `select u.ho_ten as ten_nguoi_ban from sanpham sp join user u on sp.nguoi_ban = u.id_user where sp.id_sp = ${id_sp} and sp.id_dm = ${id_dm}`
         ),
-    highestBidderAndPrice: (id_sp, id_dm) =>
-        db.load(`select u.ho_ten as highestBidder, l.so_tien as currentPrice
-    from lichsu_ragia l join user u on l.bidder = u.id_user
-    where l.id_sp = ${id_sp} and l.id_dm = ${id_dm} and l.so_tien = (select max(l1.so_tien)  
-                                                        from lichsu_ragia l1
-                                                        where l1.id_sp = l.id_sp and l1.id_dm = l.id_dm)
-    order by l.thoi_diem asc limit 1`),
+    // highestBidderAndPrice: (id_sp, id_dm) =>
+    //     db.load(`select u.ho_ten as highestBidder, l.so_tien as currentPrice
+    // from lichsu_ragia l join user u on l.bidder = u.id_user
+    // where l.id_sp = ${id_sp} and l.id_dm = ${id_dm} and l.so_tien = (select max(l1.so_tien)  
+    //                                                     from lichsu_ragia l1
+    //                                                     where l1.id_sp = l.id_sp and l1.id_dm = l.id_dm)
+    // order by l.thoi_diem asc limit 1`),
     countByCat: async catId => {
         const rows = await db.load(
             `select count(*) as total from sanpham where id_dm = ${catId}`
@@ -143,5 +143,18 @@ module.exports = {
 
     soldProducts: (id_user) => db.load(`SELECT * 
     from (sanpham sp join sp_daban db on sp.id_dm = db.danh_muc and sp.id_sp = db.san_pham) join user u on db.nguoi_mua = u.id_user
-    where sp.nguoi_ban = ${id_user}`)
+    where sp.nguoi_ban = ${id_user}`),
+
+    historyBids: (id_dm, id_sp) => db.load(`select *
+                                        from lichsu_ragia ls join user u on ls.bidder = u.id_user
+                                        where ls.id_sp = ${id_dm} and ls.id_dm = ${id_sp} and ls.bidder not in (select bidder from cam_bidder where danh_muc = ls.id_dm and san_pham = ls.id_sp)
+                                        having ls.so_tien = (select max(so_tien) from lichsu_ragia ls1 where ls1.bidder = ls.bidder and ls1.id_dm = ls.id_dm and ls1.id_sp = ls.id_sp)
+                                        order by so_tien desc`),
+
+    highestBidderAndPrice: (id_dm, id_sp) => db.load(`select ls.bidder as highestBidder, ls.so_tien as currentPrice
+                                        from lichsu_ragia ls join user u on ls.bidder = u.id_user
+                                        where ls.id_sp = ${id_dm} and ls.id_dm = ${id_sp} and ls.bidder not in (select bidder from cam_bidder where danh_muc = ls.id_dm and san_pham = ls.id_sp)
+                                        having ls.so_tien = (select max(so_tien) from lichsu_ragia ls1 where ls1.bidder = ls.bidder and ls1.id_dm = ls.id_dm and ls1.id_sp = ls.id_sp)
+                                        order by so_tien desc
+                                        limit 1`),
 };

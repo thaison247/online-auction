@@ -7,6 +7,10 @@ module.exports = {
     del: id => db.del('user', {
         id_sp: id
     }),
+    getName: async (id) => {
+        const row = await db.load(`select ho_ten from user where id_user = ${id}`);
+        return row[0].ho_ten;
+    },
     singleByEmail: email => db.load(`select * from user where email = '${email}'`),
     patch: entity => {
         const condition = {
@@ -16,5 +20,12 @@ module.exports = {
         return db.patch('user', entity, condition);
     },
 
-    // highest_bidder: (id_sp, id_dm) => db.load(`select `)
+    addRejectUser: (entity) => db.add('cam_bidder', entity),
+
+    isRejected: async (id_user, id_dm, id_sp) => {
+        const row = await db.load(`select count(*) as exist from cam_bidder where bidder = ${id_user} and danh_muc = ${id_dm} and san_pham = ${id_sp}`);
+        return row[0].exist;
+    }
+
+
 };
