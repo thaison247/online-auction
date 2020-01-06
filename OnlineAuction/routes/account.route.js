@@ -4,6 +4,7 @@ const userModel = require("../models/user.model");
 const restrict = require("../middlewares/auth.mdw");
 const bidModel = require("../models/bid.model");
 const request = require('request');
+const config = require('../config/default.json');
 const favoriteModel = require("../models/favorite.model");
 const reviewModel = require("../models/review.model");
 const upgradeReqModel = require("../models/upgradeReq.model");
@@ -126,7 +127,7 @@ router.post("/register", async (req, res) => {
         });
     }
 
-    entity.phan_he = 0;
+    entity.phan_he = config.bidder;
     delete entity.raw_password;
     delete entity.repeat_password;
 
@@ -139,7 +140,7 @@ router.post("/register", async (req, res) => {
 
 router.get("/profile", restrict, async (req, res) => {
     const row = await userModel.single(res.locals.authUser.id_user);
-    const phan_he = row[0].phan_he === 0 ? "Bidder" : "Seller";
+    const phan_he = row[0].phan_he === config.bidder ? "Bidder" : "Seller";
     res.render("vwAccount/profile", {
         user: row[0],
         phan_he: phan_he
@@ -222,7 +223,7 @@ router.post("/upgrade", restrict, async (req, res) => {
     var user = res.locals.authUser.id_user;
     var time = moment().format("YYYY-MM-DD HH:mm:ss");
 
-    if (res.locals.authUser.phan_he === 1) {
+    if (res.locals.authUser.phan_he === config.bidder) {
         var entity = {
             nguoi_gui: user,
             thoi_diem: time

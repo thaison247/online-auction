@@ -1,5 +1,10 @@
 {
     "paginate": {
         "limit": 4
-    }
+    },
+
+    "bidder": 1,
+    "seller": 2,
+    "admin": 3
+
 }
