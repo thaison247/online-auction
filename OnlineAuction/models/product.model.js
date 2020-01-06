@@ -163,4 +163,6 @@ module.exports = {
                                         limit 1`),
 
     update: () => db.load(`update sanpham set het_han = 1 where tg_het_han < now()`),
+
+
 };

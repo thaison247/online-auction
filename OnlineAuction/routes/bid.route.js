@@ -34,7 +34,19 @@ router.get('/havePlaced', async (req, res) => {
 
     res.render("cart", {
         products: productRows,
-        title: 'Những sản phẩm bạn đã tham gia đấu giá'
+        title: 'Những sản phẩm bạn đã tham gia đấu giá',
+    });
+});
+
+router.get('/wonList', async (req, res) => {
+    const id = req.session.authUser.id_user;
+    var productRows = await bidModel.wonList(id);
+
+
+    res.render("cart", {
+        products: productRows,
+        title: 'Những sản phẩm bạn đã thắng',
+        won: true
     });
 })
 

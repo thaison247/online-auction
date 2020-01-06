@@ -74,10 +74,8 @@ router.get('/:catId/products/:proId', async (req, res) => {
     const row = await productModel.single(req.params.proId, req.params.catId);
     const cat = await productModel.catName(req.params.catId);
     const seller = await productModel.seller(req.params.proId, req.params.catId);
-    var highestBidderAndPrice = await productModel.highestBidderAndPrice(req.params.proId, req.params.catId);
-    console.log(highestBidderAndPrice);
+    var highestBidderAndPrice = await productModel.highestBidderAndPrice(req.params.catId, req.params.proId);
     var history = await productModel.historyBids(req.params.catId, req.params.proId);
-    console.log('-------------------------------------------------------------------------' + history);
     var isHighestBidder;
     var id_highestBidder;
     if (highestBidderAndPrice.length > 0) {

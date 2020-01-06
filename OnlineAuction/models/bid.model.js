@@ -16,6 +16,10 @@ module.exports = {
         return row[0].price;
     },
 
+    wonList: (id_user) => db.load(`select s.id_sp, s.id_dm, s.gia_khoi_diem, ten_sp, so_tien as bidder_ragia
+                                    from sanpham s join lichsu_ragia ls on s.id_dm = ls.id_dm and s.id_sp = ls.id_sp
+                                    where s.het_han = 1 and ls.bidder = ${id_user} and ls.so_tien = (select max(ls2.so_tien) from lichsu_ragia ls2 where ls2.id_dm = ls.id_dm and ls2.id_sp = ls.id_sp)`),
+
     add: entity => db.add('lichsu_ragia', entity),
     // del: (id_sp, id_dm, nguoi_mua) => db.del('gio_hang', {
     //     nguoi_mua: nguoi_mua,
