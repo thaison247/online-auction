@@ -9,94 +9,116 @@
         <div class="row">
             <div class="col-lg-10 offset-lg-1">
                 <div class="cart_container">
-                    <div class="cart_title">{{title}}</div>
-                    <div class="cart_items">
-                        {{#if won}}
-                        <ul class="cart_list">
-                            {{#each products}}
-                            <li class="cart_item clearfix">
-                                <a href="/categories/{{id_dm}}/products/{{id_sp}}">
-                                    <div class="cart_item_image"><img src="/imgs/sp/{{id_dm}}/{{id_sp}}/main_thumb.jpg"
-                                            alt="">
-                                    </div>
-                                    <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-                                        <div class="cart_item_name cart_info_col">
-                                            <div class="cart_item_title">Tên</div>
-                                            <div class="cart_item_text">{{ten_sp}}</div>
-                                        </div>
-                                        <div class="cart_item_price cart_info_col">
-                                            <div class="cart_item_title">Giá Khởi Điểm</div>
-                                            <div class="cart_item_text">{{format gia_khoi_diem}} đ</div>
-                                        </div>
-                                        <div class="cart_item_price cart_info_col">
-                                            <div class="cart_item_title">Bạn Đã Mua Với Giá</div>
-                                            <div class="cart_item_text">{{format bidder_ragia}} đ</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            {{/each}}
+                    {{!-- <div class="cart_title">{{title}}</div> --}}
+                    {{!-- <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{title}}
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a href="/bid/havePlaced">Những sản phẩm đang tham gia đấu giá</a></li>
+                            <li><a href="/bid/wonList">Những sản phẩm đã thắng</a></li>
+                            <li><a href="/favorite/myFavorites">Danh sách sản phẩm yêu thích</a></li>
                         </ul>
-                        {{else}}
-                        <ul class="cart_list">
-                            {{#each products}}
-                            <li class="cart_item clearfix">
-                                <a href="/categories/{{id_dm}}/products/{{id_sp}}">
-                                    <div class="cart_item_image"><img src="/imgs/sp/{{id_dm}}/{{id_sp}}/main_thumb.jpg"
-                                            alt="">
-                                    </div>
-                                    <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-                                        <div class="cart_item_name cart_info_col">
-                                            <div class="cart_item_title">Tên</div>
-                                            <div class="cart_item_text">{{ten_sp}}</div>
-                                        </div>
-                                        <div class="cart_item_price cart_info_col">
-                                            <div class="cart_item_title">Gía Hiện Tại</div>
-                                            {{#if gia_cao_nhat}}
-                                            <div class="cart_item_text">{{format gia_cao_nhat}} đ</div>
-                                            {{else}}
-                                            <div class="cart_item_text">{{format gia_khoi_diem}} đ</div>
-                                            {{/if}}
-                                        </div>
-                                        <div class="cart_item_price cart_info_col">
-                                            {{#if myPrice}}
-                                            <div class="cart_item_title" style="color: green;">Bạn đang giữ giá</div>
-                                            {{#if bidder_ragia}}
-                                            <div class="cart_item_text">{{format bidder_ragia}} đ</div>
-                                            {{else}}
-                                            <div class="cart_item_text"></div>
-                                            {{/if}}
-                                            {{else}}
-                                            <div class="cart_item_title">Bạn Ra Giá</div>
-                                            {{#if bidder_ragia}}
-                                            <div class="cart_item_text">{{format bidder_ragia}} đ</div>
-                                            {{else}}
-                                            <div class="cart_item_text"></div>
-                                            {{/if}}
-                                            {{/if}}
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            {{/each}}
-                        </ul>
-                        {{/if}}
+                    </div> --}}
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            {{title}}
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/bid/havePlaced">Những sản phẩm đang tham gia đấu giá</a>
+                            <a class="dropdown-item" href="/bid/wonList">Những sản phẩm đã thắng</a></li>
+                            <a class="dropdown-item" href="/favorite/myFavorites">Danh sách sản phẩm yêu thích</a>
+                        </div>
                     </div>
+                </div>
+                <div class="cart_items">
+                    {{#if won}}
+                    <ul class="cart_list">
+                        {{#each products}}
+                        <li class="cart_item clearfix">
+                            <a href="/categories/{{id_dm}}/products/{{id_sp}}">
+                                <div class="cart_item_image"><img src="/imgs/sp/{{id_dm}}/{{id_sp}}/main_thumb.jpg"
+                                        alt="">
+                                </div>
+                                <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+                                    <div class="cart_item_name cart_info_col">
+                                        <div class="cart_item_title">Tên</div>
+                                        <div class="cart_item_text">{{ten_sp}}</div>
+                                    </div>
+                                    <div class="cart_item_price cart_info_col">
+                                        <div class="cart_item_title">Giá Khởi Điểm</div>
+                                        <div class="cart_item_text">{{format gia_khoi_diem}} đ</div>
+                                    </div>
+                                    <div class="cart_item_price cart_info_col">
+                                        <div class="cart_item_title">Bạn Đã Mua Với Giá</div>
+                                        <div class="cart_item_text">{{format bidder_ragia}} đ</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                    {{else}}
+                    <ul class="cart_list">
+                        {{#each products}}
+                        <li class="cart_item clearfix">
+                            <a href="/categories/{{id_dm}}/products/{{id_sp}}">
+                                <div class="cart_item_image"><img src="/imgs/sp/{{id_dm}}/{{id_sp}}/main_thumb.jpg"
+                                        alt="">
+                                </div>
+                                <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+                                    <div class="cart_item_name cart_info_col">
+                                        <div class="cart_item_title">Tên</div>
+                                        <div class="cart_item_text">{{ten_sp}}</div>
+                                    </div>
+                                    <div class="cart_item_price cart_info_col">
+                                        <div class="cart_item_title">Gía Hiện Tại</div>
+                                        {{#if gia_cao_nhat}}
+                                        <div class="cart_item_text">{{format gia_cao_nhat}} đ</div>
+                                        {{else}}
+                                        <div class="cart_item_text">{{format gia_khoi_diem}} đ</div>
+                                        {{/if}}
+                                    </div>
+                                    <div class="cart_item_price cart_info_col">
+                                        {{#if myPrice}}
+                                        <div class="cart_item_title" style="color: green;">Bạn đang giữ giá
+                                        </div>
+                                        {{#if bidder_ragia}}
+                                        <div class="cart_item_text">{{format bidder_ragia}} đ</div>
+                                        {{else}}
+                                        <div class="cart_item_text"></div>
+                                        {{/if}}
+                                        {{else}}
+                                        <div class="cart_item_title">Bạn Ra Giá</div>
+                                        {{#if bidder_ragia}}
+                                        <div class="cart_item_text">{{format bidder_ragia}} đ</div>
+                                        {{else}}
+                                        <div class="cart_item_text"></div>
+                                        {{/if}}
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                    {{/if}}
+                </div>
 
-                    <!-- Order Total -->
-                    {{!-- <div class="order_total">
+                <!-- Order Total -->
+                {{!-- <div class="order_total">
                         <div class="order_total_content text-md-right">
                             <div class="order_total_title">Tổng Tiền: </div>
                             <div class="order_total_amount">{{format total_price}} đ</div>
                         </div>
                     </div> --}}
-                    {{!-- 
+                {{!-- 
                     <div class="cart_buttons">
                         <button type="button" class="button cart_button_clear">Add to Cart</button>
                         <button type="button" class="button cart_button_checkout">Add to Cart</button>
                     </div> --}}
-                </div>
             </div>
         </div>
     </div>
+</div>
 </div>

@@ -34,7 +34,7 @@ router.get('/havePlaced', async (req, res) => {
 
     res.render("cart", {
         products: productRows,
-        title: 'Những sản phẩm bạn đã tham gia đấu giá',
+        title: 'Những sản phẩm đang tham gia đấu giá',
     });
 });
 
@@ -45,7 +45,7 @@ router.get('/wonList', async (req, res) => {
 
     res.render("cart", {
         products: productRows,
-        title: 'Những sản phẩm bạn đã thắng',
+        title: 'Những sản phẩm đã thắng',
         won: true
     });
 })
