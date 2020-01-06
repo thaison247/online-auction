@@ -252,17 +252,45 @@ router.get("/myProducts", restrict, async (req, res) => {
     });
     res.render("vwAccount/myProducts", {
         products: rows,
-        total: rows.length
+        total: rows.length,
+        filter: 'Tất Cả'
     });
 });
 
 router.get("/myProducts/sold", restrict, async (req, res) => {
     var rows = await productModel.soldProducts(res.locals.authUser.id_user);
+    for (i = 0; i < rows.length; i++) {
+        rows[i].price = await bidModel.getPriceByUser(rows[i].nguoi_mua, rows[i].id_dm, rows[i].id_sp);
+    }
 
     res.render("vwAccount/myProducts", {
         products: rows,
         total: rows.length,
-        soldProd: true
+        soldProd: true,
+        filter: 'Đã Bán'
+    });
+});
+
+router.get("/myProducts/selling", restrict, async (req, res) => {
+    var rows = await productModel.sellingProducts(res.locals.authUser.id_user);
+    for (i = 0; i < rows.length; i++) {
+        const row = await productModel.highestBidderAndPrice(rows[i].id_dm, rows[i].id_sp);
+        if (row.length > 0) {
+            rows[i].curPrice = row[0].currentPrice;
+
+            rows[i].bidder = await userModel.getName(row[0].highestBidder);
+        } else {
+            rows[i].curPrice = rows[i].gia_khoi_diem;
+            rows[i].bidder = 'Giá khởi điểm';
+            console.log(rows[i].curPrice);
+        }
+    }
+
+    res.render("vwAccount/myProducts", {
+        products: rows,
+        total: rows.length,
+        soldProd: false,
+        filter: 'Đang Bán'
     });
 });
 

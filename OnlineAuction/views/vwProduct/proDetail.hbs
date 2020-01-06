@@ -169,7 +169,7 @@
                     {{#if this.highestBidder}}
                     <div> Người đặt giá cao nhất hiện tại:
                         {{#if isHighestBidder}}
-                        <span style="color: blue; ">Bạn đang giữ giá</span>
+                        <span style="color: blue;">Bạn đang giữ giá</span>
                         {{else}}
                         <span class="maskedBidder" style="color: blue; display: none;">{{this.highestBidder}}</span>
                         <span style="color: blue;">(89 điểm)</span>
@@ -265,6 +265,9 @@
                         đấu giá của bạn</div>
                     {{else}}
                     <div class="button_container mt-3">
+                        {{#if isUserProd}}
+                        <span>(Bước giá: {{format proInfo.buoc_gia}} đ)</span>
+                        {{else}}
                         <form action="/bid/place/{{proInfo.id_dm}}/{{proInfo.id_sp}}" id="form" method="POST">
                             <input class="form-control" name="gia_tien" id="bid_price"
                                 style="width: 150px; float: left; text-align: center; border-top-right-radius: 0px; border-bottom-right-radius: 0px;"
@@ -277,6 +280,7 @@
                             </button>
                             <span>(Bước giá: {{format proInfo.buoc_gia}} đ)</span>
                         </form>
+                        {{/if}}
                     </div>
                     {{/if}}
                     {{/if}}

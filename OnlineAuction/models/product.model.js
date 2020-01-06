@@ -145,6 +145,10 @@ module.exports = {
     from (sanpham sp join sp_daban db on sp.id_dm = db.danh_muc and sp.id_sp = db.san_pham) join user u on db.nguoi_mua = u.id_user
     where sp.nguoi_ban = ${id_user}`),
 
+    sellingProducts: (id_user) => db.load(`SELECT * 
+                                        from sanpham sp
+                                        where sp.het_han = 0 and nguoi_ban = ${id_user}`),
+
     historyBids: (id_dm, id_sp) => db.load(`select *
                                         from lichsu_ragia ls join user u on ls.bidder = u.id_user
                                         where ls.id_sp = ${id_dm} and ls.id_dm = ${id_sp} and ls.bidder not in (select bidder from cam_bidder where danh_muc = ls.id_dm and san_pham = ls.id_sp)

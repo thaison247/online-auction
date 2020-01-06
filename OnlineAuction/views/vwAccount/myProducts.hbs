@@ -43,22 +43,51 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4>Tất cả: <span style="color: green;">{{total}}</span> Sản phẩm</h4>
+                            <div class="row ml-1" style="display: flex;">
+                                <h4 class="mt-2">{{filter}}: <span style="color: green;">{{total}}</span>
+                                    Sản phẩm</h4>
+
+                                <div class="btn-group ml-3">
+                                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        Lọc Sản Phẩm
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="/account/myProducts">Tất cả</a>
+                                        <a class="dropdown-item" href="/account/myProducts/sold">Sản phẩm đã bán</a>
+                                        <a class="dropdown-item" href="/account/myProducts/selling">Sản phẩm đang mở đấu
+                                            giá</a>
+                                    </div>
+                                </div>
+                            </div>
                             <hr>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
+                            {{#if isSeller}}
+                            <a href="/account/addProduct/info">
+                                <button class="btn btn-success mb-3" style="float: right;"><i
+                                        class="fa fa-plus-circle"></i>Thêm Sản
+                                    Phẩm</button>
+                            </a>
+                            {{else}}
+                            {{!-- <button class="btn btn-success" id="btn-prevent-add"><i class="fa fa-plus-circle"></i>Thêm
+                                Sản Phẩm</button> --}}
+                            <a href="/account/upgrade" id="btn-prevent-add" type="button" class="btn btn-success"><i
+                                    class="fa fa-plus-circle"></i>Thêm Sản Phẩm</a>
+                            {{/if}}
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Ảnh</th>
+                                        <th style="width: 10%;" scope="col">Ảnh</th>
                                         <th scope="col">Tên sản phẩm</th>
-                                        <th scope="col">Mở bán vào lúc</th>
                                         {{#if this.soldProd}}
-                                        <th scope="col">Nguời mua</th>
+                                        <th style="width: 30%;" scope="col">Kết thúc vào lúc</th>
+                                        <th style="width: 20%;" scope="col">Nguời mua</th>
                                         {{else}}
-                                        <th scope="col">Tình trạng</th>
+                                        <th style="width: 30%;" scope="col">Mở bán vào lúc</th>
+                                        <th style="width: 25%;" scope="col">Giá hiện tại</th>
                                         {{/if}}
                                     </tr>
                                 </thead>
@@ -70,9 +99,11 @@
                                         </th>
                                         <td><a href="/categories/{{id_dm}}/products/{{id_sp}}">{{ten_sp}}</a></td>
 
-                                        <td>{{moment tg_dang 'h:mm:ss, dddd, Do MMMM - YYYY'}}</td>
+                                        <td>{{moment tg_het_han 'h:mm:ss, dddd, DD/MM/YYYY'}}</td>
 
-                                        <td><span style="color: green;">{{ho_ten}}</span></td>
+                                        <td><span style="color: green;">{{ho_ten}}</span><br><span>{{format price}}
+                                                đ</span>
+                                        </td>
 
                                     </tr>
                                     {{/each}}
@@ -83,28 +114,17 @@
                                         </th>
                                         <td><a href="/categories/{{id_dm}}/products/{{id_sp}}">{{ten_sp}}</a></td>
 
-                                        <td>{{moment tg_dang 'h:mm:ss, dddd, Do MMMM - YYYY'}}</td>
+                                        <td>{{moment tg_dang 'hh:mm, dddd, DD/MM/YYYY'}}</td>
 
-                                        {{#if da_het_han}}
-                                        <td><span style="color: red;">Đã hết hạn</span></td>
-                                        {{else}}
-                                        <td><span style="color: green;">Đang bán</span></td>
-                                        {{/if}}
+                                        <td><span>{{bidder}}</span><br><span style="color: green;">{{format curPrice}}
+                                                đ</span></td>
+
                                     </tr>
                                     {{/each}}
                                     {{/if}}
                                 </tbody>
                             </table>
-                            {{#if isSeller}}
-                            <a href="/account/addProduct/info">
-                                <button class="btn btn-success"><i class="fa fa-plus-circle"></i>Thêm Sản Phẩm</button>
-                            </a>
-                            {{else}}
-                            {{!-- <button class="btn btn-success" id="btn-prevent-add"><i class="fa fa-plus-circle"></i>Thêm
-                                Sản Phẩm</button> --}}
-                            <a href="/account/upgrade" id="btn-prevent-add" type="button" class="btn btn-success"><i
-                                    class="fa fa-plus-circle"></i>Thêm Sản Phẩm</a>
-                            {{/if}}
+
                         </div>
                     </div>
                 </div>
