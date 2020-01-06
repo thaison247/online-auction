@@ -82,12 +82,17 @@
                                     <span style="color: gray;">Ngày đăng:
                                     </span>{{moment tg_dang "DD-MM-YYYY"}}
                                 </div>
+                                {{#if het_han}}
+                                <div class="close-timer">
+                                    <span style="color: red;">Sản phẩm đã hết hạn</span>
 
+                                </div>
+                                {{else}}
                                 <div class="close-timer">
                                     <span style="color: gray;">Kết thúc trong: </span>
                                     <span>{{relativeTime tg_het_han}} nữa</span>
                                 </div>
-
+                                {{/if}}
                                 <div class="text-center mt-2">
                                     <a href="/categories/{{id_dm}}/products/{{id_sp}}"
                                         class="btn btn-sm btn-primary btn-viewdetail w-100" role="button"><i

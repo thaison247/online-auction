@@ -6,13 +6,19 @@ const morgan = require('morgan');
 const numeral = require("numeral");
 const moment = require("moment");
 const bodyParser = require("body-parser");
+const update = require("./utils/update");
 const app = express();
+
+
+update.start();
 
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({
     extended: false
 }));
+
+
 
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({

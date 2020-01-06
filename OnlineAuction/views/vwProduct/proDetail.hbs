@@ -257,7 +257,9 @@
                         </form>
                     </div>
 
-
+                    {{#if proInfo.het_han}}
+                    <div style="color: red; margin-top: 15px; font-size: 30;">Sản phẩm đã kết thúc đấu giá</div>
+                    {{else}}
                     {{#if rejectedUser}}
                     <div style="color: red; margin-top: 15px; font-size: 30;">Xin lỗi! Seller đã từ chối quyền tham gia
                         đấu giá của bạn</div>
@@ -276,6 +278,7 @@
                             <span>(Bước giá: {{format proInfo.buoc_gia}} đ)</span>
                         </form>
                     </div>
+                    {{/if}}
                     {{/if}}
                 </div>
             </div>

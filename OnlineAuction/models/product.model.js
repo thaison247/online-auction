@@ -56,7 +56,7 @@ module.exports = {
     },
 
     allByCatWithInfo: (catId, offset) =>
-        db.load(`select sp.id_sp, sp.id_dm, sp.ten_sp, sp.gia_khoi_diem, sp.gia_mua_ngay, sp.tg_dang, sp.tg_het_han, T.highest, T.num_of_bids
+        db.load(`select sp.id_sp, sp.id_dm, sp.ten_sp, sp.gia_khoi_diem, sp.gia_mua_ngay, sp.tg_dang, sp.tg_het_han, sp.het_han, T.highest, T.num_of_bids
                                 from sanpham sp left join
                                 (select sp2.id_sp, sp2.id_dm, sp2.ten_sp, sp2.gia_khoi_diem, sp2.tg_dang, max(ls.so_tien) as highest, count(*) as num_of_bids
                                 from (sanpham sp2 join lichsu_ragia ls on sp2.id_sp = ls.id_sp and sp2.id_dm = ls.id_dm)
@@ -157,4 +157,6 @@ module.exports = {
                                         having ls.so_tien = (select max(so_tien) from lichsu_ragia ls1 where ls1.bidder = ls.bidder and ls1.id_dm = ls.id_dm and ls1.id_sp = ls.id_sp)
                                         order by so_tien desc
                                         limit 1`),
+
+    update: () => db.load(`update sanpham set het_han = 1 where tg_het_han < now()`),
 };

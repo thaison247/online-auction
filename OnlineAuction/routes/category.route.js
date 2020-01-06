@@ -74,12 +74,15 @@ router.get('/:catId/products/:proId', async (req, res) => {
     const row = await productModel.single(req.params.proId, req.params.catId);
     const cat = await productModel.catName(req.params.catId);
     const seller = await productModel.seller(req.params.proId, req.params.catId);
-    const highestBidderAndPrice = await productModel.highestBidderAndPrice(req.params.proId, req.params.catId);
+    var highestBidderAndPrice = await productModel.highestBidderAndPrice(req.params.proId, req.params.catId);
+    console.log(highestBidderAndPrice);
     var history = await productModel.historyBids(req.params.catId, req.params.proId);
     var isHighestBidder;
-    var highestBidderName = await userModel.getName(highestBidderAndPrice[0].highestBidder);
-    highestBidderAndPrice.highestBidder = highestBidderName;
-    console.log(highestBidderAndPrice.highestBidder);
+    if (highestBidderAndPrice.length > 0) {
+        var highestBidderName = await userModel.getName(highestBidderAndPrice[0].highestBidder);
+        highestBidderAndPrice[0].highestBidder = highestBidderName;
+        console.log(highestBidderAndPrice[0].highestBidder);
+    }
 
     var rejected;
     if (res.locals.authUser) {
@@ -87,10 +90,11 @@ router.get('/:catId/products/:proId', async (req, res) => {
         if (checkRejected > 0) {
             rejected = true;
         }
-        if (highestBidderAndPrice[0].highestBidder === res.locals.authUser.id_user) {
-            isHighestBidder = true;
-            // highestBidderAndPrice.highestBidder =  'Bạn đang giữ giá cao nhất';
-        }
+        if (highestBidderAndPrice.length > 0)
+            if (highestBidderAndPrice[0].highestBidder === res.locals.authUser.id_user) {
+                isHighestBidder = true;
+                // highestBidderAndPrice.highestBidder =  'Bạn đang giữ giá cao nhất';
+            }
     }
 
     var isUserProd;
@@ -123,8 +127,8 @@ router.get('/:catId/products/:proId', async (req, res) => {
             proInfo: row[0],
             catName: cat[0],
             seller: seller[0].ten_nguoi_ban,
-            currentPrice: highestBidderAndPrice.currentPrice,
-            highestBidder: highestBidderAndPrice.highestBidder,
+            currentPrice: highestBidderAndPrice[0].currentPrice,
+            highestBidder: highestBidderAndPrice[0].highestBidder,
             rcmPrice: +highestBidderAndPrice[0].currentPrice + row[0].buoc_gia,
             inFavList: inFavList,
             isUserProd: isUserProd,
