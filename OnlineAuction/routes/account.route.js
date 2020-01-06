@@ -9,6 +9,7 @@ const upgradeReqModel = require("../models/upgradeReq.model");
 const productModel = require("../models/product.model");
 const fs = require("fs-extra");
 const moment = require("moment");
+
 const multer = require("multer");
 
 const upload = multer({
@@ -253,6 +254,16 @@ router.get("/myProducts", restrict, async (req, res) => {
     res.render("vwAccount/myProducts", {
         products: rows,
         total: rows.length
+    });
+});
+
+router.get("/myProducts/sold", restrict, async (req, res) => {
+    var rows = await productModel.soldProducts(res.locals.authUser.id_user);
+
+    res.render("vwAccount/myProducts", {
+        products: rows,
+        total: rows.length,
+        soldProd: true
     });
 });
 

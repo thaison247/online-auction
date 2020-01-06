@@ -56,7 +56,22 @@
         });
     });
 </script>
-
+<script src="https://cdn.tiny.cloud/1/y5mq9cxhnrazibmar3is1h9fk4jgcqogpct32s2r0wa3t7za/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
+{{!-- <script>tinymce.init({ selector: 'textarea' });</script> --}}
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        height: 600,
+        plugins: 'paste image link autolink lists table media',
+        menubar: false,
+        toolbar: [
+            'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright',
+            'forecolor backcolor',
+            'table link image media',
+        ],
+    });
+</script>
 {{/section}}
 
 
@@ -68,21 +83,21 @@
             <!-- Images -->
             <div class="col-lg-2 order-lg-1 order-2">
                 <ul class="image_list">
-                    <li data-image="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/main_thumb.jpg"
+                    <li data-image="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/1.jpg"
                         data-target="#carouselIndicators" data-slide-to="0" class="active">
-                        <img src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/main_thumb.jpg" alt="">
+                        <img src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/1.jpg" alt="">
                     </li>
-                    <li data-image="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/1_thumb.jpg"
-                        data-target="#carouselIndicators" data-slide-to="1">
-                        <img src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/1_thumb.jpg" alt="">
-                    </li>
-                    <li data-image="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/2_thumb.jpg"
+                    <li data-image="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/2.jpg"
                         data-target="#carouselIndicators" data-slide-to="2">
-                        <img src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/2_thumb.jpg" alt="">
+                        <img src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/2.jpg" alt="">
                     </li>
-                    <li data-image="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/3_thumb.jpg"
+                    <li data-image="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/3.jpg"
                         data-target="#carouselIndicators" data-slide-to="3">
-                        <img src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/3_thumb.jpg" alt="">
+                        <img src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/3.jpg" alt="">
+                    </li>
+                    <li data-image="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/4.jpg"
+                        data-target="#carouselIndicators" data-slide-to="1">
+                        <img src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/4.jpg" alt="">
                     </li>
                 </ul>
             </div>
@@ -91,10 +106,6 @@
             <div id="carouselIndicators" class="carousel slide col-lg-5 order-lg-2 order-1" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/main.jpg"
-                            alt="">
-                    </div>
-                    <div class="carousel-item">
                         <img class="d-block w-100" src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/1.jpg"
                             alt="">
                     </div>
@@ -104,6 +115,10 @@
                     </div>
                     <div class="carousel-item">
                         <img class="d-block w-100" src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/3.jpg"
+                            alt="">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="/imgs/sp/{{this.proInfo.id_dm}}/{{this.proInfo.id_sp}}/4.jpg"
                             alt="">
                     </div>
                 </div>
@@ -206,9 +221,15 @@
 
                     <div class="mt-2">
                         <form action="/favorite/add/{{proInfo.id_dm}}/{{proInfo.id_sp}}" method="POST">
+                            {{#if inFavList}}
+                            <button class="btn btn-sm btn-light" type="submit" disabled><i class="far fa-heart fa-2x"
+                                    style="color: #f20c77;"></i></button>
+                            <span> Sản phẩm có trong danh sách yêu thích của bạn</span>
+                            {{else}}
                             <button class="btn btn-sm btn-light" type="submit"><i
                                     class="far fa-heart fa-2x"></i></button>
                             <span> Thêm vào danh sách yêu thích</span>
+                            {{/if}}
                         </form>
                     </div>
 
@@ -235,7 +256,25 @@
         <h3 style="margin-top: 50px; font-weight: bold;">MÔ TẢ CHI TIẾT SẢN PHẨM</h3>
         <div class="tabs_line" style="margin-top: 0px;"></div>
         <div>
+            {{#if isUserProd}}
+            <form action="/categories/{{proInfo.id_dm}}/sp/{{proInfo.id_sp}}/updateDes" method="POST">
+                <div class="form-group row">
+                    <div class="col-12">
+                        <textarea name="mo_ta" id="mo_ta" class="form-control here" type="text" cols="30" rows="10"
+                            value="{{{proInfo.mo_ta}}}"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row ">
+                    <div class="col text-center">
+                        <button class="btn btn-success" type="submit">Cập
+                            Nhật</button>
+                    </div>
+
+                </div>
+            </form>
+            {{else}}
             {{{proInfo.mo_ta}}}
+            {{/if}}
         </div>
         <h3 style="margin-top: 50px; font-weight: bold;">THÔNG TIN NGƯỜI BÁN</h3>
         <div class="tabs_line" style="margin-top: 0px;"></div>
@@ -415,5 +454,4 @@
                 </a>
             </li>
         </ul>
-    </div>
-</div>
+        </d1

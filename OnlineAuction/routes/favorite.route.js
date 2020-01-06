@@ -9,6 +9,7 @@ router.post('/add/:catId/:proId', async (req, res) => {
         id_dm: req.params.catId,
         id_sp: req.params.proId,
     }
+
     const result = await favoriteModel.add(entity);
     const numberFav = await favoriteModel.countByUser(res.locals.authUser.id_user);
     req.session.number_favoriteProd = numberFav[0].so_sp;

@@ -42,12 +42,17 @@ module.exports = {
         db.del("sanpham", {
             id_sp: id
         }),
-    patch: entity => {
-        const condition = {
-            id_sp: entity.id_sp
+    patch2: entity => {
+        const condition1 = {
+            id_dm: entity.id_dm,
+
         };
+        const condition2 = {
+            id_sp: entity.id_sp,
+        }
         delete entity.id_sp;
-        return db.patch("sanpham", entity, condition);
+        delete entity.id_dm;
+        return db.patch("sanpham", entity, condition1, condition2);
     },
 
     allByCatWithInfo: (catId, offset) =>
@@ -129,5 +134,14 @@ module.exports = {
             `select max(id_sp) as highestProId from sanpham where id_dm = ${id_dm}`
         );
         return row[0].highestProId;
-    }
+    },
+
+    checkOwner: async (id_user, id_dm, id_sp) => {
+        const result = await db.load(`select count(*) count from sanpham where nguoi_ban = ${id_user} and id_dm = ${id_dm} and id_sp = ${id_sp}`)
+        return result[0].count;
+    },
+
+    soldProducts: (id_user) => db.load(`SELECT * 
+    from (sanpham sp join sp_daban db on sp.id_dm = db.danh_muc and sp.id_sp = db.san_pham) join user u on db.nguoi_mua = u.id_user
+    where sp.nguoi_ban = ${id_user}`)
 };
