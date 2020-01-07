@@ -107,7 +107,15 @@ router.get('/:catId/products/:proId', async (req, res) => {
     }
     const rowProd = await productModel.checkOwner(id_user, req.params.catId, req.params.proId);
     const rowFav = await favoriteModel.count(id_user, req.params.catId, req.params.proId);
-
+    const relatedProducts = await productModel.getByCat(req.params.catId, req.params.proId);
+    for (i = 0; i < relatedProducts.length; i++) {
+        let row = await productModel.highestBidderAndPrice(relatedProducts[i].id_dm, relatedProducts[0].id_sp);
+        if (row.length > 0) {
+            relatedProducts[i].gia_hien_tai = row[0].currentPrice;
+        }
+        let row1 = await bidModel.countByProd(relatedProducts[i].id_dm, relatedProducts[i].id_sp);
+        relatedProducts[i].num_of_bids = row1;
+    }
     if (+rowFav === 0) {
 
     } else {
@@ -136,7 +144,8 @@ router.get('/:catId/products/:proId', async (req, res) => {
             isUserProd: isUserProd,
             historyRows: history,
             rejectedUser: rejected,
-            isHighestBidder: isHighestBidder
+            isHighestBidder: isHighestBidder,
+            relatedProducts: relatedProducts
         });
     } else {
         res.render('vwProduct/proDetail', {
@@ -149,7 +158,8 @@ router.get('/:catId/products/:proId', async (req, res) => {
             isUserProd: isUserProd,
             historyRows: history,
             rejectedUser: rejected,
-            isHighestBidder: isHighestBidder
+            isHighestBidder: isHighestBidder,
+            relatedProducts: relatedProducts
         });
     }
 });

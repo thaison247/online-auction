@@ -179,6 +179,11 @@ module.exports = {
                                 where ls.so_tien = (select max(ls1.so_tien) from lichsu_ragia ls1
                                 where ls1.id_sp = s.id_sp and ls1.id_dm = ls1.id_dm 
                                 and ls1.bidder not in (select bidder from cam_bidder c where c.danh_muc = s.id_dm and c.san_pham = s.id_sp))
-                                order by ls.so_tien desc limit 5`)
+                                order by ls.so_tien desc limit 5`),
+
+    getByCat: (id_dm, id_sp) => db.load(`SELECT * FROM sanpham
+                                    where het_han = 0 and id_dm = ${id_dm} and id_sp <> ${id_sp}
+                                    order by tg_het_han asc
+                                    limit 5`)
 
 };
