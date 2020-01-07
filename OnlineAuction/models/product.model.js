@@ -164,5 +164,21 @@ module.exports = {
 
     update: () => db.load(`update sanpham set het_han = 1 where tg_het_han < now()`),
 
+    top5Expire: () => db.load(`SELECT * FROM sanpham
+                            where het_han = 0
+                            order by tg_het_han asc
+                            limit 5`),
+
+    top5Bids: () => db.load(`select * from sanpham s join (
+                            select id_dm, id_sp, count(*) as num_of_bids from lichsu_ragia
+                            group by id_dm, id_sp) as T on s.id_dm = T.id_dm and s.id_sp = T.id_sp
+                            order by T.num_of_bids desc
+                            limit 5`),
+
+    top5Price: () => db.load(`select * from sanpham s join lichsu_ragia ls on s.id_dm = ls.id_dm and s.id_sp = ls.id_sp
+                                where ls.so_tien = (select max(ls1.so_tien) from lichsu_ragia ls1
+                                where ls1.id_sp = s.id_sp and ls1.id_dm = ls1.id_dm 
+                                and ls1.bidder not in (select bidder from cam_bidder c where c.danh_muc = s.id_dm and c.san_pham = s.id_sp))
+                                order by ls.so_tien desc limit 5`)
 
 };

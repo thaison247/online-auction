@@ -10,6 +10,11 @@ module.exports = {
      `),
     countByUser: (id_user) => db.load(`select count(*) as so_sp from (select distinct id_dm, id_sp from lichsu_ragia where bidder = ${id_user}) as T`),
 
+    countByProd: async (id_dm, id_sp) => {
+        const row = await db.load(`select count(*) as total from lichsu_ragia where id_dm = ${id_dm} and id_sp = ${id_sp}`)
+        return row[0].total
+    },
+
     getPriceByUser: async (id_user, id_dm, id_sp) => {
         const row = await db.load(`select max(so_tien) as price from lichsu_ragia
             where bidder = ${id_user} and id_dm = ${id_dm} and id_sp = ${id_sp}`);

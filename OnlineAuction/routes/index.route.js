@@ -4,11 +4,41 @@ const cartModel = require('../models/cart.model');
 const restrict = require('../middlewares/auth.mdw');
 const local = require('../middlewares/locals.mdw');
 const config = require('../config/default.json');
+const bidModel = require('../models/bid.model');
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    res.render("index");
+    var rows1 = await productModel.top5Expire();
+    for (i = 0; i < rows1.length; i++) {
+        let row = await productModel.highestBidderAndPrice(rows1[i].id_dm, rows1[0].id_sp);
+        if (row.length > 0) {
+            rows1[i].gia_hien_tai = row[0].currentPrice;
+        }
+        let row1 = await bidModel.countByProd(rows1[i].id_dm, rows1[i].id_sp);
+        rows1[i].num_of_bids = row1;
+    }
+
+    var rows2 = await productModel.top5Bids();
+    for (i = 0; i < rows2.length; i++) {
+        let row = await productModel.highestBidderAndPrice(rows2[i].id_dm, rows2[0].id_sp);
+        if (row.length > 0) {
+            rows2[i].gia_hien_tai = row[0].currentPrice;
+        }
+        // let row1 = await bidModel.countByProd(rows2[i].id_dm, rows2[i].id_sp);
+        // rows2[i].num_of_bids = row1;
+    }
+
+    var rows3 = await productModel.top5Price();
+    for (i = 0; i < rows3.length; i++) {
+        let row1 = await bidModel.countByProd(rows3[i].id_dm, rows3[i].id_sp);
+        rows3[i].num_of_bids = row1;
+    }
+    res.render("index", {
+        products1: rows1,
+        products2: rows2,
+        products3: rows3
+    });
 });
 
 // router.get('/search', async (req, res) => {

@@ -231,7 +231,6 @@ router.post("/upgrade", restrict, async (req, res) => {
     if (res.locals.authUser.phan_he === config.bidder) {
         var entity = {
             nguoi_gui: user,
-            thoi_diem: time
         };
         const result = await upgradeReqModel.add(entity);
         res.render("vwAccount/upgrade", {

@@ -1,7 +1,6 @@
 const restrict = require('../middlewares/auth.mdw');
 const restrictAdmin = require('../middlewares/authAdmin.mdw');
 
-
 module.exports = function (app) {
     // app.use('/account', require('../routes/account.route'));
     app.use('/', require('../routes/index.route'));
